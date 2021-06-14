@@ -33,9 +33,7 @@
 		
 		out.print(rs);
 		
-		rs.close();
-		pstmt.close();
-		con.close();
+		
 	}
 %>
 <!DOCTYPE html>
@@ -74,15 +72,28 @@ tr:nth-child(even) {
 		<th>name</th>
 		<th>regdate</th>
 	</tr>
+	<%while(rs.next()){%>
 	<tr>
 		<td>Jill</td>
-		<td>Smith</td>
-		<td>50</td>
-		<td>50</td>
-		<td>50</td>
+		<td><%=rs.getInt("member_id")%></td>
+		<td><%=rs.getString("user_id")%></td>
+		<td><%=rs.getString("name")%></td>
+		<td><%=rs.getString("regdate")%></td>
 	</tr>
+	<%}%>
 </table>
 
 </body>
 </html>
 
+<%
+	if(rs!=null){
+		rs.close();
+	}
+	if(pstmt!=null){
+		pstmt.close();
+	}
+	if(con!=null){
+		con.close();
+	}
+%>

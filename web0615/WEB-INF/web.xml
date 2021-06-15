@@ -50,6 +50,17 @@
 		<url-pattern>/board/regist</url-pattern>	
 	</servlet-mapping>
 
+	<!--목록보기 요청을 처리하는 서블릿-->
+	<servlet>
+		<servlet-name>listServlet</servlet-name>
+		<servlet-class>servlet.board.ListServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>listServlet</servlet-name>
+		<url-pattern>/board/list</url-pattern>	
+	</servlet-mapping>
+
 
 </web-app>
 

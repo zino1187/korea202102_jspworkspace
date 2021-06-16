@@ -1,3 +1,4 @@
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,13 +26,32 @@
 	
 	//오라클 접속 
 	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","webmaster","1234");
+	PreparedStatement pstmt=null;
+	
 	if(con==null){
 		out.print("접속실패<br>");
 	}else{
 		out.print("접속성공<br>");
+		
+		String sql="insert into board(board_id, title, writer,content) values(seq_board.nextval,?,?,?)";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, title);
+		pstmt.setString(2, writer);
+		pstmt.setString(3, content);
+		
+		int result = pstmt.executeUpdate(); //쿼리수행 
+		if(result==0){
+			out.print("등록실패 <br>");
+		}else{
+			out.print("등록성공 <br>");
+			out.print("<script>");
+			out.print("alert('등록성공');");
+			out.print("location.href='목록주소';");
+			out.print("</script>");
+		}
+		pstmt.close();
+		con.close();
 	}
-	
-	con.close();
 %>    
 
 

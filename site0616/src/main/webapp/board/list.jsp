@@ -66,7 +66,7 @@ $(function(){
 	<%while(rs.next()){ %>
 	<tr>
 		<td>Jill</td>
-		<td><a href="/board/detail.jsp"><%=rs.getString("title") %></a></td>
+		<td><a href="/board/detail.jsp?board_id=<%=rs.getInt("board_id")%>"><%=rs.getString("title") %></a></td>
 		<td><%=rs.getString("writer") %></td>
 		<td><%=rs.getString("regdate") %></td>
 		<td><%=rs.getInt("hit") %></td>

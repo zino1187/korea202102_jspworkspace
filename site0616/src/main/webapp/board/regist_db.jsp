@@ -1,3 +1,5 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -7,6 +9,7 @@
 	//놓은 내장된 javaEE의 객체들을 의미 
 	//HttpServletRequest  --> request 내장객체
 	//HttpServletResponse --> response 내장객체
+	request.setCharacterEncoding("utf-8");//파라미터에 대한 인코딩..
 	String title=request.getParameter("title"); //html에 명시한 파라미터 명
 	String writer=request.getParameter("writer"); //html에 명시한 파라미터 명
 	String content=request.getParameter("content"); //html에 명시한 파라미터 명
@@ -16,4 +19,25 @@
 	out.print(writer+"<br>");
 	out.print(content+"<br>");
 	
+	//오라클에 넣기!!!
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	out.print("드라이버 로드 성공<br>");
+	
+	//오라클 접속 
+	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","webmaster","1234");
+	if(con==null){
+		out.print("접속실패<br>");
+	}else{
+		out.print("접속성공<br>");
+	}
+	
+	con.close();
 %>    
+
+
+
+
+
+
+
+

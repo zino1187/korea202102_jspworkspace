@@ -46,7 +46,7 @@
 			out.print("등록성공 <br>");
 			out.print("<script>");
 			out.print("alert('등록성공');");
-			out.print("location.href='목록주소';");
+			out.print("location.href='/board/list.jsp';");
 			out.print("</script>");
 		}
 		pstmt.close();

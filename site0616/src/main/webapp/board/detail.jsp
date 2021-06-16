@@ -84,6 +84,13 @@ $(function(){
 	});	
 });
 
+function del(){
+	$("form").attr({
+		"action":"/board/del.jsp",
+		"method":"post"
+	});	
+	$("form").submit();	
+}
 
 function edit(){
 	$("form").attr({

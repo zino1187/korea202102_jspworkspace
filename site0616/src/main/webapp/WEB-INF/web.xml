@@ -8,7 +8,12 @@
 	<!-- 서블릿 매핑 -->
 	<servlet>
 		<servlet-name>myServlet</servlet-name>
-		<servlet-class>site0616.test.MyServlet</servlet-class>		
+		<servlet-class>site0616.test.MyServlet</servlet-class>
+		<!-- 서블릿의 init 메서드로 전달하고픈, 문자열 데이터를 여기서 설정할수있슴 -->
+		<init-param>
+			<param-name>msg</param-name>
+			<param-value>나는 서블릿이다</param-value>
+		</init-param>						
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>myServlet</servlet-name>

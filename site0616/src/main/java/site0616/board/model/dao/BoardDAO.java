@@ -213,7 +213,43 @@ public class BoardDAO {
 		return result;
 	}
 	
+	
+	//레코드 1건 삭제처리 메서드
+	public int delete(int board_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		try {
+			con=DriverManager.getConnection(url, user, password);
+			String sql="delete from board where board_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, board_id);
+			result=pstmt.executeUpdate(); //삭제 쿼리 수행
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}					
+		}
+		return result;
+	}
 }
+
+
 
 
 

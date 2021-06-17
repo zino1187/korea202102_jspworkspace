@@ -1,11 +1,12 @@
+<%@page import="site0616.model.domain.Board"%>
+<%@page import="java.util.List"%>
 <%@page import="site0616.board.model.dao.BoardDAO"%>
-<%@page import="java.sql.ResultSet"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%!
 	BoardDAO boardDAO = new BoardDAO();
 %>
 <%
-	ResultSet rs = boardDAO.selectAll();
+	List<Board> boardList= boardDAO.selectAll();
 %>
 <!DOCTYPE html>
 <html>
@@ -51,13 +52,13 @@ $(function(){
 		<th>등록일</th>
 		<th>조회수</th>
 	</tr>
-	<%while(rs.next()){ %>
+	<%for(Board board : boardList){ %>
 	<tr>
 		<td>Jill</td>
-		<td><a href="/board/detail.jsp?board_id=<%=rs.getInt("board_id")%>"><%=rs.getString("title") %></a></td>
-		<td><%=rs.getString("writer") %></td>
-		<td><%=rs.getString("regdate") %></td>
-		<td><%=rs.getInt("hit") %></td>
+		<td><a href="/board/detail.jsp?board_id=<%=board.getBoard_id()%>"><%=board.getTitle()%></a></td>
+		<td><%=board.getWriter() %></td>
+		<td><%=board.getRegdate()%></td>
+		<td><%=board.getHit() %></td>
 	</tr>
 	<%} %>
 	<tr>
@@ -68,6 +69,3 @@ $(function(){
 </table>
 </body>
 </html>
-<%
-	if(rs!=null)rs.close();
-%>

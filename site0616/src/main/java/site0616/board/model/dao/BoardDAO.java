@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import site0616.model.domain.Board;
 
@@ -64,10 +66,11 @@ public class BoardDAO {
 	
 	
 	//모드 레코드 가져오기 
-	public ResultSet selectAll() {
+	public List selectAll() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
+		ArrayList<Board> list = new ArrayList<Board>(); //rs를 대신할 데이터!!
 		
 		try {
 			con=DriverManager.getConnection(url, user, password);
@@ -75,10 +78,45 @@ public class BoardDAO {
 			String sql="select * from board order by board_id desc";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery(); //쿼리수행 및 레코드 반환
+			
+			//곧 죽을 rs를 대신할 리스트에 레코드 한건 마다 VO담아놓고, 이 VO를 list 에 누적시키자!!
+			while(rs.next()) {
+				Board board = new Board(); //하나의 Board 인스턴스는 하나의 레코드를 대신할 수 있다!!
+				
+				board.setBoard_id(rs.getInt("board_id"));
+				board.setTitle(rs.getString("title"));
+				board.setWriter(rs.getString("writer"));
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
+				board.setHit(rs.getInt("hit"));
+				list.add(board);//완성된 VO를 컬렉션에 담자!!
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}			
 		}
-		return rs;
+		return list;
 	}
 }
 

@@ -174,6 +174,45 @@ public class BoardDAO {
 		}
 		return board;
 	}
+	
+	//수정 메서드
+	public int update(Board board) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0; //반환하기 위해
+		
+		try {
+			con=DriverManager.getConnection(url, user, password);
+			String sql="update board set title=?, writer=?, content=? where board_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriter());
+			pstmt.setString(3, board.getContent());
+			pstmt.setInt(4, board.getBoard_id());
+			
+			result = pstmt.executeUpdate();//수정 쿼리 실행
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}					
+		}
+		return result;
+	}
+	
 }
 
 

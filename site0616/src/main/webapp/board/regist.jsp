@@ -53,7 +53,7 @@ $(function(){
 
 function regist(){
 	$("form").attr({
-		"action":"/board/regist_db.jsp",
+		"action":"/board/regist_db2.jsp",
 		"method":"post"
 	});	
 	$("form").submit();

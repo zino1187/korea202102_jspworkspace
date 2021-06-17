@@ -3,7 +3,9 @@ package site0616.board.model.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import site0616.model.domain.Board;
 
 //웹이건, 응용이건 모두 공통적으로 재사용가능한 수준의 중립적 데이터 엑세스 객체를 정의해본다!!
@@ -60,6 +62,24 @@ public class BoardDAO {
 		return result;
 	}
 	
+	
+	//모드 레코드 가져오기 
+	public ResultSet selectAll() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=DriverManager.getConnection(url, user, password);
+			
+			String sql="select * from board order by board_id desc";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery(); //쿼리수행 및 레코드 반환
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }
 
 

@@ -5,6 +5,9 @@
 <%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%!
+	BoardDAO boardDAO = new BoardDAO(); //서블릿의 service() 안에 작성한 것임
+%>    
 <%
 	//파라미터 받기!!
 	request.setCharacterEncoding("utf-8");//파라미터에 대한 인코딩..
@@ -12,8 +15,6 @@
 	String writer=request.getParameter("writer"); //html에 명시한 파라미터 명
 	String content=request.getParameter("content"); //html에 명시한 파라미터 명
 	
-	//오라클에 넣기!!!
-	BoardDAO boardDAO = new BoardDAO();
 	//VO생성하여, 인수로 넘기자!!
 	Board board = new Board(); //empty 상태
 	board.setTitle(title);

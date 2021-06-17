@@ -1,11 +1,23 @@
-<%@page import="site0616.board.model.dao.BoardDAO"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%!
-	BoardDAO boardDAO = new BoardDAO();
-%>
 <%
-	ResultSet rs = boardDAO.selectAll();
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+
+	Connection con=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","webmaster","1234");
+	if(con==null){
+		out.print("접속실패<br>");
+	}else{
+		String sql="select * from board order by board_id desc";
+		pstmt=con.prepareStatement(sql);
+		rs=pstmt.executeQuery();//쿼리수행 및 결과집합 가져오기 
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -69,5 +81,7 @@ $(function(){
 </body>
 </html>
 <%
+	if(con!=null)con.close();
+	if(pstmt!=null)pstmt.close();
 	if(rs!=null)rs.close();
 %>

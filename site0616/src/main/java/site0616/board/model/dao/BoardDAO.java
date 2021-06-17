@@ -89,6 +89,7 @@ public class BoardDAO {
 				board.setContent(rs.getString("content"));
 				board.setRegdate(rs.getString("regdate"));
 				board.setHit(rs.getInt("hit"));
+				
 				list.add(board);//완성된 VO를 컬렉션에 담자!!
 			}
 		} catch (SQLException e) {
@@ -117,6 +118,61 @@ public class BoardDAO {
 			}			
 		}
 		return list;
+	}
+	
+	//레코드 한건 가져오기 !!
+	public Board select(int board_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		Board board=null;
+		
+		try {
+			con=DriverManager.getConnection(url, user, password);
+			
+			String sql="select * from board where board_id="+board_id; //한건 가져오기
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			//곧 죽을 rs를 대신할 즉 레코드 1건을 담을 VO를 생성하여, rs의 레코드를 옮겨심자
+			if(rs.next()) {	//단 레코드가 있을때만 담아야 한다..따라서 레코드가 없을때는 Board는 null이 되므로, 개발자는
+								//반환값이 null일때는 레코드가 없다는 판단을 해야 한다.
+				board = new Board(); //하나의 Board 인스턴스는 하나의 레코드를 대신할 수 있다!!
+				
+				board.setBoard_id(rs.getInt("board_id"));
+				board.setTitle(rs.getString("title"));
+				board.setWriter(rs.getString("writer"));
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
+				board.setHit(rs.getInt("hit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}			
+			
+		}
+		return board;
 	}
 }
 

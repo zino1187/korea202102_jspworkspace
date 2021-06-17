@@ -1,34 +1,20 @@
 package site0616.board.model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 import site0616.model.domain.Board;
+import site0616.model.pool.PoolManager;
 
 //웹이건, 응용이건 모두 공통적으로 재사용가능한 수준의 중립적 데이터 엑세스 객체를 정의해본다!!
 //일반적인 어플리케이션 설계 분야에서 이러한 역할(Database와 연동되어 CRUD만을 수행)을 
 //수행하는 객체를 가리켜 DAO(Data Access Object)라 한다. 
 public class BoardDAO {
-	InitialContext context;//검색 객체
-	DataSource ds; //커넥션 관리 객체 
-	
-	public BoardDAO() {
-		try {
-			context = new InitialContext();
-			ds=(DataSource)context.lookup("java:comp/env/jndi/oracle"); //JNDI로 자원을 검색하여 객체반환!!
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+	PoolManager poolManager;
 	
 	//Create(==insert) Read(==select) Update Delete 메서드 정의
 	//글쓰기(글 한건 등록)
@@ -38,7 +24,7 @@ public class BoardDAO {
 		int result=0; //return 을 위해
 		
 		try {
-			con=ds.getConnection();//풀로부터 Connection 한개 대여!!
+			con=poolManager.getConnection();//풀로부터 Connection 한개 대여!!
 			String sql="insert into board(board_id, title, writer,content) values(seq_board.nextval,?,?,?)";
 			pstmt=con.prepareStatement(sql)	;
 			pstmt.setString(1, board.getTitle());
@@ -77,7 +63,7 @@ public class BoardDAO {
 		ArrayList<Board> list = new ArrayList<Board>(); //rs를 대신할 데이터!!
 		
 		try {
-			con=ds.getConnection();
+			con=poolManager.getConnection();
 			
 			String sql="select * from board order by board_id desc";
 			pstmt=con.prepareStatement(sql);
@@ -132,7 +118,7 @@ public class BoardDAO {
 		Board board=null;
 		
 		try {
-			con=ds.getConnection();
+			con=poolManager.getConnection();
 			
 			String sql="select * from board where board_id="+board_id; //한건 가져오기
 			pstmt=con.prepareStatement(sql);
@@ -186,7 +172,7 @@ public class BoardDAO {
 		int result=0; //반환하기 위해
 		
 		try {
-			con=ds.getConnection();
+			con=poolManager.getConnection();
 			String sql="update board set title=?, writer=?, content=? where board_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
@@ -225,7 +211,7 @@ public class BoardDAO {
 		int result=0;
 		
 		try {
-			con=ds.getConnection();
+			con=poolManager.getConnection();
 			String sql="delete from board where board_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, board_id);

@@ -19,7 +19,7 @@
 		InitialContext ctx=new InitialContext(); // jndi로 검색을 실시하는 객체 
 		
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jndi/oracle"); //검색어를 입력
-		out.print(ds);
+		out.print(ds+"<br>");
 		
 		//이 시점 부터 커넥션풀링 객체를 보유한 것이다!!
 		

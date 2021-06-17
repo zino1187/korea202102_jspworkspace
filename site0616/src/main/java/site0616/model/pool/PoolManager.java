@@ -1,6 +1,8 @@
 package site0616.model.pool;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.naming.InitialContext;
@@ -12,8 +14,9 @@ import javax.sql.DataSource;
 public class PoolManager {
 	InitialContext context;
 	DataSource ds;
+	private static PoolManager instance; //null
 	
-	public PoolManager() {
+	private PoolManager() {
 		try {
 			context = new InitialContext();
 			ds=(DataSource)context.lookup("java:comp/env/jndi/oracle");
@@ -21,6 +24,16 @@ public class PoolManager {
 			e.printStackTrace();
 		}
 	}
+	
+	//생성자를 아무도 못쓰게 막아놓았으므로, 외부의 클래스들이 
+	//PoolManager의 인스턴스를 반환받아갈수 있도록 책임을 지자!
+	public static PoolManager getInstance() {
+		if(instance==null) {
+			instance = new PoolManager();
+		}
+		return instance;
+	}
+	
 	
 	//누구든지 쿼리문을 수행하기 위해 Connection이 필요하다면 아래의 메서드를 호출하여  Connection을 가져가기만 하면 됨
 	public Connection getConnection() {
@@ -32,6 +45,60 @@ public class PoolManager {
 		}
 		return con;
 	}
+	
+	//Connection 반납
+	public void release(Connection con) {
+		if(con!=null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	//Connection, PreparedStatement 반납 
+	public void release(Connection con, PreparedStatement pstmt) {
+		if(pstmt!=null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(con!=null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	//Connection, PreparedStatement , ResultSet 반납 
+	public void release(Connection con, PreparedStatement pstmt,ResultSet rs) {
+		if(rs!=null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(pstmt!=null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(con!=null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 }
 

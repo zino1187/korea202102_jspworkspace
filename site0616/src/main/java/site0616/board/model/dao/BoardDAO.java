@@ -14,7 +14,7 @@ import site0616.model.pool.PoolManager;
 //일반적인 어플리케이션 설계 분야에서 이러한 역할(Database와 연동되어 CRUD만을 수행)을 
 //수행하는 객체를 가리켜 DAO(Data Access Object)라 한다. 
 public class BoardDAO {
-	PoolManager poolManager;
+	PoolManager poolManager=PoolManager.getInstance(); //싱글턴으로 선언된 PoolManager의 인스턴스 얻기
 	
 	//Create(==insert) Read(==select) Update Delete 메서드 정의
 	//글쓰기(글 한건 등록)
@@ -36,20 +36,7 @@ public class BoardDAO {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			poolManager.release(con, pstmt);
 		}
 		return result;
 	}
@@ -85,27 +72,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}			
+			poolManager.release(con, pstmt, rs);		
 		}
 		return list;
 	}
@@ -139,28 +106,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}			
-			
+			poolManager.release(con, pstmt, rs);		
 		}
 		return board;
 	}
@@ -185,20 +131,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}					
+			poolManager.release(con, pstmt);					
 		}
 		return result;
 	}
@@ -220,20 +153,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}					
+			poolManager.release(con, pstmt);					
 		}
 		return result;
 	}

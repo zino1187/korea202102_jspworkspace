@@ -65,7 +65,7 @@ $(function(){
 	<%} %>
 	<tr>
 		<td colspan="6">
-			<button onClick="location.href='/gallery/regist.jsp';">등록</button>
+			<button onClick="location.href='/gallery/regist.jsp';">등 록</button>
 		</td>
 	</tr>
 </table>

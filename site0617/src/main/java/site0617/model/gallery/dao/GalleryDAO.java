@@ -70,7 +70,23 @@ public class GalleryDAO {
 		return list;
 	}
 	
+	//레코드 한건 가져오기  5시 5분까지 마무리 하세요
+	public void select() {
+		String sql="select * from gallery where gallery_id=?"; 
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

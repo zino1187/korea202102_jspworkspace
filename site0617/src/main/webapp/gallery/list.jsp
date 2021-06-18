@@ -55,7 +55,9 @@ $(function(){
 	<tr>
 		<td>Jill</td>
 		<td><img src="/data/<%=gallery.getFilename()%>" width="50px"></td>
-		<td><%=gallery.getTitle() %></td>
+		<td>
+			<a href="/gallery/detail.jsp"><%=gallery.getTitle() %></a>
+		</td>
 		<td><%=gallery.getWriter() %></td>
 		<td><%=gallery.getRegdate() %></td>
 		<td><%=gallery.getHit() %></td>

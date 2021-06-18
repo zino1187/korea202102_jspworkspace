@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="site0617.model.domain.Gallery"%>
+<%@page import="site0617.model.gallery.dao.GalleryDAO"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%!GalleryDAO galleryDAO = new GalleryDAO();%>
+<%
+	//리스트페이지에서 전송된 파라미터 받기 
+	String gallery_id=request.getParameter("gallery_id");
+	Gallery gallery=galleryDAO.select(Integer.parseInt(gallery_id));//레코드 1건 가져오기!!
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,9 +96,9 @@ function regist(){
 
 <div class="container">
   <form action="/action_page.php">
-    <input type="text" 	name="title" 			placeholder="제목..">
-    <input type="text" 	name="writer" 		placeholder="작성자..">
-    <textarea name="content" 	placeholder="내용.." style="height:200px"></textarea>
+    <input type="text" 	name="title" 			value="<%=gallery.getTitle()%>">
+    <input type="text" 	name="writer" 		value="<%=gallery.getWriter()%>">
+    <textarea name="content" 	style="height:200px"><%=gallery.getContent()%></textarea>
     <input type="file" name="myfile">
     <p>
     <input type="button" value="수정">

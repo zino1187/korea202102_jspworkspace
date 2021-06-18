@@ -56,7 +56,7 @@ $(function(){
 		<td>Jill</td>
 		<td><img src="/data/<%=gallery.getFilename()%>" width="50px"></td>
 		<td>
-			<a href="/gallery/detail.jsp"><%=gallery.getTitle() %></a>
+			<a href="/gallery/detail.jsp?gallery_id=<%=gallery.getGallery_id()%>"><%=gallery.getTitle() %></a>
 		</td>
 		<td><%=gallery.getWriter() %></td>
 		<td><%=gallery.getRegdate() %></td>
@@ -65,7 +65,7 @@ $(function(){
 	<%} %>
 	<tr>
 		<td colspan="6">
-			<button onClick="location.href='/gallery/regist.jsp';">등 록</button>
+			<button onClick="location.href='/gallery/regist.jsp';">등록</button>
 		</td>
 	</tr>
 </table>

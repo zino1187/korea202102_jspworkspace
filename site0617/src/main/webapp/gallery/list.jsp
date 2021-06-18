@@ -1,4 +1,11 @@
+<%@page import="site0617.model.domain.Gallery"%>
+<%@page import="java.util.List"%>
+<%@page import="site0617.model.gallery.dao.GalleryDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%!GalleryDAO galleryDAO = new GalleryDAO();%>
+<%
+	List<Gallery> galleryList=galleryDAO.selectAll(); //게시물 가져오기
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,23 +45,25 @@ $(function(){
 <table>
 	<tr>
 		<th>No</th>
+		<th>이미지</th>
 		<th>제목</th>
 		<th>작성자</th>
 		<th>등록일</th>
 		<th>조회수</th>
 	</tr>
-	<%{ %>
+	<%for(Gallery gallery:galleryList){ %>
 	<tr>
 		<td>Jill</td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td><img src="/data/<%=gallery.getFilename()%>" width="50px"></td>
+		<td><%=gallery.getTitle() %></td>
+		<td><%=gallery.getWriter() %></td>
+		<td><%=gallery.getRegdate() %></td>
+		<td><%=gallery.getHit() %></td>
 	</tr>
 	<%} %>
 	<tr>
-		<td colspan="5">
-			<button onClick="location.href='/board/regist.jsp';">등록</button>
+		<td colspan="6">
+			<button onClick="location.href='/gallery/regist.jsp';">등록</button>
 		</td>
 	</tr>
 </table>

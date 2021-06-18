@@ -1,5 +1,6 @@
 package site0617.gallery;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
+
+import site0617.util.FileManager;
 
 //이미 jsp로도 업로드 처리가 가능하겠으나, 서블릿을 다시 한번 공부해보고자 이 클래스를 작성하는 것임!!
 public class UploadServlet extends HttpServlet{
@@ -48,8 +51,23 @@ public class UploadServlet extends HttpServlet{
 		try {
 			//하기전
 			MultipartRequest multi = new MultipartRequest(request, path, maxSize,"utf-8");
-			out.print("업로드에 성공<br>");
+			
 			//이미 서버에 업로드된 파일의 이름을 바꾸자!!
+			File file=multi.getFile("myfile"); //이미 업로드된 파일얻기
+			long time = System.currentTimeMillis();
+			File dest = new File(path+"/"+time+"."+FileManager.getExt(file.getName())); //새로 만들어질 파일 생성
+			file.renameTo(dest);
+
+			out.print("업로드에 성공<br>");
+			
+			//텍스트 파라미터 받기!!
+			String title=multi.getParameter("title");
+			String writer=multi.getParameter("writer");
+			String content=multi.getParameter("content");
+			
+			out.print(title+"<br>");
+			out.print(writer+"<br>");
+			out.print(content+"<br>");
 			
 		} catch (IOException e) {
 			out.print("업로드에 실패하였습니다.용량을 확인해보세요<br>");

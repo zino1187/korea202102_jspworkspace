@@ -13,14 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import site0617.model.domain.Gallery;
+import site0617.model.gallery.dao.GalleryDAO;
 import site0617.util.FileManager;
 
 //이미 jsp로도 업로드 처리가 가능하겠으나, 서블릿을 다시 한번 공부해보고자 이 클래스를 작성하는 것임!!
 public class UploadServlet extends HttpServlet{
 	ServletContext context;
+	GalleryDAO galleryDAO;
 	
 	public void init(ServletConfig config) throws ServletException {
 		context = config.getServletContext();
+		galleryDAO = new GalleryDAO();
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +59,10 @@ public class UploadServlet extends HttpServlet{
 			//이미 서버에 업로드된 파일의 이름을 바꾸자!!
 			File file=multi.getFile("myfile"); //이미 업로드된 파일얻기
 			long time = System.currentTimeMillis();
-			File dest = new File(path+"/"+time+"."+FileManager.getExt(file.getName())); //새로 만들어질 파일 생성
+			
+			String destName=time+"."+FileManager.getExt(file.getName());//새로운 파일명
+			
+			File dest = new File(path+"/"+destName); //새로 만들어질 파일 생성
 			file.renameTo(dest);
 
 			out.print("업로드에 성공<br>");
@@ -65,10 +72,20 @@ public class UploadServlet extends HttpServlet{
 			String writer=multi.getParameter("writer");
 			String content=multi.getParameter("content");
 			
-			out.print(title+"<br>");
-			out.print(writer+"<br>");
-			out.print(content+"<br>");
+			//db에 넣기!!
+			Gallery gallery = new Gallery(); //empty
+			gallery.setTitle(title);//제목
+			gallery.setWriter(writer);//작성자
+			gallery.setContent(content);
+			gallery.setFilename(destName);//새로운 파일명 
 			
+			int result = galleryDAO.insert(gallery);
+			
+			if(result==0) {
+				out.print("등록실패");
+			}else {
+				out.print("등록성공");
+			}
 		} catch (IOException e) {
 			out.print("업로드에 실패하였습니다.용량을 확인해보세요<br>");
 			e.printStackTrace(); //원인을 분석할 수 있도록 스택구조로 출력 (개발자를 위한 것)

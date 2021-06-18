@@ -71,9 +71,35 @@ public class GalleryDAO {
 	}
 	
 	//레코드 한건 가져오기  5시 5분까지 마무리 하세요
-	public void select() {
-		String sql="select * from gallery where gallery_id=?"; 
+	public Gallery select(int gallery_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Gallery gallery=null; //레코드가 존재할때만  new할꺼임
 		
+		con=pool.getConnection();
+		String sql="select * from gallery where gallery_id=?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, gallery_id);
+			rs=pstmt.executeQuery(); //한건의 레코드가 들어있다!!
+			if(rs.next()) {//레코드가 있다면..Vo 하나에 레코드 1건 옮기기
+				gallery = new Gallery();
+				gallery.setGallery_id(rs.getInt("gallery_id"));
+				gallery.setTitle(rs.getString("title"));
+				gallery.setWriter(rs.getString("writer"));
+				gallery.setContent(rs.getString("content"));
+				gallery.setRegdate(rs.getString("regdate"));
+				gallery.setFilename(rs.getString("filename"));
+				gallery.setHit(rs.getInt("hit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt, rs);
+		}
+		return gallery;
 	}
 }
 

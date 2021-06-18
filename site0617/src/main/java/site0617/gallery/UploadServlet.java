@@ -85,6 +85,8 @@ public class UploadServlet extends HttpServlet{
 				out.print("등록실패");
 			}else {
 				out.print("등록성공");
+				//리스트 요청 
+				response.sendRedirect("/gallery/list.jsp"); //지정한 url로 다시 재접속을 명령(클라이언트에게..)
 			}
 		} catch (IOException e) {
 			out.print("업로드에 실패하였습니다.용량을 확인해보세요<br>");

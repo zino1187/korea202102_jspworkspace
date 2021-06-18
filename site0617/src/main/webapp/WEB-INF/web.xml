@@ -14,4 +14,13 @@
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>deleteServlet</servlet-name>
+		<servlet-class>site0617.gallery.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteServlet</servlet-name>
+		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

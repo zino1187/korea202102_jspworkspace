@@ -101,6 +101,29 @@ public class GalleryDAO {
 		}
 		return gallery;
 	}
+	
+	//레코드 1건 삭제
+	public int delete(int gallery_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
+		String sql="delete from gallery where gallery_id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, gallery_id); //바인드 변수값 지정
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;
+		
+		
+	}
+	
 }
 
 

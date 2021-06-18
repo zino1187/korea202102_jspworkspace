@@ -69,7 +69,11 @@ $(function(){
 });
 function del(){
 	if(confirm("삭제하시겠어요?")){
-		
+		$("form").attr({
+			"action":"/delete",
+			"method":"post"
+		});	
+		$("form").submit();		
 	}
 }
 
@@ -95,7 +99,11 @@ function regist(){
 <h3>파일업로드 양식</h3>
 
 <div class="container">
-  <form action="/action_page.php">
+  <form>
+  	<!-- 아래의 히든은 수정, 삭제 모두 공통이므로.... -->
+  	<input type="hidden" name="gallery_id" value="<%=gallery_id%>">
+  	<input type="hidden" name="filename" value="<%=gallery.getFilename()%>">
+  	
     <input type="text" 	name="title" 			value="<%=gallery.getTitle()%>">
     <input type="text" 	name="writer" 		value="<%=gallery.getWriter()%>">
     <textarea name="content" 	style="height:200px"><%=gallery.getContent()%></textarea>

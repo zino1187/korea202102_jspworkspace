@@ -67,10 +67,21 @@ $(function(){
 		location.href="/gallery/list.jsp";	
 	});
 });
+function edit(){
+	if(confirm("수정하시겠어요?")){
+		$("form").attr({
+			"action":"/gallery/edit.jsp", //일부러 jsp로 처리해보자(공부목적)
+			"method":"post"
+		});	
+		$("form").submit();		
+	}
+}
+
 function del(){
 	if(confirm("삭제하시겠어요?")){
 		$("form").attr({
 			"action":"/delete",
+			"enctype":"multipart/form-data",
 			"method":"post"
 		});	
 		$("form").submit();		
@@ -108,6 +119,8 @@ function regist(){
     <input type="text" 	name="writer" 		value="<%=gallery.getWriter()%>">
     <textarea name="content" 	style="height:200px"><%=gallery.getContent()%></textarea>
     <input type="file" name="myfile">
+    <p>
+    <img src="/data/<%=gallery.getFilename()%>" width="200px">
     <p>
     <input type="button" value="수정">
     <input type="button" value="삭제">

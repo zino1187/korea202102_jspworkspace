@@ -52,7 +52,7 @@ public class DeleteServlet extends HttpServlet{
 			if(file.delete()) { //파일삭제가 성공이라면..
 				out.print("<script>");
 				out.print("alert('삭제완료');");
-				//out.print("location.href='/gallery/list.jsp';");
+				out.print("location.href='/gallery/list.jsp';");
 				out.print("</script>");	
 			};
 		}

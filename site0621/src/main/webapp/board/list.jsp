@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
-	int totalRecord=126;//총 게시물 수
+	int totalRecord=26;//총 게시물 수
 	int pageSize=10;//총 게시물을 몇건씩 나누어서 보여줄지를 결정짓는 변수, 즉 페이지당 보여줄 레코드 수
 	
 	int totalPage=(int)Math.ceil((float)totalRecord/pageSize); //총 페이지 수(나머지 숨겨진 데이터를 보기위한 페이지 분할된 총 수)
@@ -11,6 +11,9 @@
 	if(request.getParameter("currentPage")!=null){
 		currentPage=Integer.parseInt(request.getParameter("currentPage"));
 	}
+	int firstPage=currentPage- ((currentPage-1)%blockSize);
+	int lastPage=firstPage+(blockSize-1);
+	int num=totalRecord - (currentPage-1)*pageSize;	
 %>
 <%="당신이 보고 잇는 페이지는 "+currentPage+"<br>" %>
 <!DOCTYPE html>
@@ -64,8 +67,9 @@ $(function(){
 		<th>조회수</th>
 	</tr>
 	<%for(int i=1;i<=pageSize;i++){ %>
+	<%if(num<1)break; %>
 	<tr>
-		<td>Jill</td>
+		<td><%=num-- %></td>
 		<td></td>
 		<td>
 			
@@ -77,11 +81,12 @@ $(function(){
 	<%}%>
 	<tr>
 		<td colspan="6" style="text-align:center">
-			<a href="#">◀</a>
-			<%for(int i=1;i<=blockSize;i++){%>
-				<a href="/board/list.jsp?currentPage=<%=i%>"   <%if(currentPage==i){%>class="pageNum"<%}%>   >[<%=i%>]</a>
+			<a href="/board/list.jsp?currentPage=<%=firstPage-1%>">◀</a>
+			<%for(int i=firstPage;i<=lastPage;i++){%>
+				<%if(i>totalPage)break; //i가 총 페이지수를 넘어서면 반복문은 멈춘다 %>
+				<a href="/board/list.jsp?currentPage=<%=i%>" <%if(currentPage==i){%>class="pageNum"<%}%>   >[<%=i%>]</a>
 			<%}%>
-			<a href="#">▶</a>
+			<a href="/board/list.jsp?currentPage=<%=lastPage+1%>">▶</a>
 		</td>
 	</tr>
 </table>

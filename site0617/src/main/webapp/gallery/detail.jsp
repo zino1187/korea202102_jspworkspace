@@ -71,6 +71,7 @@ function edit(){
 	if(confirm("수정하시겠어요?")){
 		$("form").attr({
 			"action":"/gallery/edit.jsp", //일부러 jsp로 처리해보자(공부목적)
+			"enctype":"multipart/form-data",
 			"method":"post"
 		});	
 		$("form").submit();		
@@ -81,7 +82,6 @@ function del(){
 	if(confirm("삭제하시겠어요?")){
 		$("form").attr({
 			"action":"/delete",
-			"enctype":"multipart/form-data",
 			"method":"post"
 		});	
 		$("form").submit();		

@@ -47,9 +47,15 @@ public class DeleteServlet extends HttpServlet{
 			String path = context.getRealPath("/data");
 			File file=new File(path+"/"+filename); //삭제대상이 되는 파일의 full 경로로 파일클래스의 인스턴스 생성!!
 			//이 시점부터 해당 파일을 핸들링할 수 있다!! 우리는 지우는것을 하겠다!
+			
 			out.print("이 서블릿이 실행중인 어플리케이션의 디렉토리 중 data의 경로는 "+path+"<br>");
+			if(file.delete()) { //파일삭제가 성공이라면..
+				out.print("<script>");
+				out.print("alert('삭제완료');");
+				//out.print("location.href='/gallery/list.jsp';");
+				out.print("</script>");	
+			};
 		}
-		
 	}
 }
 

@@ -98,13 +98,30 @@ public class BoardDAO {
 	}
 	
 	//수정하기 (5분)
-	public void update() {
-		
+	public int update(Board board) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		con=pool.getConnection();
+		String sql="update board set title=?, writer=?, content=? where board_id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriter());
+			pstmt.setString(3, board.getContent());
+			pstmt.setInt(4, board.getBoard_id());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con,pstmt);
+		}
+		return result;
 	}
 	
 	//삭제하기 (5분)
 	public void delete() {
-		
+		String sql="delete from board where board_d=?";
 	}
 	
 }

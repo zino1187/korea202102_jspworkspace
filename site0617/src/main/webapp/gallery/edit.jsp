@@ -1,3 +1,4 @@
+<%@page import="site0617.model.domain.Gallery"%>
 <%@page import="site0617.model.gallery.dao.GalleryDAO"%>
 <%@page import="site0617.util.FileManager"%>
 <%@page import="java.io.File"%>
@@ -39,9 +40,15 @@
 			String ext=FileManager.getExt(myfile); //확장자
 			boolean result = newFile.renameTo(new File(path+"/"+time+"."+ext));
 			if(result){//파일명 교체가 완료되었다면 쿼리문 수행
+				Gallery gallery = new Gallery();
+				gallery.setTitle(title);
+				gallery.setWriter(writer);
+				gallery.setContent(content);
+				gallery.setFilename(time+"."+ext);//주의!!
+				gallery.setGallery_id(Integer.parseInt(gallery_id));
 				
+				galleryDAO.update(gallery); //쿼리실행
 			}
-			
 		}
 	}else{
 		out.print("기존 파을 유지하는 군요<br>");

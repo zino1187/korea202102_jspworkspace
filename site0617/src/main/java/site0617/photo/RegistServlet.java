@@ -17,6 +17,9 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import site0617.model.domain.Gallery;
+import site0617.util.FileManager;
+
 //아파치 업로드 컴포넌트를 이용한 파일업로드 구현
 public class RegistServlet extends HttpServlet{
 	ServletContext context;
@@ -48,12 +51,29 @@ public class RegistServlet extends HttpServlet{
 		
 		//업로드 처리 객체 
 		ServletFileUpload upload=new ServletFileUpload(factory);//설정 정보 적용하여 인스턴스 생성
+		Gallery gallery=new Gallery();
+		request.setCharacterEncoding("utf-8"); //파라미터에 대한 인코딩(한글 안깨지게)
 		
 		try {
 			List<FileItem> itemList=upload.parseRequest(request);
 			out.print("넘겨받은 컴포넌트 값의 수는 "+itemList.size()+"<br>");
-			
+			for( FileItem item : itemList) {
+				if(item.isFormField()) { //inpuyt type='text' 박스라면...
+					
+					out.print(item.getFieldName()+"필드의 값은 "+item.getString()+"<br>");
+					
+				}else { //아니라면, 얘는 input type='file'
+					long time=System.currentTimeMillis();
+					String newName=item.getName(); //업로드된 파일명 반환  
+					out.print("업로드한 파일명은 "+newName);
+					
+					String ext=FileManager.getExt(newName);//확장자 구하기
+					item.write(new File(path+"/"+time+"."+ext)); //서버에 저장!!!
+				}
+			}
 		} catch (FileUploadException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 		

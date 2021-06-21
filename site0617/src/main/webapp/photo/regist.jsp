@@ -71,7 +71,7 @@ function regist(){
   <form>
     <input type="text" 	name="title" 			placeholder="제목..">
     <input type="text" 	name="writer" 		placeholder="작성자..">
-    <textarea 					name="content" 	placeholder="내용.." style="height:200px"></textarea>
+    <textarea 				name="content" 	placeholder="내용.." style="height:200px"></textarea>
     <input type="file" name="myfile">
     <p>
     <input type="button" value="Submit">

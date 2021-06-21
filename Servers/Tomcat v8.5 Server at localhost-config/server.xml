@@ -53,6 +53,18 @@
 	 -->  	
 	 
 	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="3000" name="jndi/oracle" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="webmaster"/> 
+
+	<Resource auth="Container" 
+		name="jndi/mysql" 
+		driverClassName="com.mysql.jdbc.Driver" 
+		url="jdbc:mysql://localhost:3306/javase?characterEncoding=UTF-8" 
+		username="root"
+		password="1234" 
+		maxActive="20" 
+		maxIdle="10" 
+		maxWait="3000" 
+		type="javax.sql.DataSource" 
+		/> 
 		 	
   </GlobalNamingResources>
 

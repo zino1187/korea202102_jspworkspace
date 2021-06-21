@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%
+	int totalRecord=26;//총 게시물 수
+	int pageSize=10;//총 게시물을 몇건씩 나누어서 보여줄지를 결정짓는 변수, 즉 페이지당 보여줄 레코드 수
+	int totalPage=(int)Math.ceil((float)totalRecord/pageSize); //총 페이지 수(나머지 숨겨진 데이터를 보기위한 페이지 분할된 총 수)
+	
+%>
+<%=totalPage+"<br>" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +18,6 @@ table {
   width: 100%;
   border: 1px solid #ddd;
   position:relative;
-  left:-1000px;
 }
 
 th, td {
@@ -26,8 +32,7 @@ tr:nth-child(even) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(function(){
-    var table = $("table");  
-    table.animate({left: '0px'}, "slow");	
+
 });
 </script>
 </head>
@@ -44,7 +49,7 @@ $(function(){
 		<th>등록일</th>
 		<th>조회수</th>
 	</tr>
-	<%{ %>
+	<%for(int i=1;i<=pageSize;i++){ %>
 	<tr>
 		<td>Jill</td>
 		<td></td>
@@ -55,10 +60,12 @@ $(function(){
 		<td></td>
 		<td></td>
 	</tr>
-	<%} %>
+	<%}%>
 	<tr>
-		<td colspan="6">
-			
+		<td colspan="6" style="text-align:center">
+			<%for(){%>
+			[1][2][3]
+			<%}%>
 		</td>
 	</tr>
 </table>

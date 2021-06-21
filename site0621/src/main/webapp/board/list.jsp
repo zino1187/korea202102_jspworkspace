@@ -1,6 +1,14 @@
+<%@page import="site0621.board.model.domain.Board"%>
+<%@page import="java.util.List"%>
+<%@page import="site0621.board.model.dao.BoardDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
+<%!BoardDAO boardDAO = new BoardDAO(); %>
 <%
-	int totalRecord=26;//총 게시물 수
+	List<Board> boardList = boardDAO.selectAll(); //총 레코드수 가져오기
+	int totalRecord=boardList.size();//총 게시물 수
+	
+	out.print(totalRecord);
+	
 	int pageSize=10;//총 게시물을 몇건씩 나누어서 보여줄지를 결정짓는 변수, 즉 페이지당 보여줄 레코드 수
 	
 	int totalPage=(int)Math.ceil((float)totalRecord/pageSize); //총 페이지 수(나머지 숨겨진 데이터를 보기위한 페이지 분할된 총 수)

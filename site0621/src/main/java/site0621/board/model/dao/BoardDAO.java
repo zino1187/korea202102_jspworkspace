@@ -120,9 +120,24 @@ public class BoardDAO {
 	}
 	
 	//삭제하기 (5분)
-	public void delete() {
-		String sql="delete from board where board_d=?";
-	}
+	public int delete(int board_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
+		String sql="delete from board where board_id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, board_id);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;
+	}	
 	
 }
 

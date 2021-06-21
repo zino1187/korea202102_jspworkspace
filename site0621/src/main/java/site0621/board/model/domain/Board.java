@@ -7,6 +7,7 @@ import lombok.Data;
  * 주 용도는 클래스 코드안에서 부가적인 설정, 설명을 하기 위한 메타정보 ,일종의 주석
  * 즉 프로그램에 사용되는 주석 , 메타정보 
  * */
+
 public class Board {
 	private int board_id;
 	private String title;
@@ -14,7 +15,6 @@ public class Board {
 	private String content;
 	private String regdate;
 	private int hit;
-	
 	public int getBoard_id() {
 		return board_id;
 	}

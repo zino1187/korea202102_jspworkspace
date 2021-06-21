@@ -54,7 +54,7 @@ $(function(){
 function regist(){
 	$("form").attr({
 		"action":"/photo/upload",
-		/* "enctype":"multipart/form-data", */
+		"enctype":"multipart/form-data",
 		"method":"post"
 	});	
 	$("form").submit();

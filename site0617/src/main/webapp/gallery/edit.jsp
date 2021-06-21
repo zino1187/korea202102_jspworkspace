@@ -52,11 +52,25 @@
 		}
 	}else{
 		out.print("기존 파을 유지하는 군요<br>");
+		Gallery gallery = new Gallery();
+		gallery.setTitle(title);
+		gallery.setWriter(writer);
+		gallery.setContent(content);
+		gallery.setFilename(filename);//주의!!
+		gallery.setGallery_id(Integer.parseInt(gallery_id));
+		
+		galleryDAO.update(gallery); //쿼리실행
 	}
-	
-	//DB만 수정할 경우
-	
+	//서블릿만사용할때는 아래처럼 반드시 가야하지만
+	//jsp를 사용할경우 html과 혼용이 가능하므로, 스크립틀릿 바깥쪽에 자바스크립트를 명시하는 것이 더 편하다!!
+	//out.print("<script>");
+	//out.print("중간생략~~");
+	//out.print("</script>");
 %>
+<script>
+alert('수정완료');
+location.href="/gallery/list.jsp";
+</script>
 
 
 

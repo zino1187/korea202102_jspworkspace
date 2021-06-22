@@ -21,7 +21,8 @@
 	}
 	int firstPage=currentPage- ((currentPage-1)%blockSize);
 	int lastPage=firstPage+(blockSize-1);
-	int num=totalRecord - (currentPage-1)*pageSize;	
+	int curPos=(currentPage-1)*pageSize;//페이지당 List의 시작 index구하기
+	int num=totalRecord - curPos;
 %>
 <%="당신이 보고 잇는 페이지는 "+currentPage+"<br>" %>
 <!DOCTYPE html>
@@ -57,7 +58,9 @@ tr:nth-child(even) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(function(){
-
+	$("button").click(function(){
+		location.href="/board/regist.jsp";
+	});
 });
 </script>
 </head>
@@ -73,13 +76,13 @@ $(function(){
 		<th>등록일</th>
 		<th>조회수</th>
 	</tr>
-	<%for(int i=0;i<pageSize;i++){ %>
+	<%for(int i=1;i<=pageSize;i++){ %>
 	<%if(num<1)break; %>
-	<%Board board = boardList.get(i); %>
+	<%Board board = boardList.get(curPos++); %>
 	<tr>
 		<td><%=num-- %></td>
 		<td>
-			<a href="#"><%=board.getTitle() %></a>
+			<a href="/board/detail.jsp?board_id=<%=board.getBoard_id()%>"><%=board.getTitle() %></a>
 		</td>
 		<td><%=board.getWriter() %></td>
 		<td><%=board.getRegdate() %></td>
@@ -95,6 +98,9 @@ $(function(){
 			<%}%>
 			<a href="/board/list.jsp?currentPage=<%=lastPage+1%>">▶</a>
 		</td>
+	</tr>
+	<tr>
+		<td colspan="5"><button>글등록</button></td>
 	</tr>
 </table>
 </body>

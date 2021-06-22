@@ -1,8 +1,8 @@
-<%@page import="site0616.model.domain.Board"%>
-<%@page import="site0616.board.model.dao.BoardDAO"%>
+<%@page import="com.koreait.site0622.model.domain.Board"%>
+<%@page import="com.koreait.site0622.model.board.dao.MybatisBoardDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%!	
-	BoardDAO boardDAO = new BoardDAO();
+	MybatisBoardDAO boardDAO = new MybatisBoardDAO();
 %>
 <%
 	String board_id = request.getParameter("board_id"); //전송된 파라미터 받기!

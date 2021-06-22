@@ -28,7 +28,18 @@ public class MybatisBoardDAO {
 		return list;
 	}
 	
+	//레코드 한건 가져오기
+	public Board select(int board_id) {
+		SqlSession sqlSession=configManager.getSession();
+		return sqlSession.selectOne("Board.select", board_id);
+	}
+	
 }
+
+
+
+
+
 
 
 

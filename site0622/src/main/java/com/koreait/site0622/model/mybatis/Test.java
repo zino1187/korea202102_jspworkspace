@@ -19,11 +19,14 @@ public class Test {
 		board.setContent("내용없슴");
 		
 		int result= sqlSession.insert("com.koreait.site0622.model.domain.Board.insert", board); //mybatis 프레임웍으로 하여금 insert를 수행하라!!
+		sqlSession.commit();
+		
 		if(result<1) {
 			System.out.println("실패");
 		}else {
 			System.out.println("성공");
 		}
+		mybatisConfigManager.closeSession(sqlSession);
 	}
 }
 

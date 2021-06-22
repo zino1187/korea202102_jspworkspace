@@ -34,6 +34,12 @@ public class MybatisBoardDAO {
 		return sqlSession.selectOne("Board.select", board_id);
 	}
 	
+	//레코드 한건 수정하기 
+	public int update(Board board) {
+		SqlSession sqlSession=configManager.getSession(); 
+		sqlSession.commit();//DML 인 경우 commit
+		return sqlSession.update("Board.update", board);
+	}
 }
 
 

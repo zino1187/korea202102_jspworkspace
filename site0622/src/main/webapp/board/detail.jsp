@@ -80,7 +80,7 @@ function del(){
 
 function edit(){
 	$("form").attr({
-		"action":"/board/edit.jsp",
+		"action":"/board/edit",
 		"method":"post"
 	});	
 	$("form").submit();

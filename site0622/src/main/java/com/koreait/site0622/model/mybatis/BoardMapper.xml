@@ -22,6 +22,14 @@
 	<select id="select" parameterType="int" resultType="Board">
 		select * from board where board_id=#{board_id}
 	</select>
+	
+	<!-- 레코드 한건 수정 
+	파라미터로 지정된 VO의 멤버변수명과, sql에 명시한 변수명이 같아야 자동 매핑이 일어난다
+	결국 Mybatis 프레임웍의 목적은 자바 객체와 SQL문간 자동 매핑에 있다 -->
+	<update id="update" parameterType="Board">
+		update board set title=#{title}, writer=#{writer}, content=#{content} 
+		where board_id=#{board_id}
+	</update>
 </mapper>
 
 

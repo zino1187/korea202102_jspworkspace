@@ -30,4 +30,14 @@
 		<url-pattern>/board/delete</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>checkIdServlet</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.member.CheckIdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>checkIdServlet</servlet-name>
+		<url-pattern>/member/idcheck</url-pattern>
+	</servlet-mapping>
+	
+	
 </web-app>

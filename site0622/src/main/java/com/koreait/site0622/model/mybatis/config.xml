@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.koreait.site0622.model.domain.Board" alias="Board"/>
+		<typeAlias type="com.koreait.site0622.model.domain.Board" 		alias="Board"/>
+		<typeAlias type="com.koreait.site0622.model.domain.Member" 	alias="Member"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -17,5 +18,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/koreait/site0622/model/mybatis/BoardMapper.xml" />
+		<mapper resource="com/koreait/site0622/model/mybatis/MemberMapper.xml" />
 	</mappers>
 </configuration>

@@ -15,7 +15,7 @@ import com.koreait.site0622.model.domain.Board;
 public class RegistServlet extends HttpServlet{
 	MybatisBoardDAO boardDAO;
 	
-	public RegistServlet() {
+	public void init() {
 		boardDAO = new MybatisBoardDAO();
 	}
 	
@@ -33,7 +33,7 @@ public class RegistServlet extends HttpServlet{
 		
 		int result = boardDAO.insert(board);
 		
-		response.setCharacterEncoding("utf-8"); //응답 정보에 대한인코딩(한글 안깨지도록)
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		if(result<1) {

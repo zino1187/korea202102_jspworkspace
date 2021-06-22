@@ -38,6 +38,33 @@ input[type=button]:hover {
   padding: 20px;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//버튼들에 이벤트 연결하기 
+	$("#bt_check").click(function(){
+		checkId();	
+	});
+	
+	$("#bt_regist").click(function(){
+		regist();
+	});
+});
+
+//회원가입 전에 아이디 중복여부 체크
+function checkId(){
+	$("form").attr({
+		"action":"/member/idcheck",
+		"method":"post"
+	});
+	$("form").submit(); //전송 
+}
+
+function regist(){
+	
+}
+
+</script>
 </head>
 <body>
 
@@ -45,10 +72,12 @@ input[type=button]:hover {
 
 <div class="container">
   <form>
-    <input type="text" name="user_id" 			placeholder="Your ID..">
+    <input type="text" name="user_id" 			placeholder="Your ID.." style="width:70%">
+    <input type="button" value="ID중복확인" id="bt_check">
+    
     <input type="text" name="password" 		placeholder="Your Password..">
     <input type="text" name="name" 			placeholder="Your Name..">
-    <input type="button" value="Submit">
+    <input type="button" value="회원등록" id="bt_regist">
   </form>
 </div>
 

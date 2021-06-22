@@ -30,6 +30,13 @@
 		update board set title=#{title}, writer=#{writer}, content=#{content} 
 		where board_id=#{board_id}
 	</update>
+	
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from board where board_id=#{board_id}
+	</delete>
+
 </mapper>
 
 

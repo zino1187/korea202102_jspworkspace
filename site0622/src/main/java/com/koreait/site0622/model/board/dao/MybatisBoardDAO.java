@@ -46,6 +46,16 @@ public class MybatisBoardDAO {
 		configManager.closeSession(sqlSession);
 		return result;
 	}
+	
+	//한건 삭제하기 
+	public int delete(int board_id) {
+		SqlSession sqlSession=configManager.getSession(); 
+		int result=sqlSession.delete("Board.delete", board_id);
+		sqlSession.commit();//DML 인 경우 commit
+		configManager.closeSession(sqlSession);
+		return result;
+	}
+	
 }
 
 

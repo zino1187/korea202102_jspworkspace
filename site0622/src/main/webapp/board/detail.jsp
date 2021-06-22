@@ -72,7 +72,7 @@ $(function(){
 
 function del(){
 	$("form").attr({
-		"action":"/board/del.jsp",
+		"action":"/board/del",
 		"method":"post"
 	});	
 	$("form").submit();	

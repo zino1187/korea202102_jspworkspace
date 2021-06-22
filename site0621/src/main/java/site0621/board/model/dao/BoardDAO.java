@@ -21,6 +21,7 @@ public class BoardDAO {
 		int result=0;
 		
 		String sql="insert into board(title, writer, content) values(?,?,?)";
+		
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());

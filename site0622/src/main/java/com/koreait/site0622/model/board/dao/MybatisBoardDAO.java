@@ -18,6 +18,7 @@ public class MybatisBoardDAO {
 		SqlSession sqlSession=configManager.getSession();
 		int result=sqlSession.insert("Board.insert", board);
 		sqlSession.commit();
+		configManager.closeSession(sqlSession);
 		return result;
 	}
 	
@@ -25,20 +26,25 @@ public class MybatisBoardDAO {
 	public List selectAll() {
 		SqlSession sqlSession=configManager.getSession();
 		List list=sqlSession.selectList("Board.selectAll");
+		configManager.closeSession(sqlSession);
 		return list;
 	}
 	
 	//레코드 한건 가져오기
 	public Board select(int board_id) {
 		SqlSession sqlSession=configManager.getSession();
-		return sqlSession.selectOne("Board.select", board_id);
+		Board board=sqlSession.selectOne("Board.select", board_id);
+		configManager.closeSession(sqlSession);
+		return board;
 	}
 	
 	//레코드 한건 수정하기 
 	public int update(Board board) {
 		SqlSession sqlSession=configManager.getSession(); 
+		int result=sqlSession.update("Board.update", board);
 		sqlSession.commit();//DML 인 경우 commit
-		return sqlSession.update("Board.update", board);
+		configManager.closeSession(sqlSession);
+		return result;
 	}
 }
 

@@ -1,5 +1,8 @@
 package com.koreait.site0622.model.board.dao;
 
+import java.sql.PreparedStatement;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.koreait.site0622.model.domain.Board;
@@ -13,8 +16,23 @@ public class MybatisBoardDAO {
 	//등록
 	public int insert(Board board) {
 		SqlSession sqlSession=configManager.getSession();
-		int result=sqlSession.insert("com.koreait.site0622.model.domain.Board.insert", board);
+		int result=sqlSession.insert("Board.insert", board);
 		sqlSession.commit();
 		return result;
 	}
+	
+	//모든 레코드 가져오기 
+	public List selectAll() {
+		SqlSession sqlSession=configManager.getSession();
+		List list=sqlSession.selectList("Board.selectAll");
+		return list;
+	}
+	
 }
+
+
+
+
+
+
+

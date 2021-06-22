@@ -39,7 +39,7 @@ public class RegistServlet extends HttpServlet{
 		if(result<1) {
 			out.print("실패");
 		}else {
-			out.print("성공");
+			response.sendRedirect("/board/list.jsp");			
 		}
 	}
 }

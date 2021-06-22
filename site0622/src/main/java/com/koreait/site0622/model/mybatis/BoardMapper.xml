@@ -2,10 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.koreait.site0622.model.domain.Board">
+<mapper namespace="Board">
   
-  <insert id="insert" parameterType="com.koreait.site0622.model.domain.Board">
+  <!-- 게시물 한건 등록 -->
+  <insert id="insert" parameterType="Board">
   	insert into board(title, writer, content) values(#{title},#{writer},#{content})
   </insert>
-  
+
+	<!-- 모든 레코드 가져오기  
+		 resultType 은 어떤 VO에 매핑시킬지 결정
+		 
+	-->
+	<select id="selectAll" resultType="Board">
+		select * from board order by board_id desc
+	</select>  
 </mapper>

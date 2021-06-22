@@ -1,6 +1,6 @@
-<%@page import="site0621.board.model.domain.Board"%>
+<%@page import="com.koreait.site0622.model.domain.Board"%>
+<%@page import="com.koreait.site0622.model.board.dao.MybatisBoardDAO"%>
 <%@page import="java.util.List"%>
-<%@page import="site0621.board.model.dao.BoardDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%!MybatisBoardDAO boardDAO = new MybatisBoardDAO();%>
 <%
@@ -68,27 +68,26 @@ $(function(){
 <table>
 	<tr>
 		<th>No</th>
-		<th>이미지</th>
 		<th>제목</th>
 		<th>작성자</th>
 		<th>등록일</th>
 		<th>조회수</th>
 	</tr>
-	<%for(int i=1;i<=pageSize;i++){ %>
+	<%for(int i=0;i<pageSize;i++){ %>
 	<%if(num<1)break; %>
+	<%Board board = boardList.get(i); %>
 	<tr>
 		<td><%=num-- %></td>
-		<td></td>
 		<td>
-			
+			<a href="#"><%=board.getTitle() %></a>
 		</td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td><%=board.getWriter() %></td>
+		<td><%=board.getRegdate() %></td>
+		<td><%=board.getHit() %></td>
 	</tr>
 	<%}%>
 	<tr>
-		<td colspan="6" style="text-align:center">
+		<td colspan="5" style="text-align:center">
 			<a href="/board/list.jsp?currentPage=<%=firstPage-1%>">◀</a>
 			<%for(int i=firstPage;i<=lastPage;i++){%>
 				<%if(i>totalPage)break; //i가 총 페이지수를 넘어서면 반복문은 멈춘다 %>

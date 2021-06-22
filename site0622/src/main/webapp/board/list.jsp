@@ -1,8 +1,10 @@
+<%@page import="com.koreait.site0622.model.board.dao.BoardDAO"%>
+<%@page import="com.koreait.site0622.model.board.dao.JdbcBoardDAO"%>
 <%@page import="com.koreait.site0622.model.domain.Board"%>
 <%@page import="com.koreait.site0622.model.board.dao.MybatisBoardDAO"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=utf-8"%>
-<%!MybatisBoardDAO boardDAO = new MybatisBoardDAO();%>
+<%!BoardDAO boardDAO = new MybatisBoardDAO();%>
 <%
 	List<Board> boardList = boardDAO.selectAll(); //총 레코드수 가져오기
 	int totalRecord=boardList.size();//총 게시물 수

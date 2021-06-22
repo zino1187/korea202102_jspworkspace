@@ -72,7 +72,7 @@ $(function(){
 
 function del(){
 	$("form").attr({
-		"action":"/board/del",
+		"action":"/board/delete",
 		"method":"post"
 	});	
 	$("form").submit();	

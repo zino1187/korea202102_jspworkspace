@@ -1,9 +1,7 @@
 <%@page import="site0616.model.domain.Board"%>
 <%@page import="site0616.board.model.dao.BoardDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%!
-	BoardDAO boardDAO = new BoardDAO();
-%>
+<%!JdbcBoardDAO boardDAO = new JdbcBoardDAO();%>
 <%
 	//클라인투인 detail.jsp 로부터 4개의 파라미터 받자!! (한글 인코딩해서)
 	request.setCharacterEncoding("utf-8");

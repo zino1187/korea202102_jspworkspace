@@ -21,4 +21,13 @@
 		<url-pattern>/board/edit</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>deleteServlet</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.board.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteServlet</servlet-name>
+		<url-pattern>/board/delete</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

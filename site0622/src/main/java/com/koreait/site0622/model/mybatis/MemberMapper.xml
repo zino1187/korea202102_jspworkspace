@@ -8,6 +8,11 @@
 		select * from member where user_id=#{user_id}
 	</select>
 	
+	<!-- 회원등록 -->
+	<insert id="regist" parameterType="Member">
+		insert into member(user_id, password, name) values(#{user_id}, #{password},#{name})
+	</insert>
+	
 </mapper>
 
 

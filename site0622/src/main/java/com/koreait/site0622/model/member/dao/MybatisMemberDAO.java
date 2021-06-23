@@ -19,7 +19,11 @@ public class MybatisMemberDAO implements MemberDAO{
 	}
 	
 	public int regist(Member member) {
-		return 0;
+		SqlSession sqlSession=configManager.getSession();
+		int result = sqlSession.insert("Member.regist", member);
+		sqlSession.commit();//DML 이기 때문에..
+		configManager.closeSession(sqlSession); 
+		return result;
 	}
 	public int delete(Member member) {
 		return 0;

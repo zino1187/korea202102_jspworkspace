@@ -21,7 +21,11 @@
 			<td><%%></td>
 			<td><%%></td>
 		</tr>
-		
+		<tr>
+			<td colspan="5">
+				<button onClick="location.href='/news/regist.jsp';">글등록</button>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

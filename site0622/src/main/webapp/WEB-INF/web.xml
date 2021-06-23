@@ -57,5 +57,4 @@
 		<url-pattern>/news/regist</url-pattern>
 	</servlet-mapping>
 	
-	
 </web-app>

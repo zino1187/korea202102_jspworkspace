@@ -19,7 +19,10 @@ public class MybatisNewsDAO implements NewsDAO{
 	}
 
 	public List selectAll() {
-		return null;
+		SqlSession sqlSession = configManager.getSession();
+		List list=sqlSession.selectList("News.selectAll");
+		configManager.closeSession(sqlSession);
+		return list;
 	}
 
 	@Override

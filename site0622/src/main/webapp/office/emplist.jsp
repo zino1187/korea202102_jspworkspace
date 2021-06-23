@@ -23,6 +23,8 @@
 			<th>sal</th>
 			<th>comm</th>
 			<th>deptno</th>
+			<th>dname</th>
+			<th>loc</th>
 		</tr>
 		<%for(Emp emp : empList){%>
 		<tr>
@@ -33,7 +35,9 @@
 			<td><%=emp.getHiredate()%></td>
 			<td><%=emp.getSal()%></td>
 			<td><%=emp.getComm()%></td>
-			<td><%=emp.getDeptno()%></td>
+			<td><%=emp.getDept().getDeptno()%></td>
+			<td><%=emp.getDept().getDname()%></td>
+			<td><%=emp.getDept().getLoc()%></td>
 		</tr>
 		<%}%>
 	</table>

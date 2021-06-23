@@ -13,7 +13,7 @@
 		<result column="hiredate" 	property="hiredate"/>	
 		<result column="sal" 			property="sal"/>	
 		<result column="comm" 		property="comm"/>	
-		<association property="" select="부서레코드1건 가져오기 쿼리"/>	
+		<association property="dept" column="deptno" javaType="int" select="Dept.select"/>	
 	</resultMap>
 	
 	<select id="selectAll" resultMap="empMap">

@@ -26,14 +26,14 @@
 		</tr>
 		<%for(Emp emp : empList){%>
 		<tr>
-			<td><%= %></td>
-			<td><%= %></td>
-			<td><%= %></td>
-			<td><%= %></td>
-			<td><%= %></td>
-			<td><%= %></td>
-			<td><%= %></td>
-			<td><%= %></td>
+			<td><%=emp.getEmpno() %></td>
+			<td><%=emp.getEname()%></td>
+			<td><%=emp.getJob()%></td>
+			<td><%=emp.getMgr()%></td>
+			<td><%=emp.getHiredate()%></td>
+			<td><%=emp.getSal()%></td>
+			<td><%=emp.getComm()%></td>
+			<td><%=emp.getDeptno()%></td>
 		</tr>
 		<%}%>
 	</table>

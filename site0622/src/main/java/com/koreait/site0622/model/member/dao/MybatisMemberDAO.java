@@ -34,6 +34,14 @@ public class MybatisMemberDAO implements MemberDAO{
 	public Member select(int member_id) {
 		return null;
 	}
+	
+	public Member select(Member member) {
+		SqlSession sqlSession=configManager.getSession();
+		Member obj=sqlSession.selectOne("Member.loginCheck", member);
+		configManager.closeSession(sqlSession); 
+		return obj;
+	}
+	
 	public int update(Member member) {
 		return 0;
 	}

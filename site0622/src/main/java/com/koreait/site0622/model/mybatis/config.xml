@@ -6,6 +6,8 @@
 	<typeAliases>
 		<typeAlias type="com.koreait.site0622.model.domain.Board" 		alias="Board"/>
 		<typeAlias type="com.koreait.site0622.model.domain.Member" 	alias="Member"/>
+		<typeAlias type="com.koreait.site0622.model.domain.Dept" 		alias="Dept"/>
+		<typeAlias type="com.koreait.site0622.model.domain.Emp" 		alias="Emp"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -19,5 +21,14 @@
 	<mappers>
 		<mapper resource="com/koreait/site0622/model/mybatis/BoardMapper.xml" />
 		<mapper resource="com/koreait/site0622/model/mybatis/MemberMapper.xml" />
+		<mapper resource="com/koreait/site0622/model/mybatis/DeptMapper.xml" />
+		<mapper resource="com/koreait/site0622/model/mybatis/EmpMapper.xml" />
 	</mappers>
 </configuration>
+
+
+
+
+
+
+

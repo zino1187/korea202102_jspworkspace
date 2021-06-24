@@ -67,6 +67,7 @@ $(function(){
 		//regist();	
 	});
 	
+	getCommentsList();//상세보기가 로드되면, 댓글 리스트 가져오기
 });
 
 //수정요청
@@ -134,6 +135,11 @@ function printCommentsList(json){ //js는 자료형이 존재하지 않음 (자�
 	
 	//jquery 로 구현
 	$("#commentsArea").append(tag);
+}
+
+//방법2)  출력대상이 되는 태그를 객체로 처리하는 법 
+function printCommentsList2(json){
+	
 }
 </script>
 </head>

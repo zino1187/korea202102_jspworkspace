@@ -52,10 +52,21 @@ input[type=button]:hover {
 $(function(){
 	CKEDITOR.replace("content");
 	
+	var bt_list=$("input[type='button']")[0]; //목록
+	var bt_edit=$("input[type='button']")[1];//수정
+	var bt_del=$("input[type='button']")[2];//삭제
+	
 	//버튼에 이벤트 연결하기 
-	$("input[type='button']").click(function(){
+	$(bt_list).click(function(){
+		location.href="/news/list.jsp";	
+	});
+	$(bt_edit).click(function(){
 		//regist();	
 	});
+	$(bt_del).click(function(){
+		//regist();	
+	});
+	
 });
 
 //수정요청
@@ -136,7 +147,9 @@ function printCommentsList(json){ //js는 자료형이 존재하지 않음 (자�
     <input type="text" 	name="title" 			value="<%=news.getTitle()%>">
     <input type="text" 	name="writer" 		value="<%=news.getWriter()%>">
     <textarea 				name="content" 	style="height:200px"><%=news.getContent()%></textarea>
-    <input type="button" value="Submit">
+    <input type="button" value="목록">
+    <input type="button" value="수정">
+    <input type="button" value="삭제">
   </form>
 </div>
 <div>

@@ -25,7 +25,9 @@
 		<%for(News news : newsList){ %>
 		<tr>
 			<td><%=0%></td>
-			<td><%=news.getTitle()%></td>
+			<td>
+				<a href="/news/detail.jsp?news_id=<%=news.getNews_id()%>"><%=news.getTitle()%></a>
+			</td>
 			<td><%=news.getWriter()%></td>
 			<td><%=news.getRegdate()%></td>
 			<td><%=news.getHit()%></td>

@@ -17,9 +17,24 @@
 		<result 	column="hit" 				property="hit"/>
 	</resultMap>
 	
+	<!-- 공통 select -->
+	<sql id="selectCommon">
+		select news_id, title, writer, content, regdate, hit
+		from news
+	</sql>
+	
+	<!-- 목록가져오기  -->
 	<select id="selectAll" resultMap="newsMap">
-		select * from news order by news_id desc
+		<include refid="selectCommon"/> 
+		order by news_id desc
 	</select>
+	
+	<!-- 한건 가져오기 -->
+	<select id="select" parameterType="int" resultType="News">
+		<include refid="selectCommon"/>
+		where news_id=#{news_id}
+	</select>
+
 	
 </mapper>
 

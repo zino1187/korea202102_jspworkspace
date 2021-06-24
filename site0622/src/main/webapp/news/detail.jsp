@@ -69,13 +69,12 @@ function edit(){
 
 //댓글 등록(새로고침 없이!! 즉 비동기로 처리)
 function registComments(){
+	var formdata = $("#form2").serialize(); //폼양식을 전송할 수 있는 문자열로 변환
+	
 	$.ajax({
 		url:"/comments/regist",
 		type:"post", 
-		data:{
-			msg:$("input[name='msg']").val(),
-			cwriter:$("input[name='cwriter']").val()
-		},
+		data:formdata,//폼을 전송할 수 있는 데이터화 시킨후, 자체를 전부 전송
 		success:function(result, status, xhr){
 			alert(result);
 		}
@@ -90,6 +89,7 @@ function registComments(){
 
 <div class="container">
   <form id="form1">
+    <input type="hidden" 	name="news_id" 	value="<%=news.getNews_id()%>">
     <input type="text" 	name="title" 			value="<%=news.getTitle()%>">
     <input type="text" 	name="writer" 		value="<%=news.getWriter()%>">
     <textarea 				name="content" 	style="height:200px"><%=news.getContent()%></textarea>
@@ -98,6 +98,7 @@ function registComments(){
 </div>
 <div>
 	<form id="form2">
+		<input type="hidden" 	name="news_id" 	value="<%=news.getNews_id()%>">
 		<input type="text" name="msg" 		placeholder="댓글 메시지..." style="width:60%">
 		<input type="text" name="cwriter" 	placeholder="작성자..." style="width:20%">
 		<input type="button" value="댓글등록"  style="width:10%" onClick="registComments()">

@@ -58,14 +58,26 @@ $(function(){
 	});
 });
 
-function regist(){
-	$("form").attr({
-		"action":"/news/regist",
+//수정요청
+function edit(){
+	$("#form1").attr({
+		"action":"",
 		"method":"post"
 	});	
-	$("form").submit();
+	$("#form1").submit();
 }
 
+//댓글 등록(새로고침 없이!! 즉 비동기로 처리)
+function registComments(){
+	$.ajax({
+		url:"/comments/regist",
+		type:"", 
+		data:{
+		},
+		success:function(result, status, xhr){
+		}
+	});
+}
 
 </script>
 </head>
@@ -74,14 +86,34 @@ function regist(){
 <h3>상세보기</h3>
 
 <div class="container">
-  <form>
+  <form id="form1">
     <input type="text" 	name="title" 			value="<%=news.getTitle()%>">
     <input type="text" 	name="writer" 		value="<%=news.getWriter()%>">
     <textarea 				name="content" 	style="height:200px"><%=news.getContent()%></textarea>
     <input type="button" value="Submit">
   </form>
 </div>
-
+<div>
+	<form id="form2">
+		<input type="text" name="msg" 		placeholder="댓글 메시지..." style="width:60%">
+		<input type="text" name="cwriter" 	placeholder="작성자..." style="width:20%">
+		<input type="button" value="댓글등록"  style="width:10%" onClick="registComments()">
+	</form>
+</div>
+<div>
+	<input type="text" value="댓글 메시지..." style="width:60%" readonly>
+	<input type="text" value="작성자..." style="width:20%" readonly>
+	<input type="text" value="등록일" style="width:10%" readonly>
+</div>
 </body>
 </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

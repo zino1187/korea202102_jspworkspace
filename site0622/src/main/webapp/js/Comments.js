@@ -4,13 +4,14 @@
  */
 class Comments{
 	constructor(container, msg, cwriter, cdate){
+		
 		//구성요소 생성
 		this.div=document.createElement("div");	
 		this.t_msg=document.createElement("input"); //default 는 text field
 		this.t_cwriter=document.createElement("input");
 		this.t_cdate=document.createElement("input");
 		
-		//스타일적용 
+		//스타일적용 (view)  - 디자인제어를 프로그래밍 언어로 시도할 경우 디자인에 대한 유지보수성이 떨어짐..
 		this.t_msg.style.width=60+"%";
 		this.t_msg.readOnly=true;
 		this.t_cwriter.style.width=20+"%";	

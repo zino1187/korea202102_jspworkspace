@@ -147,6 +147,9 @@ function printCommentsList2(json){
 		var comments=new Comments(document.getElementById("commentsArea"),obj.msg, obj.cwriter, obj.cdate);
 	}	
 }
+
+//방법3) React의 컴포넌트를 이용하는 법 
+
 </script>
 </head>
 <body>

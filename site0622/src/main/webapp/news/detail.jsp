@@ -79,7 +79,6 @@ function registComments(){
 			if(result==1){
 				//댓글 목록가져와서 동적으로 늘려나가기
 				getCommentsList();//현재 뉴스기사에 딸린, 댓글 가져오기 
-				printCommentsList();//출력
 			}
 		}
 	});
@@ -97,18 +96,24 @@ function getCommentsList(){
 			
 			//넘겨받은 데이터가 json 자체일 경우는 파싱할 필요없다
 			console.log(result);	
+			printCommentsList(result);
 		}
 	});
 }
 
 //댓글 목록 출력하기 (방법1: 출력대상 컨텐츠를 문자열로 처리하는 방법 유지보수가 까다롭다.)
-function printCommentsList(){
+function printCommentsList(json){ //js는 자료형이 존재하지 않음 (자바랑 틀림)
+	$("#commentsArea").html("");//기존의 commentsArea의 컨텐츠를 초기화!!(div에서 제거 )
+	
 	var tag="";
-	tag+="<div>";
-	tag+="<input type=\"text\" value=\"댓글 메시지...\" style=\"width:60%\" readonly>";
-	tag+="<input type=\"text\" value=\"작성자...\" style=\"width:20%\" readonly>";
-	tag+="<input type=\"text\" value=\"등록일\" style=\"width:10%\" readonly>";
-	tag+="</div>";
+	
+	for(var i=0;i<json.commentsList.length;i++){
+		tag+="<div>";
+		tag+="<input type=\"text\" value=\"댓글 메시지...\" style=\"width:60%\" readonly>";
+		tag+="<input type=\"text\" value=\"작성자...\" style=\"width:20%\" readonly>";
+		tag+="<input type=\"text\" value=\"등록일\" style=\"width:10%\" readonly>";
+		tag+="</div>";
+	}
 	/*
 	자바스크립트로 구현
 	var commentsArea=document.getElementById("commentsArea");

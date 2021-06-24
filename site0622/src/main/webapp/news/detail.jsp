@@ -71,10 +71,13 @@ function edit(){
 function registComments(){
 	$.ajax({
 		url:"/comments/regist",
-		type:"", 
+		type:"post", 
 		data:{
+			msg:$("input[name='msg']").val(),
+			cwriter:$("input[name='cwriter']").val()
 		},
 		success:function(result, status, xhr){
+			alert(result);
 		}
 	});
 }

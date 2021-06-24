@@ -21,9 +21,7 @@ public class RegistServlet extends HttpServlet{
 		//응답객체로부터 출력스트림 얻기
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.print(msg+"<br>");
-		out.print(cwriter+"<br>");
-		
+		out.print(msg+","+cwriter);
 	}
 }
 

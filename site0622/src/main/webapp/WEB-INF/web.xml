@@ -57,4 +57,13 @@
 		<url-pattern>/news/regist</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>registComments</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.comments.RegistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>registComments</servlet-name>
+		<url-pattern>/comments/regist</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

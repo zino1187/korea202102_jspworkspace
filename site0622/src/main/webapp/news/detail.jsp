@@ -54,7 +54,7 @@ $(function(){
 	
 	//버튼에 이벤트 연결하기 
 	$("input[type='button']").click(function(){
-		regist();	
+		//regist();	
 	});
 });
 
@@ -91,7 +91,12 @@ function getCommentsList(){
 		url:"/comments/list?news_id=<%=news.getNews_id()%>",
 		type:"get",
 		success:function(result, status, xhr){
+			//넘겨받은 데이터가 string일 경우 json으로 파싱하자
+			//var json = JSON.parse(result);
+			//console.log(json.commentsList.length);
 			
+			//넘겨받은 데이터가 json 자체일 경우는 파싱할 필요없다
+			console.log(result);	
 		}
 	});
 }

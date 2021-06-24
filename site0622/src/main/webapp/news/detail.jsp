@@ -48,6 +48,7 @@ input[type=button]:hover {
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<script src="/js/Comments.js"></script>
 <script type="text/javascript">
 $(function(){
 	CKEDITOR.replace("content");
@@ -108,7 +109,7 @@ function getCommentsList(){
 			
 			//넘겨받은 데이터가 json 자체일 경우는 파싱할 필요없다
 			console.log(result);	
-			printCommentsList(result);
+			printCommentsList2(result);
 		}
 	});
 }
@@ -139,7 +140,12 @@ function printCommentsList(json){ //js는 자료형이 존재하지 않음 (자�
 
 //방법2)  출력대상이 되는 태그를 객체로 처리하는 법 
 function printCommentsList2(json){
+	$("#commentsArea").html("");//기존에 데이터 삭제 
 	
+	for(var i=0;i<json.commentsList.length;i++){
+		var obj=json.commentsList[i];
+		var comments=new Comments(document.getElementById("commentsArea"),obj.msg, obj.cwriter, obj.cdate);
+	}	
 }
 </script>
 </head>

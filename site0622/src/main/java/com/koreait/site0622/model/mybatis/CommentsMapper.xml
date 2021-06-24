@@ -9,6 +9,10 @@
 		insert into comments(msg, cwriter, news_id) values(#{msg}, #{cwriter}, #{news_id})
 	</insert>
 	
+	<!-- 해당 뉴스에 등록된 댓글 가져오기 -->
+	<select id="selectByNewsId" resultType="Comments" parameterType="int">
+		select * from comments where news_id=#{news_id}
+	</select>
 </mapper>
 
 

@@ -12,4 +12,6 @@ public interface CommentsDAO {
 	public int update(Comments comments);//수정
 	public int delete(int comments_id);//삭제
 	
+	public List selectByNewsId(int news_id);//해당 뉴스에 딸려있는 댓글목록 
+	
 }

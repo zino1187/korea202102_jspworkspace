@@ -76,11 +76,30 @@ function registComments(){
 		type:"post", 
 		data:formdata,//폼을 전송할 수 있는 데이터화 시킨후, 자체를 전부 전송
 		success:function(result, status, xhr){
-			alert(result);
+			if(result==1){
+				//댓글 목록을 동적으로 늘려나가기
+				printCommentsList();
+			}
 		}
 	});
 }
-
+//댓글 목록 출력하기 (방법1: 출력대상 컨텐츠를 문자열로 처리하는 방법 유지보수가 까다롭다.)
+function printCommentsList(){
+	var tag="";
+	tag+="<div>";
+	tag+="<input type=\"text\" value=\"댓글 메시지...\" style=\"width:60%\" readonly>";
+	tag+="<input type=\"text\" value=\"작성자...\" style=\"width:20%\" readonly>";
+	tag+="<input type=\"text\" value=\"등록일\" style=\"width:10%\" readonly>";
+	tag+="</div>";
+	/*
+	자바스크립트로 구현
+	var commentsArea=document.getElementById("commentsArea");
+	commentsArea.innerHTML=tag;
+	*/
+	
+	//jquery 로 구현
+	$("#commentsArea").append(tag);
+}
 </script>
 </head>
 <body>
@@ -104,11 +123,10 @@ function registComments(){
 		<input type="button" value="댓글등록"  style="width:10%" onClick="registComments()">
 	</form>
 </div>
-<div>
-	<input type="text" value="댓글 메시지..." style="width:60%" readonly>
-	<input type="text" value="작성자..." style="width:20%" readonly>
-	<input type="text" value="등록일" style="width:10%" readonly>
+<div id="commentsArea"> 
+	
 </div>
+
 </body>
 </html>
     

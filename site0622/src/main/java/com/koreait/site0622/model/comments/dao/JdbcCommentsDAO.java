@@ -56,4 +56,17 @@ public class JdbcCommentsDAO implements CommentsDAO{
 		return 0;
 	}
 	
+	
+	public List selectByNewsId(int news_id) {
+	
+		return null;
+	}
 }
+
+
+
+
+
+
+
+

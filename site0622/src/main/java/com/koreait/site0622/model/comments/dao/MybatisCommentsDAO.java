@@ -41,5 +41,20 @@ public class MybatisCommentsDAO  implements CommentsDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	@Override
+	public List selectByNewsId(int news_id) {
+		SqlSession sqlSession=configManager.getSession();
+		List list=sqlSession.selectList("Comments.selectByNewsId", news_id);
+		configManager.closeSession(sqlSession);
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+

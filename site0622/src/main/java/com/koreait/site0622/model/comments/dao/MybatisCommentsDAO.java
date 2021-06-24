@@ -2,14 +2,20 @@ package com.koreait.site0622.model.comments.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.koreait.site0622.model.domain.Comments;
+import com.koreait.site0622.model.mybatis.MybatisConfigManager;
 
 public class MybatisCommentsDAO  implements CommentsDAO{
-
-	@Override
+	MybatisConfigManager configManager=MybatisConfigManager.getInstance();
+	
 	public int insert(Comments comments) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = configManager.getSession(); //쿼리수행 객체 얻기 
+		int result = sqlSession.insert("Comments.insert", comments);
+		sqlSession.commit(); //DML이라서...
+		configManager.closeSession(sqlSession);
+		return result;
 	}
 
 	@Override

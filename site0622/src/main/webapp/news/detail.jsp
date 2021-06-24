@@ -77,12 +77,25 @@ function registComments(){
 		data:formdata,//폼을 전송할 수 있는 데이터화 시킨후, 자체를 전부 전송
 		success:function(result, status, xhr){
 			if(result==1){
-				//댓글 목록을 동적으로 늘려나가기
-				printCommentsList();
+				//댓글 목록가져와서 동적으로 늘려나가기
+				getCommentsList();//현재 뉴스기사에 딸린, 댓글 가져오기 
+				printCommentsList();//출력
 			}
 		}
 	});
 }
+
+function getCommentsList(){
+	//비동기방식으로 댓글 리스트 요청하자!!!
+	$.ajax({
+		url:"/comments/list?news_id=<%=news.getNews_id()%>",
+		type:"get",
+		success:function(result, status, xhr){
+			
+		}
+	});
+}
+
 //댓글 목록 출력하기 (방법1: 출력대상 컨텐츠를 문자열로 처리하는 방법 유지보수가 까다롭다.)
 function printCommentsList(){
 	var tag="";

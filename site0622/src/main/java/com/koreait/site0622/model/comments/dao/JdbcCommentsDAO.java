@@ -2,7 +2,9 @@ package com.koreait.site0622.model.comments.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.koreait.site0622.model.domain.Comments;
@@ -58,8 +60,34 @@ public class JdbcCommentsDAO implements CommentsDAO{
 	
 	
 	public List selectByNewsId(int news_id) {
-	
-		return null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ArrayList list=new ArrayList();
+		
+		con=pool.getConnection();
+		String sql="select * from comments where news_id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, news_id);
+			rs=pstmt.executeQuery();//쿼리실행 
+			//rs의 데이터를 List로 옮기기 
+			while(rs.next()) {
+				Comments comments = new Comments(); //empty
+				comments.setComments_id(rs.getInt("comments_id"));
+				comments.setMsg(rs.getString("msg"));
+				comments.setCwriter(rs.getString("cwriter"));
+				comments.setCdate(rs.getString("cdate"));
+				comments.setNews_id(rs.getInt("news_id"));
+				
+				list.add(comments);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt, rs);
+		}
+		return list;
 	}
 }
 

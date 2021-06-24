@@ -108,10 +108,11 @@ function printCommentsList(json){ //js는 자료형이 존재하지 않음 (자�
 	var tag="";
 	
 	for(var i=0;i<json.commentsList.length;i++){
+		var comments = json.commentsList[i]; //댓글 하나 꺼내기
 		tag+="<div>";
-		tag+="<input type=\"text\" value=\"댓글 메시지...\" style=\"width:60%\" readonly>";
-		tag+="<input type=\"text\" value=\"작성자...\" style=\"width:20%\" readonly>";
-		tag+="<input type=\"text\" value=\"등록일\" style=\"width:10%\" readonly>";
+		tag+="<input type=\"text\" value=\""+comments.msg+"\" style=\"width:60%\" readonly>";
+		tag+="<input type=\"text\" value=\""+comments.cwriter+"\" style=\"width:20%\" readonly>";
+		tag+="<input type=\"text\" value=\""+comments.cdate+"\" style=\"width:10%\" readonly>";
 		tag+="</div>";
 	}
 	/*

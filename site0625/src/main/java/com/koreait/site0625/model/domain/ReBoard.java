@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ReBoard {
-	private int reboard_id;
+	private int reboard_id; 
 	private String title;
 	private String writer;
 	private String content;

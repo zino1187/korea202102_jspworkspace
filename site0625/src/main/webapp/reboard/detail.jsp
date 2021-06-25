@@ -1,4 +1,12 @@
+<%@page import="com.koreait.site0625.model.domain.ReBoard"%>
+<%@page import="com.koreait.site0625.model.reboard.dao.MybatisReBoardDAO"%>
+<%@page import="com.koreait.site0625.model.reboard.dao.ReBoardDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
+<%!ReBoardDAO reBoardDAO=new MybatisReBoardDAO(); %>
+<%
+	int reboard_id=Integer.parseInt(request.getParameter("reboard_id"));
+	ReBoard reboard=reBoardDAO.select(reboard_id);
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -45,17 +53,17 @@ img{border:0px}
             <td width="100">&nbsp;</td>
             <td>&nbsp;</td>
           </tr>
-          <tr id="writer">
-            <td height="25" align="center">작성자</td>
-            <td><input type="text" name="textfield"></td>
-          </tr>
           <tr id="title">
             <td height="25" align="center">제목</td>
-            <td><input type="text" name="textfield2"></td>
+            <td><input type="text" name="textfield2" value="<%=reboard.getTitle()%>"></td>
+          </tr>
+          <tr id="writer">
+            <td height="25" align="center">작성자</td>
+            <td><input type="text" name="textfield" value="<%=reboard.getWriter()%>"></td>
           </tr>
           <tr id="content">
             <td align="center">내용</td>
-            <td><textarea name="content" style=""></textarea></td>
+            <td><textarea name="content" style=""><%=reboard.getContent()%></textarea></td>
           </tr>
           <tr>
             <td>&nbsp;</td>

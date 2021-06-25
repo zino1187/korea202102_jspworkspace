@@ -21,6 +21,11 @@
 	<select id="selectAll" resultType="ReBoard">
 		select * from reboard order by team desc, step asc					
 	</select>
+	
+	<!-- 한건 가져오기 -->
+	<select id="select" parameterType="int" resultType="ReBoard">
+		select * from reboard where reboard_id=#{reboard_id}
+	</select>
 </mapper>
 
 

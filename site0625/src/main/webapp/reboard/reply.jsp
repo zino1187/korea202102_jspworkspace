@@ -4,8 +4,10 @@
 	String team=request.getParameter("team");
 	String step=request.getParameter("step");
 	String depth=request.getParameter("depth");
-
 %>
+<%=team%><br>
+<%=step%><br>
+<%=depth%><br>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -50,6 +52,10 @@ function reply(){
 <body>
 답변 등록 폼
 <form>
+	<input type="hidden" name="team" value="<%=team%>"> 
+	<input type="hidden" name="step" value="<%=step%>"> 
+	<input type="hidden" name="depth" value="<%=depth%>"> 
+
 	<table id="box" align="center" width="603" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td><img src="/reboard/images/ceil.gif" width="603" height="25"></td>

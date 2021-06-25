@@ -61,7 +61,7 @@ img{border:0px}
 			<%for( ReBoard reboard : boardList){%>
 		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
 			  <td width="50">1</td>
-			  <td width="303">
+			  <td width="303" style="text-align:left">
 			  	<a href="/reboard/detail.jsp?reboard_id=<%=reboard.getReboard_id() %>"><%=reboard.getTitle() %></a>
 			  </td>
 			  <td width="100"><%=reboard.getWriter() %></td>

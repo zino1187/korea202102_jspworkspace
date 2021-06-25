@@ -1,7 +1,7 @@
 <%@page import="com.koreait.site0625.model.domain.ReBoard"%>
 <%@page import="com.koreait.site0625.model.reboard.dao.MybatisReBoardDAO"%>
 <%@page import="com.koreait.site0625.model.reboard.dao.ReBoardDAO"%>
-<%@ page contentType="text/html;charset=utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%!ReBoardDAO reBoardDAO=new MybatisReBoardDAO(); %>
 <%
 	int reboard_id=Integer.parseInt(request.getParameter("reboard_id"));
@@ -28,21 +28,29 @@ input{
 width:503px;
 border:0;
 height:153;
-background:url("/board/images/write_bg.gif");
+background:url("/reboard/images/write_bg.gif");
 border:#C3C3C3 1px solid 
 }
 #copyright{font-size:9pt;}
 a{text-decoration:none}
 img{border:0px}
 </style>
+<%@ include file="/reboard/inc/lib.jsp" %>
+
+<script type="text/javascript">
+//답변 폼 요청하기
+function replyForm(){
+	location.href="/reboard/reply.jsp";
+}
+</script>
 </head>
 <body>
 <table id="box" align="center" width="603" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td><img src="/board/images/ceil.gif" width="603" height="25"></td>
+    <td><img src="/reboard/images/ceil.gif" width="603" height="25"></td>
   </tr>
   <tr>
-    <td height="2" bgcolor="#6395FA"><img src="/board/images/line_01.gif"></td>
+    <td height="2" bgcolor="#6395FA"><img src="/reboard/images/line_01.gif"></td>
   </tr>
   <tr>
     <td height="1" bgcolor="#CCCCCC"></td>
@@ -73,8 +81,10 @@ img{border:0px}
 	</tr>
   <tr>
     <td height="30" align="right" style="padding-right:2px;">
-	<img src="/board/images/write_btin.gif" width="61" height="20">
-	<img src="/board/images/delete_btn.gif" width="61" height="20"> <a href="list.html"><img src="/board/images/list_btn.gif" width="61" height="20" border="0"></a> </td>
+    <img src="/reboard/images/reply_btn.gif" width="61" height="20" onClick="replyForm()">
+	<img src="/reboard/images/write_btin.gif" width="61" height="20">
+	<img src="/reboard/images/delete_btn.gif" width="61" height="20"> 
+	<a href="list.html"><img src="/reboard/images/list_btn.gif" width="61" height="20" border="0"></a> </td>
   </tr>
   <tr>
     <td height="1" bgcolor="#CCCCCC"></td>

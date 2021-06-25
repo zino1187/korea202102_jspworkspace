@@ -40,11 +40,20 @@ img{border:0px}
 <script type="text/javascript">
 //답변 폼 요청하기
 function replyForm(){
-	location.href="/reboard/reply.jsp";
+	$("form").attr({
+		"action":"/reboard/reply.jsp",
+		"method":"post"
+	});
+	$("form").submit();
 }
 </script>
 </head>
 <body>
+<form>
+<input type="hidden" name="team" value="<%=reboard.getTeam()%>"> 
+<input type="hidden" name="step" value="<%=reboard.getStep()%>"> 
+<input type="hidden" name="depth" value="<%=reboard.getDepth()%>"> 
+
 <table id="box" align="center" width="603" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="/reboard/images/ceil.gif" width="603" height="25"></td>
@@ -93,5 +102,6 @@ function replyForm(){
     <td height="20" align="center" id="copyright">Copyright zino All Rights Reserved </td>
   </tr>
 </table>
+</form>
 </body>
 </html>

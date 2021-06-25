@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	//답변 등록에 필요한 파라미터인 team, step, depth를 받자!!
+	String team=request.getParameter("team");
+	String step=request.getParameter("step");
+	String depth=request.getParameter("depth");
+
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -29,10 +36,11 @@ img{border:0px}
 </style>
 <%@ include file="/reboard/inc/lib.jsp" %>
 <script type="text/javascript">
-function regist(){
+//답변 등록 요청하기(원글 아님)
+function reply(){
 	//동기방식으로 요청할 것임 
 	$("form").attr({
-		"action":"/reboard/regist",
+		"action":"/reboard/reply",
 		"method":"post"
 	});
 	$("form").submit();
@@ -78,7 +86,7 @@ function regist(){
 		</tr>
 	  <tr>
 	    <td height="30" align="right" style="padding-right:2px;">
-		<img src="/reboard/images/write_btin.gif" width="61" height="20" onClick="regist()"> 
+		<img src="/reboard/images/write_btin.gif" width="61" height="20" onClick="reply()"> 
 		<a href="list.jsp"><img src="/reboard/images/list_btn.gif" width="61" height="20"></a>	</td>
 	  </tr>
 	  <tr>

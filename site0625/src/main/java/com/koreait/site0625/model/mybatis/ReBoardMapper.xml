@@ -26,6 +26,20 @@
 	<select id="select" parameterType="int" resultType="ReBoard">
 		select * from reboard where reboard_id=#{reboard_id}
 	</select>
+	
+	<!-- 답변달기 (들어갈 자리 마련 + 답변글 등록)-->
+	<!--답변이 아닌 내가본글의 ReBaord  -->
+	<update id="updateStep" parameterType="ReBoard"> 
+		<![CDATA[
+			update reboard set step=step+1 where step > #{step}  and team=#{team}						
+		]]> 
+	</update>
+	
+	<insert id="reply" parameterType="ReBoard">
+		insert into reboard(title, writer, content, team, step, depth)  
+		values(#{title},#{writer},#{content}, #{team},  #{step}+1 , #{depth}+1)						
+	</insert>
+	
 </mapper>
 
 

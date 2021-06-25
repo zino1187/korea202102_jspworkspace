@@ -13,5 +13,14 @@
 		<servlet-name>registServlet</servlet-name>
 		<url-pattern>/reboard/regist</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>replyServlet</servlet-name>
+		<servlet-class>com.koreait.site0625.controller.reboard.ReplyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>replyServlet</servlet-name>
+		<url-pattern>/reboard/reply</url-pattern>
+	</servlet-mapping>
 
 </web-app>

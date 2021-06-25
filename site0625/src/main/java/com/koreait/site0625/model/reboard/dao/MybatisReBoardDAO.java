@@ -17,7 +17,10 @@ public class MybatisReBoardDAO implements ReBoardDAO{
 		
 		System.out.println("넣기 전 reboard_id는 "+reboard.getReboard_id()); //0
 		
-		int result=sqlSession.insert("ReBoard.insert", reboard);
+		int result=sqlSession.insert("ReBoard.insert", reboard); //게시물 넣고
+		reboard.setTeam(reboard.getReboard_id());//얻어진 pk를 team에 적용하기!
+		sqlSession.update("ReBoard.updateTeam", reboard); //team수정하자
+
 		sqlSession.commit();
 		
 		System.out.println("넣은 후 reboard_id는 "+reboard.getReboard_id());//현재 세션에서의 최신 pk
@@ -50,6 +53,7 @@ public class MybatisReBoardDAO implements ReBoardDAO{
 		return 0;
 	}
 
+	
 	@Override
 	public int updateStep(ReBoard reboard) {
 		// TODO Auto-generated method stub

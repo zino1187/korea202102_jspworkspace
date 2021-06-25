@@ -8,8 +8,19 @@
 		
 		<!-- insert 하자마자, 아래의 코드가 곧바로 수행된다 -->
 		<selectKey order="AFTER" resultType="int" keyProperty="reboard_id">
-			select last_insert_id() as reboard_id from reboard
+			select last_insert_id()
 		</selectKey>
 	</insert>
 	
+	<!-- team 업데이트 -->
+	<update id="updateTeam" parameterType="ReBoard">
+		update reboard set team=#{team} where reboard_id=#{reboard_id}	
+	</update>
+	
 </mapper>
+
+
+
+
+
+

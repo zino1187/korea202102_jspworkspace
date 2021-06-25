@@ -31,8 +31,10 @@ public class MybatisReBoardDAO implements ReBoardDAO{
 
 	@Override
 	public List selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = configManager.getSession();//세션얻기
+		List list=sqlSession.selectList("ReBoard.selectAll");
+		configManager.closeSession(sqlSession);
+		return list;
 	}
 
 	@Override

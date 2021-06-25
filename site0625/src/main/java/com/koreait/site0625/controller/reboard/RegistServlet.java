@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.koreait.site0625.model.domain.ReBoard;
 import com.koreait.site0625.model.reboard.dao.MybatisReBoardDAO;
 import com.koreait.site0625.model.reboard.dao.ReBoardDAO;
+import com.koreait.site0625.util.message.MessageObject;
 
 public class RegistServlet extends HttpServlet{
 	ReBoardDAO reboardDAO;
-
+	MessageObject obj;
+	
 	public void init() throws ServletException {
 		//reboardDAO = new JdbcReBoardDAO();
 		reboardDAO = new MybatisReBoardDAO();
+		obj=new MessageObject();
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +42,13 @@ public class RegistServlet extends HttpServlet{
 		//쿼리수행 후 vo에는 최근에 증가된 pk가 들어있을것이다!!
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.print("글등록 후 반환된 pk는 "+reboard.getReboard_id());
+		
+		//out.print("글등록 후 반환된 pk는 "+reboard.getReboard_id());
+		if(result==0) {
+			out.print(obj.getMsgBack("등록실패"));
+		}else {
+			out.print(obj.getMsgURL("등록성공","/reboard/list.jsp"));
+		}
 	}
 }
 

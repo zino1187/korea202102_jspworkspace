@@ -1,4 +1,14 @@
+<%@page import="com.koreait.site0625.model.domain.ReBoard"%>
+<%@page import="java.util.List"%>
+<%@page import="com.koreait.site0625.model.reboard.dao.MybatisReBoardDAO"%>
+<%@page import="com.koreait.site0625.model.reboard.dao.ReBoardDAO"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%!
+	ReBoardDAO reBoardDAO=new MybatisReBoardDAO();
+%>
+<%
+	List<ReBoard> boardList=reBoardDAO.selectAll();
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -48,66 +58,18 @@ img{border:0px}
 	<tr>	
 		<td colspan="5" id="list">
 		  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<%for( ReBoard reboard : boardList){%>
 		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
 			  <td width="50">1</td>
-			  <td width="303"><a href="detail.jsp">제목입니다.</a></td>
-			  <td width="100">관리자</td>
-			  <td width="100">2008/02/10</td>
-			  <td width="50">5</td>
+			  <td width="303"><a href="detail.jsp"><%=reboard.getTitle() %></a></td>
+			  <td width="100"><%=reboard.getWriter() %></td>
+			  <td width="100"><%=reboard.getRegdate().substring(0,10) %></td>
+			  <td width="50"><%=reboard.getHit() %></td>
 		    </tr>
 			<tr>
 				<td height="1" colspan="5" background="/reboard/images/line_dot.gif"></td>
 			</tr>
-		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
-			  <td width="50">1</td>
-			  <td width="303">제목입니다.</td>
-			  <td width="100">관리자</td>
-			  <td width="100">2008/02/10</td>
-			  <td width="50">5</td>
-		    </tr>
-			<tr>
-				<td height="1" colspan="5" background="/reboard/images/line_dot.gif"></td>
-			</tr>
-		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
-			  <td width="50">1</td>
-			  <td width="303">제목입니다.</td>
-			  <td width="100">관리자</td>
-			  <td width="100">2008/02/10</td>
-			  <td width="50">5</td>
-		    </tr>
-			<tr>
-				<td height="1" colspan="5" background="/reboard/images/line_dot.gif"></td>
-			</tr>
-		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
-			  <td width="50">1</td>
-			  <td width="303">제목입니다.</td>
-			  <td width="100">관리자</td>
-			  <td width="100">2008/02/10</td>
-			  <td width="50">5</td>
-		    </tr>
-			<tr>
-				<td height="1" colspan="5" background="/reboard/images/line_dot.gif"></td>
-			</tr>
-		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
-			  <td width="50">1</td>
-			  <td width="303">제목입니다.</td>
-			  <td width="100">관리자</td>
-			  <td width="100">2008/02/10</td>
-			  <td width="50">5</td>
-		    </tr>
-			<tr>
-				<td height="1" colspan="5" background="/reboard/images/line_dot.gif"></td>
-			</tr>
-		    <tr align="center" height="20px" onMouseOver="this.style.background='#FFFF99'" onMouseOut="this.style.background=''">
-			  <td width="50">1</td>
-			  <td width="303">제목입니다.</td>
-			  <td width="100">관리자</td>
-			  <td width="100">2008/02/10</td>
-			  <td width="50">5</td>
-		    </tr>
-			<tr>
-				<td height="1" colspan="5" background="/reboard/images/line_dot.gif"></td>
-			</tr>
+			<%} %>
 		  </table>		</td>
 	</tr>
   <tr>

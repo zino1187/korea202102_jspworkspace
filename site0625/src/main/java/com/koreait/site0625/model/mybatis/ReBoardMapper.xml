@@ -17,6 +17,10 @@
 		update reboard set team=#{team} where reboard_id=#{reboard_id}	
 	</update>
 	
+	<!-- 게시물 목록 -->
+	<select id="selectAll" resultType="ReBoard">
+		select * from reboard order by team desc, step asc					
+	</select>
 </mapper>
 
 

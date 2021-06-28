@@ -46,7 +46,7 @@ public class ReplyServlet extends HttpServlet{
 		int result = reboardDAO.reply(reboard);
 		
 		//출력처리 
-		response.setContentType("text/html/charset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		
 		if(result==0) {

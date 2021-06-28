@@ -35,7 +35,19 @@ function initMap() {
 	  center:new google.maps.LatLng(51.508742,-0.120850),
 	  zoom:5,
 	};
+	
+	//맵 객체 생성
 	var map = new google.maps.Map(document.getElementById("content"),mapProp);
+	
+	//마커 생성
+	var marker = new google.maps.Marker({position: mapProp.center});
+	marker.setMap(map);
+	
+	//팝업 윈도우 생성
+	var infowindow = new google.maps.InfoWindow({
+		content:"<img src='/data/bob.jpg' width='50px'>"
+	});
+	infowindow.open(map, marker);	//어느맵에, 어느 마커에 연결할지 결정
 }
 </script>
 </head>
@@ -44,6 +56,14 @@ function initMap() {
 	<div class="wrapper">
 		<div class="leftSide">
 			<input type="button" value="공공데이터Load">
+
+			<select>
+				<option>시도 선택</option>			
+			</select>
+			<select>
+				<option>구군 선택</option>
+			</select>
+			
 			<input type="text" placeholder="제목..">
 			<textarea placeholder="내용..." style="height:200px;"></textarea>
 			<input type="text" placeholder="위도..">
@@ -56,6 +76,6 @@ function initMap() {
 
 </body>
 </html>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmArXdXqKLFUEqh6E5rSb2K8JRdc6xseA&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
 
 

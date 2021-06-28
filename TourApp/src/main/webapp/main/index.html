@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.wrapper{
+	width:1000px;
+	height:700px;
+	background:yellow;
+	margin:auto;
+	overflow: hidden;;
+}	
+.leftSide{
+	width:200px;
+	height:100%;
+	background: crimson;
+	float:left;
+}
+#content{
+	width:800px;
+	height:100%;
+	background: #ccc;
+	float:left;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+function initMap() {
+	var mapProp= {
+	  center:new google.maps.LatLng(51.508742,-0.120850),
+	  zoom:5,
+	};
+	var map = new google.maps.Map(document.getElementById("content"),mapProp);
+}
+</script>
+</head>
+<body>
+	
+	<div class="wrapper">
+		<div class="leftSide">좌측</div>
+		<div id="content">우측</div>
+	</div>
+
+</body>
+</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=나의키&callback=initMap"></script>
+
+

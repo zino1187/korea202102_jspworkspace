@@ -8,6 +8,8 @@
 %>
 <%
 	List<ReBoard> boardList=reBoardDAO.selectAll();
+	
+	//페이징 처리 
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>

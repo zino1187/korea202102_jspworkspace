@@ -16,6 +16,8 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+import com.koreait.tourapp.model.domain.Culture;
+
 
 public class PlaceServlet extends HttpServlet{
 	SAXParserFactory factory;
@@ -37,7 +39,7 @@ public class PlaceServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String result = loadData();
 		
-		response.setContentType("text/xml;charset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		
@@ -70,6 +72,33 @@ public class PlaceServlet extends HttpServlet{
         //스트림을 이용한 파싱 
         try {
 			saxParser.parse(conn.getInputStream(), handler = new CultureHandler());
+			//파싱이 종료되었고, 핸들러가 보유한  list를 접근해보기 
+			//ArrayList  --> JSON으로 변환하여 클라이언트인 웹브라우저에 보내자!!!
+				
+			StringBuilder sb=new StringBuilder();
+
+			sb.append("{");
+			sb.append("\"items\":[");
+			for(int i=0;i<handler.list.size();i++) {
+				Culture culture=handler.list.get(i); //VO 추출!!
+				sb.append("{");
+				sb.append("\"addr1\":\""+culture.getAddr1()+"\",");
+				sb.append("\"firstimage\":\""+culture.getFirstimage()+"\",");
+				sb.append("\"mapx\":"+culture.getMapx()+",");
+				sb.append("\"mapy\":"+culture.getMapy()+",");
+				sb.append("\"title\":\""+culture.getTitle()+"\"");
+				
+				if(i<handler.list.size()-1) {//size -1 보다 작을때까지 찍자
+					sb.append("},");
+				}else {
+					sb.append("}");
+				}
+			}
+			sb.append("]");
+			sb.append("}");
+			
+			out.print(sb.toString()); //클라이언트에게 응답시 사용할 컨텐츠 구성
+			
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}

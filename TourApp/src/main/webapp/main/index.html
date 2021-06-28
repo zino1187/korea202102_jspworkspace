@@ -24,6 +24,9 @@
 	float:left;
 }
 
+.leftSide *{
+	width:90%;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -39,12 +42,20 @@ function initMap() {
 <body>
 	
 	<div class="wrapper">
-		<div class="leftSide">좌측</div>
+		<div class="leftSide">
+			<input type="button" value="공공데이터Load">
+			<input type="text" placeholder="제목..">
+			<textarea placeholder="내용..." style="height:200px;"></textarea>
+			<input type="text" placeholder="위도..">
+			<input type="text" placeholder="경도..">
+			<input type="file">
+			<input type="button" value="썸네일 등록">
+		</div>
 		<div id="content">우측</div>
 	</div>
 
 </body>
 </html>
-<script src="https://maps.googleapis.com/maps/api/js?key=나의키&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmArXdXqKLFUEqh6E5rSb2K8JRdc6xseA&callback=initMap"></script>
 
 

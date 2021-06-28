@@ -11,6 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ReplyServlet extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//답변에 필요한 파라미터 받기 
+		request.setCharacterEncoding("utf-8");
+		int team=Integer.parseInt(request.getParameter("team"));
+		int step=Integer.parseInt(request.getParameter("step"));
+		int depth=Integer.parseInt(request.getParameter("depth"));
+		String title=request.getParameter("title");
+		String writer=request.getParameter("writer");
+		String content=request.getParameter("content");
+		
+		//답변 등록을 위한 메서드 호출 (자리확보 + 답변등록)
+		
 		
 	}
 }

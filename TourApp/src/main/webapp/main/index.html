@@ -83,12 +83,16 @@ function loadFromXML(){
 
 function regist(){
 	//스트링 데이터 뿐만 아니라, 바이너리 파일도 포함된 데이터를 비동기로 등록 요청하자!!
-	var formData = $("form").serialize(); //폼을 구성하는 모든 파라미터요소들을 전송할 수 있는 직렬화상태로~
+	//var formData = $("form").serialize(); //폼을 구성하는 모든 파라미터요소들을 전송할 수 있는 직렬화상태로~
+	var formData = new FormData(document.querySelector("form"));//바이너리 데이터 전송이 가능한 객체
 	
 	$.ajax({
 		url:"/main/regist.jsp",		
 		type:"post", 
+		enctype:"multipart/form-data",
 		data:formData, 
+		contentType:false, //주의
+		processData:false,//주의
 		success:function(result, status, xhr){
 			alert(result);
 		}
@@ -109,7 +113,7 @@ $(function(){
 	
 	<div class="wrapper">
 		<div class="leftSide">
-			<form enctype="multipart/form-data">
+			<form>
 				<input type="button" value="공공데이터Load" onClick="loadFromXML()">
 				<!-- 
 				<select>

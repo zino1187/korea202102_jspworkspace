@@ -20,8 +20,10 @@ public class MybatisStoreDAO implements StoreDAO{
 
 	@Override
 	public List selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = configManager.getSession();
+		List list = sqlSession.selectList("Store.selectAll");
+		configManager.closeSession(sqlSession);
+		return list;
 	}
 
 	@Override

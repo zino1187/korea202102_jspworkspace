@@ -6,4 +6,8 @@
 		insert into store(store_id, addr1,title,content,mapx ,mapy ,firstimage) 
 		values(seq_store.nextval, #{addr1},#{title},#{content},#{mapx},#{mapy},#{firstimage})
 	</insert>
-</mapper>
+	
+	<select id="selectAll" resultType="Store">
+		select * from store
+	</select>
+</mapper>	

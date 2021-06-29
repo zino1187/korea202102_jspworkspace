@@ -57,7 +57,7 @@
 			String destName=time+"."+ext; //최종적으로 결정된 파일명
 			
 			item.write(new File(realPath+"/"+destName));
-			store.setFirstimage(destName); //이 시점부터 vo 안의 모든  property에 데이터가 채워짐!! 
+			store.setFirstimage("http://localhost:8888/data/"+destName); //이 시점부터 vo 안의 모든  property에 데이터가 채워짐!! 
 		}
 	}
 	//오라클에 insert !!!

@@ -3,7 +3,7 @@
 <mapper namespace="Store">
 
 	<insert id="insert" parameterType="Store">
-		insert into store(addr1,title,content,mapx ,mapy ,firstimage) 
-		values(#{addr1},#{title},#{content},#{mapx},#{mapy},#{firstimage})
+		insert into store(store_id, addr1,title,content,mapx ,mapy ,firstimage) 
+		values(seq_store.nextval, #{addr1},#{title},#{content},#{mapx},#{mapy},#{firstimage})
 	</insert>
 </mapper>

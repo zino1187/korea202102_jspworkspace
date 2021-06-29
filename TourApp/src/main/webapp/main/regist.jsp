@@ -1,3 +1,5 @@
+<%@page import="com.koreait.tourapp.model.store.dao.MybatisStoreDAO"%>
+<%@page import="com.koreait.tourapp.model.store.dao.StoreDAO"%>
 <%@page import="com.koreait.tourapp.util.FileManager"%>
 <%@page import="com.koreait.tourapp.model.domain.Store"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
@@ -6,6 +8,9 @@
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%!
+	StoreDAO storeDAO=new MybatisStoreDAO();
+%>
 <%
 	//service(HttpServletRequest request, HttpServletResponse response)
 	//HttpServletRequest --> jsp에서 request 내장객체로 지원 
@@ -56,6 +61,8 @@
 		}
 	}
 	//오라클에 insert !!!
+	int result = storeDAO.insert(store);
+	out.print(result);
 %>
 
 

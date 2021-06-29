@@ -1,6 +1,8 @@
 package com.koreait.tourapp.controller.place;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,9 +19,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.XML;
 import org.xml.sax.SAXException;
 
 import com.google.gson.Gson;
+import com.koreait.tourapp.model.domain.Culture;
 
 
 public class PlaceServlet extends HttpServlet{
@@ -71,6 +77,10 @@ public class PlaceServlet extends HttpServlet{
         conn.setRequestProperty("Content-type", "application/json");
         System.out.println("Response code: " + conn.getResponseCode());
         
+        //첫번째 방법으로 호출하여 응답정보 구성
+        String str=getJson3(conn);
+        out.print(str);
+        
         conn.disconnect();
 	}
 	
@@ -85,13 +95,13 @@ public class PlaceServlet extends HttpServlet{
 			//ArrayList  --> JSON으로 변환하여 클라이언트인 웹브라우저에 보내자!!!
 			
 			//자바의 객체를 JSON 문자열로 변환하는 과정을 개발자가 일일이 처리하지말고, Gson과 같은 라이브러리를 이용해보자
-			Map<String, List> map = new HashMap<String, List>();
-			map.put("items", handler.list);
-			Gson gson = new Gson();
-			str=gson.toJson(map);
+			//Map<String, List> map = new HashMap<String, List>();
+			//map.put("items", handler.list);
+			//Gson gson = new Gson();
+			//str=gson.toJson(map);
 			
 			//out.print(str);
-			/*
+			
 			StringBuilder sb=new StringBuilder();
 
 			sb.append("{");
@@ -113,7 +123,9 @@ public class PlaceServlet extends HttpServlet{
 			}
 			sb.append("]");
 			sb.append("}");
-			*/
+			
+			str=sb.toString();
+			
 			//out.print(sb.toString()); //클라이언트에게 응답시 사용할 컨텐츠 구성
 			
 		} catch (SAXException | IOException e) {
@@ -123,15 +135,50 @@ public class PlaceServlet extends HttpServlet{
 	}
 	
 	//
-	public String getJson2() {
+	public String getJson2(HttpURLConnection conn) {
 		String str=null;
-		
-		return str;		
+        try {
+			saxParser.parse(conn.getInputStream(), handler = new CultureHandler());
+			//자바의 객체를 JSON 문자열로 변환하는 과정을 개발자가 일일이 처리하지말고, Gson과 같은 라이브러리를 이용해보자
+			Map<String, List> map = new HashMap<String, List>();
+			map.put("items", handler.list);
+			Gson gson = new Gson();
+			str=gson.toJson(map);
+		} catch (SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		return str;
 	}
 	
-	public void getJson3() {
+	public String getJson3(HttpURLConnection conn) {
 		
-	}
+		StringBuilder sb = new StringBuilder();
+        try {
+			BufferedReader rd;
+			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+			    rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			} else {
+			    rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			String line;
+			while ((line = rd.readLine()) != null) {
+			    sb.append(line);
+			}
+			rd.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        //xml 문자열을 자동을로 json 객체로 변환해보자!!
+        
+        JSONObject json=XML.toJSONObject(sb.toString()); //xml 스트링을 json 객체로 변환!!
+        JSONObject res=(JSONObject)json.get("response"); //response key 가 가리키는 json 추출
+        JSONObject body=(JSONObject)res.get("body");//body key 가 가리키는 json 추출
+        JSONObject items=(JSONObject)body.get("items"); //items key가 가리키는 json 추출 
+        //JSONArray item=(JSONArray)items.get("item"); //item key가 가리키는 json array 추출 
+        //System.out.println("관광 아이템의 수는 "+item.length());
+        return items.toString();
+ 	}
 	
 }
 

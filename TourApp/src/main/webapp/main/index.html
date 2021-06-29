@@ -79,35 +79,60 @@ function loadFromXML(){
 			createMarker(json);
 		}		
 	});
+}
+
+function regist(){
+	//스트링 데이터 뿐만 아니라, 바이너리 파일도 포함된 데이터를 비동기로 등록 요청하자!!
+	var formData = $("form").serialize(); //폼을 구성하는 모든 파라미터요소들을 전송할 수 있는 직렬화상태로~
+	
+	$.ajax({
+		url:"/main/regist.jsp",		
+		type:"post", 
+		data:formData, 
+		success:function(result, status, xhr){
+			alert(result);
+		}
+	});
 	
 }
+
+$(function(){
+	var bt_regist = $("input[type='button']")[1]; //2번째 버튼
+	$(bt_regist).click(function(){
+		regist();
+	});
+});
+
 </script>
 </head>
 <body>
 	
 	<div class="wrapper">
 		<div class="leftSide">
-			<input type="button" value="공공데이터Load" onClick="loadFromXML()">
-			<!-- 
-			<select>
-				<option>시도 선택</option>			
-			</select>
-			<select>
-				<option>구군 선택</option>
-			</select>
-			 -->
-			<input type="text" placeholder="제목..">
-			<textarea placeholder="내용..." style="height:200px;"></textarea>
-			<input type="text" placeholder="위도..">
-			<input type="text" placeholder="경도..">
-			<input type="file">
-			<input type="button" value="썸네일 등록">
+			<form enctype="multipart/form-data">
+				<input type="button" value="공공데이터Load" onClick="loadFromXML()">
+				<!-- 
+				<select>
+					<option>시도 선택</option>			
+				</select>
+				<select>
+					<option>구군 선택</option>
+				</select>
+				 -->
+				<input type="text" name="title" placeholder="제목..">
+				<textarea name="content" placeholder="내용..." style="height:200px;"></textarea>
+				<input type="text" name="addr1" placeholder="주소">
+				<input type="text" name="mapy" placeholder="위도..">
+				<input type="text" name="mapx" placeholder="경도..">
+				<input type="file" name="storeImg">
+				<input type="button" value="관광지 등록">
+			</form>
 		</div>
 		<div id="content">우측</div>
 	</div>
 
 </body>
 </html>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWCx42zPNwVJcZ8s8OiEwEQfsGd7-3AQ4&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
 
 

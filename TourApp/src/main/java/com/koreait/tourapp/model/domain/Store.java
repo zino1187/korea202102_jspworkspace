@@ -1,5 +1,8 @@
 package com.koreait.tourapp.model.domain;
 
-public class Store extends Culture{
+import lombok.Data;
 
+@Data
+public class Store extends Culture{
+	private String content;
 }

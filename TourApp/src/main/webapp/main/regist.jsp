@@ -1,3 +1,5 @@
+<%@page import="com.koreait.tourapp.util.FileManager"%>
+<%@page import="com.koreait.tourapp.model.domain.Store"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.io.File"%>
@@ -28,21 +30,39 @@
 	//각종 파라미터 및 파일저장 처리!!
 	List<FileItem> items = upload.parseRequest(request);//업로드 분석
 	
+	Store store=new Store(); //empty vo
+	
 	for(FileItem item : items){
-			
 		if(item.isFormField()){//일반 텍스트 컴포넌트일 경우
-			
+			if(item.getFieldName().equals("title")){
+				store.setTitle(item.getString("utf-8"));
+			}else if(item.getFieldName().equals("content")){
+				store.setContent(item.getString("utf-8"));
+			}else if(item.getFieldName().equals("addr1")){
+				store.setAddr1(item.getString("utf-8"));
+			}else if(item.getFieldName().equals("mapx")){
+				store.setMapx(Double.parseDouble(item.getString("utf-8")));
+			}else if(item.getFieldName().equals("mapy")){
+				store.setMapy(Double.parseDouble(item.getString("utf-8")));
+			}
 		}else{//파일 컴포넌트 일 경우
-			out.print(item.getName());
+			long time = System.currentTimeMillis(); 
+			String ext = FileManager.getExt(item.getName()); 
+			
+			String destName=time+"."+ext; //최종적으로 결정된 파일명
+			
+			item.write(new File(realPath+"/"+destName));
+			store.setFirstimage(destName); //이 시점부터 vo 안의 모든  property에 데이터가 채워짐!! 
 		}
 	}
-	
+	//오라클에 insert !!!
 %>
-
-
-
-
-
+<%=store.getTitle()%>
+<%=store.getContent()%>
+<%=store.getAddr1()%>
+<%=store.getMapx()%>
+<%=store.getMapy()%>
+<%=store.getFirstimage()%>
 
 
 

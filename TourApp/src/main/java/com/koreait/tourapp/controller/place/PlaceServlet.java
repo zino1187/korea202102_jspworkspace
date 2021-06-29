@@ -74,7 +74,7 @@ public class PlaceServlet extends HttpServlet{
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
-        conn.setRequestProperty("Content-type", "application/json");
+        conn.setRequestProperty("Content-type", "application/json"); //클라이언트의 요청 방식!!
         System.out.println("Response code: " + conn.getResponseCode());
         
         //첫번째 방법으로 호출하여 응답정보 구성

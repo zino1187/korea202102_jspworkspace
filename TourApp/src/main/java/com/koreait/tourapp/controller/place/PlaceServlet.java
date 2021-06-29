@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +19,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import com.koreait.tourapp.model.domain.Culture;
+import com.google.gson.Gson;
 
 
 public class PlaceServlet extends HttpServlet{
@@ -68,13 +71,27 @@ public class PlaceServlet extends HttpServlet{
         conn.setRequestProperty("Content-type", "application/json");
         System.out.println("Response code: " + conn.getResponseCode());
         
+        conn.disconnect();
+	}
+	
+	//xml문자열을 파싱하여 자바객체로 변환한 후, 다시 json으로 변환하고 이 json을  json문자열로 클라이언트에게 응답
+	public String getJson1(HttpURLConnection conn) {
         //요청에 의한 응답정보 가져오기
         //스트림을 이용한 파싱 
+		String str=null;
         try {
 			saxParser.parse(conn.getInputStream(), handler = new CultureHandler());
 			//파싱이 종료되었고, 핸들러가 보유한  list를 접근해보기 
 			//ArrayList  --> JSON으로 변환하여 클라이언트인 웹브라우저에 보내자!!!
-				
+			
+			//자바의 객체를 JSON 문자열로 변환하는 과정을 개발자가 일일이 처리하지말고, Gson과 같은 라이브러리를 이용해보자
+			Map<String, List> map = new HashMap<String, List>();
+			map.put("items", handler.list);
+			Gson gson = new Gson();
+			str=gson.toJson(map);
+			
+			//out.print(str);
+			/*
 			StringBuilder sb=new StringBuilder();
 
 			sb.append("{");
@@ -96,12 +113,35 @@ public class PlaceServlet extends HttpServlet{
 			}
 			sb.append("]");
 			sb.append("}");
-			
-			out.print(sb.toString()); //클라이언트에게 응답시 사용할 컨텐츠 구성
+			*/
+			//out.print(sb.toString()); //클라이언트에게 응답시 사용할 컨텐츠 구성
 			
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
-        conn.disconnect();
+		return str;
 	}
+	
+	//
+	public String getJson2() {
+		String str=null;
+		
+		return str;		
+	}
+	
+	public void getJson3() {
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+

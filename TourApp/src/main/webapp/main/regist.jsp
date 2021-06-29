@@ -57,12 +57,6 @@
 	}
 	//오라클에 insert !!!
 %>
-<%=store.getTitle()%>
-<%=store.getContent()%>
-<%=store.getAddr1()%>
-<%=store.getMapx()%>
-<%=store.getMapy()%>
-<%=store.getFirstimage()%>
 
 
 

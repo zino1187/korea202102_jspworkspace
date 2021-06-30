@@ -1,28 +1,30 @@
+<%@page import="com.koreait.mvcframework.model.blood.BloodService"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%! BloodService service = new BloodService();%>
 <%
+	//컨트롤러는 디자인과 로직을 분리시키기 위한 중간 처리자(프로그램의 흐름을 처리)
+	//요청을 받아서, 적절한 로직 객체에게 일을시키고, 적절한 결과 페이지를 보여줄 흐름을 처리
+
 	//클라이언트가 전송한 파라미터를 받아 결과 보여주기 
 	request.setCharacterEncoding("utf-8");
 	String blood = request.getParameter("blood");
-	String msg=null;
-	//넘겨받은 혈액형에 대한 판단 결과 도출
-	if(blood.equals("A형")){
-		msg="소심하고 꼼꼼하고 책임감 강함";
-	}else if(blood.equals("B형")){
-		msg="고집쎄고 털털하다";
-	}else if(blood.equals("O형")){
-		msg="잘 어울리고 오지랖이다";
-	}else if(blood.equals("AB형")){
-		msg="선택을 왔다갔다(여자의 경우)";		
-	}
+
+	//이미 기존에 작성해 두었던 로직을 재사용한다!!!!(모델)
+	String msg= service.getAdvice(blood);
+	
+	request.setAttribute("msg", msg); //request 객체는 사실 Map임
+	
+	//아래와 같인 요청을 끊고, 클라이언트가 재접속하게 하지 말고,
+	//서버에서 특정 자원으로 요청을 포워딩 즉 전달시켜보자!!
+	//response.sendRedirect("/blood/result.jsp");//지정한 url 을 재요청
+	
+	RequestDispatcher dis=request.getRequestDispatcher("/blood/result.jsp");
+	dis.forward(request, response); //쌍방울을 가지고,  result.jsp로 전달된다!!
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-선택하신 혈액형에 대한 판단 결과 <br>
-<%=msg %>
-</body>
-</html>
+
+
+
+
+
+
+

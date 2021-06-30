@@ -4,23 +4,17 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 
-	
+	<!-- MVC프레임웍에서는 클라이언트의 매 요청마다 1:1 대응하는 컨트롤러를 
+		직접 매핑하지 않는다..왜? 이렇게 될경우 업무의 효율성이 떨어진다.
+		또한 매핑코드가 너무나 비대해진다..
+	 -->
 	<servlet>
-		<servlet-name>bloodController</servlet-name>
-		<servlet-class>com.koreait.mvcframework.controller.blood.BloodController</servlet-class>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>com.koreait.mvcframework.controller.DispatcherServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>bloodController</servlet-name>
-		<url-pattern>/blood</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>movieController</servlet-name>
-		<servlet-class>com.koreait.mvcframework.controller.movie.MovieController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>movieController</servlet-name>
-		<url-pattern>/movie</url-pattern>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/gate</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

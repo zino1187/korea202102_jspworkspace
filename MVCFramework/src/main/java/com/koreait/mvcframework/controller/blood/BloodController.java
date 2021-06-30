@@ -2,16 +2,15 @@ package com.koreait.mvcframework.controller.blood;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.koreait.mvcframework.controller.Controller;
 import com.koreait.mvcframework.model.blood.BloodService;
 
 //혈액형 요청을 처리하는 컨트롤러 클래스
-public class BloodController{
+public class BloodController implements Controller{
 	BloodService service;
 	
 	public BloodController() {
@@ -19,7 +18,6 @@ public class BloodController{
 	}
 	
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		String blood = request.getParameter("blood");
 		String msg= service.getAdvice(blood); //3단계 일시킨다!!
 		
@@ -27,7 +25,10 @@ public class BloodController{
 		request.setAttribute("msg", msg); //request 객체는 사실 Map임
 		
 	}
-	 
+	@Override
+	public String getViewName() {
+		return "/blood/result.jsp";
+	} 
 }
 
 

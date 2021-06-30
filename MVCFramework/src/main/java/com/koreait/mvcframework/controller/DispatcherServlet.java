@@ -29,6 +29,8 @@ public class DispatcherServlet extends HttpServlet{
 		doRequest(request, response);
 	}
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8"); //파라미터 인코딩 처리를 이 시점에 해버리자!
+		
 		//1단계: 요청을 받는다
 		System.out.println("요청을 받았습니다");
 		
@@ -39,22 +41,19 @@ public class DispatcherServlet extends HttpServlet{
 		//http://localhost:8888/board/list  (URL)
 		// 								/board/list (URI)
 		String uri = request.getRequestURI();
+		RequestDispatcher dis=null;
+		Controller controller=null;
 		
 		if(uri.equals("/blood.do")) { //혈액형에 대한 요청
-			BloodController controller= new BloodController();
-			controller.doRequest(request, response);
-			
-			//5.단계: 결과보여준다
-			RequestDispatcher dis=request.getRequestDispatcher("/blood/result.jsp");
-			dis.forward(request, response); //쌍방울을 가지고,  result.jsp로 전달된다!!
+			controller= new BloodController();
 		}else if(uri.equals("/movie.do")) {//영화에 대한 요청
-			MovieController controller = new MovieController();
-			controller.doRequest(request, response);
-			
-			//5.단계: 결과보여준다
-			RequestDispatcher dis = request.getRequestDispatcher("/movie/result.jsp");
-			dis.forward(request, response);
+			controller = new MovieController();
 		}
+		
+		String viewName=controller.getViewName();
+		dis = request.getRequestDispatcher(viewName);
+		controller.doRequest(request, response);
+		dis.forward(request, response);//5.단계: 결과보여준다
 	}
 	
 }

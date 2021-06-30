@@ -14,4 +14,13 @@
 		<url-pattern>/blood</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>movieController</servlet-name>
+		<servlet-class>com.koreait.mvcframework.controller.movie.MovieController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>movieController</servlet-name>
+		<url-pattern>/movie</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

@@ -9,7 +9,6 @@ Model : 그냥 일반 java 클래스 (POJO==Plain Old Java Object)
 View  : jsp
 Controller : Servlet
 
-
 [제작과정]
 1.스크립트 기반일 경우 :  디자인 + 로직 등이 모두 일체형이다!
 			     장점) 개발속도 빠르다, 시간, 비용이 저렴

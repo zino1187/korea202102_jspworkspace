@@ -12,7 +12,7 @@ select{
 </style>
 <script>
 function send(){
-	form1.action="/movie";
+	form1.action="/movie.do";
 	form1.method="post";
 	form1.submit();
 }

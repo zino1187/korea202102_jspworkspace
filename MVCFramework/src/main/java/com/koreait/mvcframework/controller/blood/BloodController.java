@@ -11,32 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 import com.koreait.mvcframework.model.blood.BloodService;
 
 //혈액형 요청을 처리하는 컨트롤러 클래스
-public class BloodController extends HttpServlet{
+public class BloodController{
 	BloodService service;
 	
-	@Override
-	public void init() throws ServletException {
+	public BloodController() {
 		service = new BloodService();
 	}
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doRequest(request, response);
-	}
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doRequest(request, response);
-	}
-
-	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String blood = request.getParameter("blood");
-
-		String msg= service.getAdvice(blood);
+		String msg= service.getAdvice(blood); //3단계 일시킨다!!
 		
+		//4단계: 요청 객체에 데이터 저장!!
 		request.setAttribute("msg", msg); //request 객체는 사실 Map임
 		
-		RequestDispatcher dis=request.getRequestDispatcher("/blood/result.jsp");
-		dis.forward(request, response); //쌍방울을 가지고,  result.jsp로 전달된다!!
 	}
 	 
 }
+
+
+

@@ -12,7 +12,7 @@ select{
 </style>
 <script>
 function send(){
-	form1.action="/blood";
+	form1.action="/blood.do";
 	form1.method="post";
 	form1.submit();
 }

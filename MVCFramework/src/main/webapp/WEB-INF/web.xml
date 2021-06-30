@@ -14,7 +14,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/gate</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

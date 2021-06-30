@@ -1,15 +1,17 @@
 package com.koreait.mvcframework.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.koreait.mvcframework.controller.blood.BloodController;
-import com.koreait.mvcframework.controller.movie.MovieController;
 
 //이 서블릿은 우리 웹어플리케이션의 모든~~~~요청을 일단 받는 진입점 컨트롤러임
 public class DispatcherServlet extends HttpServlet{
@@ -20,11 +22,29 @@ public class DispatcherServlet extends HttpServlet{
 	 * 4.결과가 있다면 결과를 저장한다
 	 * 5.결과를 보여준다
 	 * */
+	Properties props;
+	FileReader reader;
+	
 	@Override
+	public void init(ServletConfig config) throws ServletException {
+		ServletContext context = config.getServletContext(); //웹어플리케이션의 정보를 얻기위한 객체, jsp 의 내장객체 중 application의 자료형
+		String path=context.getRealPath("/WEB-INF/mapping.data");
+		props = new Properties();
+		
+		try {
+			reader = new FileReader(path);
+			props.load(reader); //지금부터 검색 가능!!
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doRequest(request, response);
 	}
-	@Override
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doRequest(request, response);
 	}
@@ -44,11 +64,20 @@ public class DispatcherServlet extends HttpServlet{
 		RequestDispatcher dis=null;
 		Controller controller=null;
 		
-		if(uri.equals("/blood.do")) { //혈액형에 대한 요청
-			controller= new BloodController();
-		}else if(uri.equals("/movie.do")) {//영화에 대한 요청
-			controller = new MovieController();
-		}
+		String className=props.getProperty(uri);
+		System.out.println("지금 요청에 의해 동작할 동생 컨트롤러의 이름은 "+className);
+		try {
+			//타켓 클래스를 동적으로 static 영역으로 로드!!!
+			Class controllerClass=Class.forName(className);
+			//static  영역으로 올라온 클래스 원본을 대상으로 인스턴스 한개를 생성해보자!! without new operator
+			controller=(Controller)controllerClass.newInstance();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} 
 		
 		String viewName=controller.getViewName();
 		dis = request.getRequestDispatcher(viewName);

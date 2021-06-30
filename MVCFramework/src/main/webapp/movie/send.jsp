@@ -12,7 +12,7 @@ select{
 </style>
 <script>
 function send(){
-	form1.action="/blood";
+	form1.action="/movie";
 	form1.method="post";
 	form1.submit();
 }
@@ -20,12 +20,12 @@ function send(){
 </head>
 <body>
 <form name="form1">
-	<select name="blood">
-		<option>자신의 혈액형을 선택하세요 </option>
-		<option value="A형">A형</option>
-		<option value="B형">B형</option>
-		<option value="O형">O형</option>
-		<option value="AB형">AB형</option>
+	<select name="movie">
+		<option>영화를 선택하세요 </option>
+		<option value="미션임파서블">미션임파서블</option>
+		<option value="크루엘라">크루엘라</option>
+		<option value="어벤저스">어벤저스</option>
+		<option value="어바웃타임">어바웃타임</option>
 	</select>
 </form>	
 <button onClick="send()">결과보기</button>

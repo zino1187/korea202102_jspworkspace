@@ -2,10 +2,12 @@
 MVC라는 것은 큰 규모의 프로젝트를 제작시 개발방법이론 
 javaSE  vs   javaEE(웹)
 
-java 기술로 MVC패턴을 구현할 경우 적절한 파일형태?
+javaEE 에서 MVC패턴을 적용한 개발모델을 가리켜 Model2 라 한다 
+Model2 방식에서의 기술 구현은 다음과 같다.
+
 Model : 그냥 일반 java 클래스 (POJO==Plain Old Java Object)
 View  : jsp
-Controller : 서블릿
+Controller : Servlet
 
 
 [제작과정]

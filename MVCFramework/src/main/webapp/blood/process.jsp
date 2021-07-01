@@ -1,4 +1,4 @@
-<%@page import="com.koreait.mvcframework.model.blood.BloodService"%>
+<%@page import="com.koreait.model2app.model.blood.BloodService"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%! BloodService service = new BloodService();%>
 <%

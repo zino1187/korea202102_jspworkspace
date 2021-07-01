@@ -24,7 +24,7 @@ public class MovieController implements Controller{
 	}
 	
 	public String getViewName() {
-		return "/movie/result.jsp";
+		return "/movie/result";
 	}
 	
 }

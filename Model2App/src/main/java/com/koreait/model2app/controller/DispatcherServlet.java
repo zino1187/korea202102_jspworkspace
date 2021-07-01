@@ -83,8 +83,10 @@ public class DispatcherServlet extends HttpServlet{
 		//5단계: 응답정보를 이용한, 응답처리(즉 결과보여주기) 
 		//결과는 MVC 중 view담당하므로, 현재 파일과는 다른 jsp에서 처리
 		//주의) 응답을 하면 네트워크 끊기도 요청프로세스가 종료되므로, 응답을 하지않고 원하는 jsp 자원에 포워딩
-		String viewName=controller.getViewName(); //  /blood/result.jsp
-		RequestDispatcher dis=request.getRequestDispatcher(viewName);
+		String viewName=controller.getViewName(); //  /blood/result
+		//넘겨받은 viewName을 이용하여 다시 mapping파일 검색한다!!
+		String viewPage=props.getProperty(viewName); //   /blood/result key 값에 대응되는 값인 /blood/result.jsp 반환
+		RequestDispatcher dis=request.getRequestDispatcher(viewPage);
 		dis.forward(request, response);//포워딩 시작
 	}
 	

@@ -24,6 +24,6 @@ public class BloodController implements Controller{
 		//있는 request객체에 데이터를 넣어두자!! 이렇게 하면 형님이 이 데이터를 꺼낼수 있다.
 	}
 	public String getViewName() {
-		return "/blood/result.jsp";
+		return "/blood/result";
 	}
 }

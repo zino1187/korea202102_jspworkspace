@@ -67,14 +67,56 @@ public class JdbcBoardDAO implements BoardDAO{
 
 	@Override
 	public Board select(int board_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Board board=null;
+		
+		con=pool.getConnection();
+		String sql="select * from board where board_id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery(); //쿼리수행
+			if(rs.next()) {
+				board = new Board();
+				board.setBoard_id(rs.getInt("board_id"));
+				board.setTitle(rs.getString("title"));
+				board.setWriter(rs.getString("writer"));
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
+				board.setHit(rs.getInt("hit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt, rs);
+		}
+		return board;
 	}
 
 	@Override
 	public int update(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
+		String sql="update board set title=?, writer=?, content=? where board_id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2,board.getWriter());
+			pstmt.setString(3, board.getContent());
+			pstmt.setInt(4, board.getBoard_id());
+			
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;
+
 	}
 
 	@Override

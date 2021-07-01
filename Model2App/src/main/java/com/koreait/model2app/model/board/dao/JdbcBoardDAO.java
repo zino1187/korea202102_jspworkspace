@@ -121,8 +121,21 @@ public class JdbcBoardDAO implements BoardDAO{
 
 	@Override
 	public int delete(int board_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
+		String sql="delete from board where board_id=?";
+		try {
+			pstmt.setInt(1, board_id);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;
 	}
 
 }

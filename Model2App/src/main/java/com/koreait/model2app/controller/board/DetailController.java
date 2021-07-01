@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.koreait.model2app.controller.Controller;
 import com.koreait.model2app.model.board.dao.BoardDAO;
+import com.koreait.model2app.model.board.dao.JdbcBoardDAO;
 import com.koreait.model2app.model.board.dao.MybatisBoardDAO;
 import com.koreait.model2app.model.domain.Board;
 
@@ -15,7 +16,8 @@ public class DetailController implements Controller{
 	//3단계: 알맞는 객체에게 일시키기 
 	//4단계: 클라이언에게 보여줄 결과가 잇다면, 형님 컨트롤러와 공유가 가능한 형태로 저장(request, session)
 	public DetailController() {
-		boardDAO =new MybatisBoardDAO();
+		//boardDAO =new MybatisBoardDAO();
+		boardDAO = new JdbcBoardDAO();
 	}
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String board_id=request.getParameter("board_id"); //파라미터 받기 

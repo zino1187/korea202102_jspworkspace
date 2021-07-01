@@ -5,7 +5,7 @@ import java.util.List;
 import com.koreait.model2app.model.domain.Board;
 
 public class JdbcBoardDAO implements BoardDAO{
-
+	
 	@Override
 	public List selectAll() {
 		// TODO Auto-generated method stub

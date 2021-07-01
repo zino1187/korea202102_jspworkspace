@@ -38,8 +38,12 @@ public class MybatisBoardDAO implements BoardDAO{
 
 	@Override
 	public int update(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = configManager.getSession();
+		int result=sqlSession.update("Board.update", board);
+		sqlSession.commit(); //DML
+		configManager.closeSession(sqlSession);
+		
+		return result;
 	}
 
 	@Override

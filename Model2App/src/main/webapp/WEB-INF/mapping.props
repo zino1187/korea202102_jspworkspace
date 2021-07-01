@@ -4,6 +4,7 @@
 /board/list.do=com.koreait.model2app.controller.board.ListController
 /board/regist.do=com.koreait.model2app.controller.board.RegistController
 /board/detail.do=com.koreait.model2app.controller.board.DetailController
+/board/edit.do=com.koreait.model2app.controller.board.EditController
 
 #뷰 매핑
 /blood/result=/blood/result.jsp
@@ -11,3 +12,4 @@
 /result/board/list=/board/list.jsp
 /result/board/regist=/board/list.do
 /result/board/detail=/board/detail.jsp
+/result/board/edit=/board/detail.do

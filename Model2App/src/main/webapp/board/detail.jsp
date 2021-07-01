@@ -74,7 +74,7 @@ function del(){
 
 function edit(){
 	$("form").attr({
-		"action":"/board/edit.jsp",
+		"action":"/board/edit.do",
 		"method":"post"
 	});	
 	$("form").submit();

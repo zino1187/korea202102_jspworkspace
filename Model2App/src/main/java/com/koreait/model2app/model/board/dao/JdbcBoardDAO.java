@@ -45,8 +45,24 @@ public class JdbcBoardDAO implements BoardDAO{
 
 	@Override
 	public int insert(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
+		String sql="insert into board(board_id, title, writer, content) values(seq_board.nextval, ?, ?, ?)";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2,board.getWriter());
+			pstmt.setString(3, board.getContent());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;
 	}
 
 	@Override

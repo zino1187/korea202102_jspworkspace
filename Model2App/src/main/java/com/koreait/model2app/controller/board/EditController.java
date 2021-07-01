@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.koreait.model2app.controller.Controller;
 import com.koreait.model2app.model.board.dao.BoardDAO;
+import com.koreait.model2app.model.board.dao.JdbcBoardDAO;
 import com.koreait.model2app.model.board.dao.MybatisBoardDAO;
 import com.koreait.model2app.model.domain.Board;
 
@@ -14,7 +15,8 @@ public class EditController implements Controller{
 	BoardDAO boardDAO; 
 	
 	public EditController() {
-		boardDAO = new MybatisBoardDAO();
+		//boardDAO = new MybatisBoardDAO();
+		boardDAO = new JdbcBoardDAO();
 	}
 	
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

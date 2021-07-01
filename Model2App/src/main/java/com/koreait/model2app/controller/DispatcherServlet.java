@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -55,10 +56,36 @@ public class DispatcherServlet extends HttpServlet{
 		request.setCharacterEncoding("utf-8");
 		
 		
-		//요청을 분석(uri분석한다)
+		//2단계: 요청을 분석(uri분석한다) , 더이상 if문은 사용하지 않는다!! (Map으로 대체됨)
 		String uri = request.getRequestURI();
-		System.out.println("요청받은 uri는 "+uri);
-		//if문 대신, props파일을 탐색하기!!	
+
+		//if문 대신, props파일을 탐색하기!!
+		//이렇게 매 요청마다 처리할 로직을 전담 객체를 1:1 부여하는 방식을 가리켜 command pattern이라 한다(by GOF) 
+		String className = props.getProperty(uri);
+		System.out.println(uri+" 요청에 동작할 클래스명은"+className);
+		
+		//클래스이름을 이용하여, 클래스 Load하기 !!
+		Controller controller=null;
+		try {
+			Class controllerClass = Class.forName(className);
+			
+			//파일에 명시된 클래스명을 이용하여, 동적으로 인스턴스를 생성하는 방법 == 팩토리패턴(Factory pattern)이라 한다
+			controller=(Controller)controllerClass.newInstance(); //인스턴스 생성 ( 하위컨트롤 생성)
+			controller.execute(request, response);//하위 컨트롤러 동작!!
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		//5단계: 응답정보를 이용한, 응답처리(즉 결과보여주기) 
+		//결과는 MVC 중 view담당하므로, 현재 파일과는 다른 jsp에서 처리
+		//주의) 응답을 하면 네트워크 끊기도 요청프로세스가 종료되므로, 응답을 하지않고 원하는 jsp 자원에 포워딩
+		String viewName=controller.getViewName(); //  /blood/result.jsp
+		RequestDispatcher dis=request.getRequestDispatcher(viewName);
+		dis.forward(request, response);//포워딩 시작
 	}
 	
 	//서블릿의 생명주기 메서드 중, 서블릿 소멸시 호출되는 destory() 재정의 

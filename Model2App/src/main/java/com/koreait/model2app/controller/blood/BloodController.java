@@ -20,10 +20,10 @@ public class BloodController implements Controller{
 		String msg=service.getAdvice(blood);
 		
 		//4단계: 결과가 있다면 결과를 저장한다
-		request.setAttribute(msg, blood);//아직 응답이 처리되지 않은 시점이므로, 동생과 형이 공유하고
+		request.setAttribute("msg", msg);//아직 응답이 처리되지 않은 시점이므로, 동생과 형이 공유하고
 		//있는 request객체에 데이터를 넣어두자!! 이렇게 하면 형님이 이 데이터를 꺼낼수 있다.
 	}
 	public String getViewName() {
-		return null;
+		return "/blood/result.jsp";
 	}
 }

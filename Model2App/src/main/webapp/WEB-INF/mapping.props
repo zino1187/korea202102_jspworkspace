@@ -1,1 +1,2 @@
 /blood.do=com.koreait.model2app.controller.blood.BloodController
+/movie.do=com.koreait.model2app.controller.movie.MovieController

@@ -86,8 +86,15 @@ public class DispatcherServlet extends HttpServlet{
 		String viewName=controller.getViewName(); //  /blood/result
 		//넘겨받은 viewName을 이용하여 다시 mapping파일 검색한다!!
 		String viewPage=props.getProperty(viewName); //   /blood/result key 값에 대응되는 값인 /blood/result.jsp 반환
-		RequestDispatcher dis=request.getRequestDispatcher(viewPage);
-		dis.forward(request, response);//포워딩 시작
+		
+		//포워딩일 경우
+		if(controller.isForward()) {
+			RequestDispatcher dis=request.getRequestDispatcher(viewPage);
+			dis.forward(request, response);//포워딩 시작
+		}else {
+			//다시 재접속을 명령하는 경우 redirect ==  location.href
+			response.sendRedirect(viewPage); //지정한 url로 다시 재접속할것을 클라이언트에게 명령
+		}		
 	}
 	
 	//서블릿의 생명주기 메서드 중, 서블릿 소멸시 호출되는 destory() 재정의 

@@ -6,4 +6,9 @@
 		select * from board order by board_id desc
 	</select>
 	
+	<insert id="insert" parameterType="Board">
+		insert into board(board_id, title, writer, content) 
+		values(seq_board.nextval, #{title}, #{writer}, #{content})
+	</insert>
+	
 </mapper>

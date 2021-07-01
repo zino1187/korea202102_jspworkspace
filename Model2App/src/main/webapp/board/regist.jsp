@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +52,7 @@ $(function(){
 
 function regist(){
 	$("form").attr({
-		"action":"/board/regist_db2.jsp",
+		"action":"/board/regist.do",
 		"method":"post"
 	});	
 	$("form").submit();
@@ -67,10 +66,10 @@ function regist(){
 <h3>Contact Form</h3>
 
 <div class="container">
-  <form action="/action_page.php">
+  <form>
     <input type="text" 	name="title" 			placeholder="제목..">
     <input type="text" 	name="writer" 		placeholder="작성자..">
-    <textarea 					name="content" 	placeholder="내용.." style="height:200px"></textarea>
+    <textarea 				name="content" 	placeholder="내용.." style="height:200px"></textarea>
     <input type="button" value="Submit">
   </form>
 </div>

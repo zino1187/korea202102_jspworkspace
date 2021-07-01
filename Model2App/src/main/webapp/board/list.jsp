@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-	List<Board> boardList=(List)request.getAttribute("boardList");
+	List<Board> boardList=(List)request.getAttribute("boardList");//동생 컨트롤러가 심은 데이터 가져오기
 %>
 <!DOCTYPE html>
 <html>

@@ -21,8 +21,11 @@ public class MybatisBoardDAO implements BoardDAO{
 
 	@Override
 	public int insert(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = configManager.getSession();
+		int result=sqlSession.insert("Board.insert", board);
+		sqlSession.commit(); //DML
+		configManager.closeSession(sqlSession);
+		return result;
 	}
 
 	@Override

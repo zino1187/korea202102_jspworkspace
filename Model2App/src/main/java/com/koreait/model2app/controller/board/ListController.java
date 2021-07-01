@@ -24,5 +24,8 @@ public class ListController implements Controller{
 	public String getViewName() {
 		return "/result/board/list";
 	}
-	
+	@Override
+	public boolean isForward() { //형님 컨트롤러와 공유할 데이터 있슴
+		return true;
+	}
 }

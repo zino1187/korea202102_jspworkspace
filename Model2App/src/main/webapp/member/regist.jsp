@@ -56,7 +56,7 @@ $(function(){
 });
 
 function addText(){
-	$("#license_container").append("<input type='text'>");		
+	$("#license_container").append("<input type='text' name='title'>");		
 }
 
 function regist(){
@@ -76,15 +76,16 @@ function regist(){
 
 <div class="container">
   <form>
-    <input type="text" 	name="title" 			placeholder="이름..">
-    <input type="text" 	name="writer" 		placeholder="연락처..">
-    <input type="text" 	name="writer" 		placeholder="주소..">
-    <input type="file" 	name="writer" 		placeholder="프로필 사진..">
+    <input type="text" 	name="name" 	placeholder="이름..">
+    <input type="text" 	name="phone" 	placeholder="연락처..">
+    <input type="text" 	name="addr" 		placeholder="주소..">
+    <input type="file" 	name="img" 		placeholder="프로필 사진..">
     
     <h3>
     	자격증 <button type="button">+</button>
     </h3>
-    <input type="text" 	name="writer" 		placeholder="자격증..">
+    <input type="text" 	name="title" 		placeholder="자격증..">
+    
     <div id="license_container"></div>
     <input type="button" value="Submit">
   </form>

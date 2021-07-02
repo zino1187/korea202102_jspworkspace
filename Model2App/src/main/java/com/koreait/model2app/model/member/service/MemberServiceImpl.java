@@ -1,10 +1,12 @@
 package com.koreait.model2app.model.member.service;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.koreait.model2app.exception.LicenseRegistException;
 import com.koreait.model2app.model.domain.License;
 import com.koreait.model2app.model.domain.Member;
 import com.koreait.model2app.model.license.dao.JdbcLicenseDAO;
@@ -32,24 +34,47 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	public int regist(Member member, HttpServletRequest request) {
-		
-		fileManager.saveFile(request);//파일업로드!!  1/3
-		
 		Connection con=pool.getConnection(); //DAO들에게 나누어줄 커넥션 얻기!!
 		((JdbcMemberDAO)memberDAO).setCon(con);//Connection 객체 주입
 		((JdbcLicenseDAO)licenseDAO).setCon(con);//Connection객체 주입 
-		
-		int member_id=memberDAO.insert(member);// 2/3
-
-		List<License> list=member.getList();
-		
-		for(License obj : list) {
-			obj.setMember_id(member_id);//회원등록시 발생한 시퀀스 값을 대입해야 함
-			licenseDAO.insert(obj); // 3/3
+		//jdbc에서의 Connection은 autoCommit이 true로 설정되어 있다..오라클과 틀림 
+		//일단 autoCommit=false로 돌려놓고 트랜잭션 작업하자!!
+		try {
+			con.setAutoCommit(false);
+		} catch (SQLException e2) {
+			e2.printStackTrace();
 		}
 		
-		pool.release(con);//반납
-		
+		try {
+			int member_id=memberDAO.insert(member);// 2/3
+	
+			List<License> list=member.getList();
+			
+			for(License obj : list) {
+				obj.setMember_id(member_id);//회원등록시 발생한 시퀀스 값을 대입해야 함
+				licenseDAO.insert(obj); // 3/3
+			}
+			try {
+				con.commit();//트랜잭션 성공 확정
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}catch(LicenseRegistException e) {
+			System.out.println(e.getMessage()); //에러 메시지 출력 (유저들을 위한 비전문 메시지)
+			e.printStackTrace();//개발자가 원인을 분석하기 위한 stack구조의 에러 콘솔출력
+			try {
+				con.rollback(); //트랜잭션 롤백
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			pool.release(con);//반납
+			try {
+				con.setAutoCommit(true); //상태 원상복구
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return 0;
 	}
 

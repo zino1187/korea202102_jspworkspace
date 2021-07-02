@@ -50,6 +50,7 @@ public class FileManager {
 					}else if(item.getFieldName().equals("title")) {
 						License license=new License(); //empty vo
 						license.setTitle(item.getString("utf-8"));//자격증 대입
+						member.getList().add(license); //Member VO에 자격증 한개 추가!!
 					}
 				}else {//파일 필드라면...
 					try {

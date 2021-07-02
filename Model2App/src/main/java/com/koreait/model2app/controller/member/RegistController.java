@@ -1,9 +1,12 @@
 package com.koreait.model2app.controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.koreait.model2app.controller.Controller;
+import com.koreait.model2app.model.domain.License;
 import com.koreait.model2app.model.domain.Member;
 import com.koreait.model2app.model.license.dao.JdbcLicenseDAO;
 import com.koreait.model2app.model.license.dao.LicenseDAO;
@@ -28,7 +31,17 @@ public class RegistController implements Controller{
 		Member member = FileManager.saveFile(request); //파일업로드 처리
 		
 		//DB에 insert
-		memberDAO.insert(member);
+		int member_id=memberDAO.insert(member);
+		
+		//자격증 insert (자격증 갯수만큼 반복문으로 insert 실행!!)
+		System.out.println("당신이 취득한 자격증은 "+member.getList().size());
+		List<License> list=member.getList();
+		
+		for(License obj : list) {
+			obj.setMember_id(member_id);//회원등록시 발생한 시퀀스 값을 대입해야 함
+			licenseDAO.insert(obj);
+		}
+		
 	}
 	public String getViewName() {
 		return "/result/member/regist";

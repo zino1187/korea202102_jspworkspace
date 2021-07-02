@@ -2,6 +2,7 @@ package com.koreait.model2app.model.member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class JdbcMemberDAO implements MemberDAO{
 	public int insert(Member member) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		int result=0;
 		
 		con=pool.getConnection();
@@ -27,14 +29,25 @@ public class JdbcMemberDAO implements MemberDAO{
 			pstmt.setString(4, member.getPhoto());
 			
 			result=pstmt.executeUpdate(); //실행
+			
+			if(result!=0) {
+				//현재 세션이 닫히기 전에 얼른, 이 INSERT에 의해 증가된 SEQUENCE 값을 얻어오자!!
+				sql="select seq_member.currval as member_id from dual";
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();//select문 수행
+				if(rs.next()) {//레코드가 있다면..
+					result=rs.getInt("member_id");
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			pool.release(con, pstmt);
+			pool.release(con, pstmt, rs);
 		}
 		return result;
 	}
-
+	
+	
 	@Override
 	public List selectAll() {
 		// TODO Auto-generated method stub

@@ -23,6 +23,10 @@ public class BloodController implements Controller{
 		request.setAttribute("msg", msg);//아직 응답이 처리되지 않은 시점이므로, 동생과 형이 공유하고
 		//있는 request객체에 데이터를 넣어두자!! 이렇게 하면 형님이 이 데이터를 꺼낼수 있다.
 	}
+	@Override
+	public boolean isForward() {
+		return true;
+	}
 	public String getViewName() {
 		return "/blood/result";
 	}

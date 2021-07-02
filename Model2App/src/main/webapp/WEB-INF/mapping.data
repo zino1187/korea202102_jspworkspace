@@ -20,6 +20,7 @@
 #회원관련 컨트롤러 매핑
 /member/regist.do=com.koreait.model2app.controller.member.RegistController
 /member/list.do=com.koreait.model2app.controller.member.ListController
+/member/detail.do=com.koreait.model2app.controller.member.DetailController
 
 #회원 관련 뷰매핑
 /result/member/regist=/member/list.do

@@ -106,8 +106,40 @@ public class JdbcMemberDAO implements MemberDAO{
 
 	@Override
 	public Member select(int member_id) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member member=null;
+		
+		try {
+			pstmt=con.prepareStatement("select * from member where member_id=?");
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				member = new Member(); //empty VO
+				member.setMember_id(rs.getInt("member_id"));
+				member.setName(rs.getString("name"));
+				member.setPhone(rs.getString("phone"));
+				member.setAddr(rs.getString("addr"));			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return member;
 	}
 
 	@Override

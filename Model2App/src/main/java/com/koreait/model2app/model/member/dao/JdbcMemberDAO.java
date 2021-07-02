@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.koreait.model2app.model.domain.Member;
@@ -64,8 +65,43 @@ public class JdbcMemberDAO implements MemberDAO{
 	
 	@Override
 	public List selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Member> list=new ArrayList<Member>();
+		
+		try {
+			pstmt=con.prepareStatement("select * from member");
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Member member = new Member(); //empty VO
+				member.setMember_id(rs.getInt("member_id"));
+				member.setName(rs.getString("name"));
+				member.setPhone(rs.getString("phone"));
+				member.setAddr(rs.getString("addr"));
+				
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		return list;
 	}
 
 	@Override

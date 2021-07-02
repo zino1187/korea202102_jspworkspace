@@ -82,8 +82,11 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con=pool.getConnection();
+		((JdbcMemberDAO)memberDAO).setCon(con);
+		List list=memberDAO.selectAll();
+		pool.release(con);
+		return list;
 	}
 
 	@Override

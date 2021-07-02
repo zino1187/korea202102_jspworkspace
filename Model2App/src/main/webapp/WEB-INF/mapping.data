@@ -25,6 +25,7 @@
 /result/member/regist=/member/list.do
 /result/member/list=/member/list.jsp
 
-
+#에러 관련 뷰매핑
+/result/error=/error/result.jsp
 
 

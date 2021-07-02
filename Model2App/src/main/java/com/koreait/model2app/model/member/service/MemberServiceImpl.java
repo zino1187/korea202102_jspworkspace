@@ -33,10 +33,11 @@ public class MemberServiceImpl implements MemberService{
 		licenseDAO = new JdbcLicenseDAO();
 	}
 	
-	public int regist(Member member, HttpServletRequest request) {
+	public int regist(Member member, HttpServletRequest request) throws LicenseRegistException{
 		Connection con=pool.getConnection(); //DAO들에게 나누어줄 커넥션 얻기!!
 		((JdbcMemberDAO)memberDAO).setCon(con);//Connection 객체 주입
 		((JdbcLicenseDAO)licenseDAO).setCon(con);//Connection객체 주입 
+		
 		//jdbc에서의 Connection은 autoCommit이 true로 설정되어 있다..오라클과 틀림 
 		//일단 autoCommit=false로 돌려놓고 트랜잭션 작업하자!!
 		try {
@@ -67,6 +68,7 @@ public class MemberServiceImpl implements MemberService{
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			throw e;//에러발생
 		}finally {
 			pool.release(con);//반납
 			try {

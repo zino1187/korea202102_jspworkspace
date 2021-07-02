@@ -56,16 +56,14 @@ public class FileManager {
 					try {
 						String ext=FileManager.getExt(item.getName());
 						String newName=System.currentTimeMillis()+"."+ext;
-						
 						System.out.println(realPath+"/"+newName);
-						
 						item.write(new File(realPath+"/"+newName)); //파일저장!!
+						member.setPhoto(newName);//Member VO에 생성된 파일명 저장 
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}
-			
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {

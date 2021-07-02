@@ -7,18 +7,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.koreait.model2app.model.domain.Member;
-import com.koreait.model2app.util.pool.PoolManager;
 
+import lombok.Data;
+
+@Data
 public class JdbcMemberDAO implements MemberDAO{
-	private PoolManager pool=PoolManager.getInstance();
-
+	private Connection con;
+	
 	public int insert(Member member) {
-		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
 		
-		con=pool.getConnection();
 		String sql="insert into member(member_id, name, phone, addr, photo)";
 		sql+=" values(seq_member.nextval, ?,?,?,?)";
 		try {
@@ -42,7 +42,21 @@ public class JdbcMemberDAO implements MemberDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			pool.release(con, pstmt, rs);
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		return result;
 	}

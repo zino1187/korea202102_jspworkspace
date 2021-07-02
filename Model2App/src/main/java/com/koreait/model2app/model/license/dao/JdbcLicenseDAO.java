@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.koreait.model2app.model.domain.License;
-import com.koreait.model2app.util.pool.PoolManager;
 
+import lombok.Data;
+
+@Data
 public class JdbcLicenseDAO implements LicenseDAO{
-	private PoolManager pool=PoolManager.getInstance();
+	private Connection con;
 	
 	@Override
 	public int insert(License license) {
-		Connection con=null;
 		PreparedStatement pstmt=null;
 		int result=0;
-		
-		con=pool.getConnection();
+
 		String sql="insert into license(license_id, member_id, title) values(seq_license.nextval,?,?)";
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -27,7 +27,13 @@ public class JdbcLicenseDAO implements LicenseDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			pool.release(con, pstmt);
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return result;
 	}

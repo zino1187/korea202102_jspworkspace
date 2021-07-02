@@ -19,7 +19,7 @@ public class JdbcLicenseDAO implements LicenseDAO{
 		PreparedStatement pstmt=null;
 		int result=0;
 
-		String sql="insert  license(license_id, member_id, title) values(seq_license.nextval,?,?)";
+		String sql="insert into license(license_id, member_id, title) values(seq_license.nextval,?,?)";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, license.getMember_id());

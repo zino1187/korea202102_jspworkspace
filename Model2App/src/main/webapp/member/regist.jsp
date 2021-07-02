@@ -62,7 +62,8 @@ function addText(){
 function regist(){
 	$("form").attr({
 		"action":"/member/regist.do",
-		"method":"post"
+		"method":"post",
+		"enctype":"multipart/form-data"
 	});	
 	$("form").submit();
 }

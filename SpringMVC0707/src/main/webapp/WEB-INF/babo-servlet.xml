@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--어떤 요청에 어떤 동생컨트롤러가 일할지(컨트롤러 매핑) -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true"/>
+		
+		<!-- url에 어떤 클래스가 요청을 처리할지 매핑(map 방식으로..) -->
+		<property name="mappings">
+			<props>
+				<prop key="/board/list">리스트컨트롤러</prop>				
+				<prop key="/board/regist">글등록컨트롤러</prop>				
+				<prop key="/board/detail">상세보기컨트롤러</prop>				
+				<prop key="/board/update">수정컨트롤러</prop>				
+				<prop key="/board/delete">삭제컨트롤러</prop>				
+			</props>
+		</property>			
+	</bean>
+	
+	<bean class="" name=""></bean>		
+	
+	<!--어떤페이지를 뷰페이지로 지정할지 (뷰매핑)-->
+
+</beans>

@@ -26,7 +26,12 @@ public class ListController implements Controller{
 		
 		System.out.println("결과는 "+boardList);
 		
-		return null;
+		//4단계: 결과 저장
+		ModelAndView mav = new ModelAndView();  // Model(보관할 데이터 넣을 수 있는 객체) + View(뷰이름을 이름을 갖는 객체)
+		mav.addObject("boardList",boardList);
+		mav.setViewName("board/list"); //해석자가 이부분을 넘겨받아 실제 jsp로 해석할 것임!!
+		
+		return mav;
 	}
 
 }

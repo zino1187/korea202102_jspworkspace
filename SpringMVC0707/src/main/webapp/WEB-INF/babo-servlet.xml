@@ -11,9 +11,10 @@
 		<property name="mappings">
 			<props>
 				<prop key="/board/list">listController</prop>		
+				<prop key="/board/detail">detailController</prop>
+								
 				<!-- 						
 				<prop key="/board/regist"></prop>				
-				<prop key="/board/detail"></prop>				
 				<prop key="/board/update"></prop>				
 				<prop key="/board/delete"></prop>
  				-->								
@@ -38,6 +39,13 @@
 	<bean class="com.koreait.springmvc0707.controller.board.ListController" name="listController">
 		<property name="boardService" ref="boardServiceImpl"/>
 	</bean>		
+	
+	<bean class="com.koreait.springmvc0707.controller.board.DetailController" name="detailController">
+		<property name="boardService" ref="boardServiceImpl"/>
+	</bean>
+	
+	
+	
 	
 	<!--어떤페이지를 뷰페이지로 지정할지 (뷰매핑)
 	InternalResourceViewResolver는 컨트롤러가 반환한 키값을 접두어 + 접미어를 이용하여 풀 페이지로 해석한다 

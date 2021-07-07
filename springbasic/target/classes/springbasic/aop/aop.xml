@@ -5,6 +5,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
+	<!--  
+		AOP관련 용어
+		Aspect : 공통로직 
+		JoinPoint : 공통로직을 적용할 대상이 되는 지점 ( 일반적인 용어)  ,  aspect가 적용될 후보..
+		Pointcut :실제로 aspect적용된 JoinPoint를 지칭
+		Advice : 공통로직이 어느시점에 적용될지 결정하는 용어 (before, after, around..)
+	-->
+	
 	<!-- 공통으로 사용할 코드 등록 (aspect)  -->
 	<bean class="springbasic.aop.Bell" id="bell"/>
 

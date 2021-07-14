@@ -2,6 +2,7 @@ package com.koreait.springmvc0714.model.board.service;
 
 import java.util.List;
 
+import com.koreait.springmvc0714.exception.RegistException;
 import com.koreait.springmvc0714.model.board.repository.BoardDAO;
 import com.koreait.springmvc0714.model.domain.Board;
 
@@ -19,9 +20,8 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.selectAll();
 	}
 	@Override
-	public void insert(Board board) {
-		// TODO Auto-generated method stub
-		
+	public void insert(Board board) throws RegistException{
+		boardDAO.insert(board);
 	}
 	@Override
 	public Board select(int board_id) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.koreait.springmvc0714.exception.RegistException;
 import com.koreait.springmvc0714.model.domain.Board;
 import com.koreait.springmvc0714.model.mybatis.MybatisConfigManager;
 
@@ -21,9 +22,12 @@ public class MybatisBoardDAO implements BoardDAO{
 	}
 
 	@Override
-	public void insert(Board board) {
-		// TODO Auto-generated method stub
-		
+	public void insert(Board board) throws RegistException{ //여기서 에러를 처리해버리면, 
+		//미궁에 빠짐..뷰단까지 에러의 원인을 전달해야 한다..그래야 사용자들이 에러가 낫음을 이해하고, 개발자는
+		//적절한 에러 처리를 할 수 있다..(에러페이지로 이동)
+		SqlSession sqlSession = configManager.getSession();
+		sqlSession.insert("Board.insert", board); //에러가 날수도 잇다..비정상종료가 됨을 방지
+		configManager.closeSession(sqlSession);
 	}
 
 	@Override

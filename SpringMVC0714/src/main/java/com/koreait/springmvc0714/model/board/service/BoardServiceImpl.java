@@ -2,7 +2,7 @@ package com.koreait.springmvc0714.model.board.service;
 
 import java.util.List;
 
-import com.koreait.springmvc0714.exception.RegistException;
+import com.koreait.springmvc0714.exception.DMLException;
 import com.koreait.springmvc0714.model.board.repository.BoardDAO;
 import com.koreait.springmvc0714.model.domain.Board;
 
@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.selectAll();
 	}
 	@Override
-	public void insert(Board board) throws RegistException{
+	public void insert(Board board) throws DMLException{
 		boardDAO.insert(board);
 	}
 	@Override
@@ -29,15 +29,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void update(Board board) {
-		// TODO Auto-generated method stub
-		
+	public void update(Board board) throws DMLException{
+		boardDAO.update(board);
 	}
 
 	@Override
-	public void delete(int board_id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int board_id) throws DMLException{
+		boardDAO.delete(board_id);
 	}
 	
 }

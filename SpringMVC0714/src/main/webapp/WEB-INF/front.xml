@@ -31,6 +31,12 @@
 	<bean class="com.koreait.springmvc0714.controller.board.DetailController" name="detailController"
 		p:boardService-ref="boardServiceImpl"/>
 	
+	<bean class="com.koreait.springmvc0714.controller.board.UpdateController" name="updateController" 
+		p:boardService-ref="boardServiceImpl"/>
+	
+	<bean class="com.koreait.springmvc0714.controller.board.DeleteController" name="deleteController"
+		p:boardService-ref="boardServiceImpl"/>
+	
 	<!-- 핸들러 매핑 결정 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" id="handlerMapping" 
 		p:alwaysUseFullPath="true">
@@ -39,10 +45,11 @@
 				<prop key="/board/list">listController</prop>								
 				<prop key="/board/regist">registController</prop>								
 				<prop key="/board/detail">detailController</prop>								
+				<prop key="/board/update">updateController</prop>								
+				<prop key="/board/del">deleteController</prop>								
 			</props>
 		</property>
 	</bean>	
-	
 	
 	<!-- 뷰 리절버 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver" 

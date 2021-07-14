@@ -23,15 +23,22 @@
 
 	<!-- 사용할 컨트롤러 등록 Controller -->
 	<bean class="com.koreait.springmvc0714.controller.board.ListController" name="listController" 
+		p:boardService-ref="boardServiceImpl"/>		
+	
+	<bean class="com.koreait.springmvc0714.controller.board.RegistController" name="registController"
 		p:boardService-ref="boardServiceImpl"/>				
 
-
+	<bean class="com.koreait.springmvc0714.controller.board.DetailController" name="detailController"
+		p:boardService-ref="boardServiceImpl"/>
+	
 	<!-- 핸들러 매핑 결정 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" id="handlerMapping" 
 		p:alwaysUseFullPath="true">
 		<property name="mappings">
 			<props>
 				<prop key="/board/list">listController</prop>								
+				<prop key="/board/regist">registController</prop>								
+				<prop key="/board/detail">detailController</prop>								
 			</props>
 		</property>
 	</bean>	

@@ -52,7 +52,7 @@ $(function(){
 
 function regist(){
 	$("form").attr({
-		"action":"/board/regist.do",
+		"action":"/board/regist",
 		"method":"post"
 	});	
 	$("form").submit();

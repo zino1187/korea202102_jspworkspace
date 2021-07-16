@@ -53,7 +53,7 @@ $(function(){
 	<%for(Board board : boardList){ %>
 	<tr>
 		<td>Jill</td>
-		<td><a href="/board/detail?board_id=<%=board.getBoard_id()%>"><%=board.getTitle()%></a></td>
+		<td><a href="/client/board/detail?board_id=<%=board.getBoard_id()%>"><%=board.getTitle()%></a></td>
 		<td><%=board.getWriter() %></td>
 		<td><%=board.getRegdate()%></td>
 		<td><%=board.getHit() %></td>

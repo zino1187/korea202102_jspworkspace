@@ -29,8 +29,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public Board select(int board_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return boardDAO.select(board_id);
 	}
 
 	@Override

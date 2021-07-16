@@ -8,9 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.koreait.springdb.model.domain.Board;
 import com.koreait.springdb.model.service.board.BoardService;
-
-import lombok.Setter;
 
 @Controller  //스프링의 컴포넌트 스캔의 대상이 되기 위해..
 public class BoardController {
@@ -35,7 +34,31 @@ public class BoardController {
 		
 		return "user/board/list";
 	}
+	
+	@RequestMapping(value="/board/detail", method=RequestMethod.GET)
+	public String getDetail(int board_id, Model model) {
+		//3단계: 일 시키기 
+		Board board = boardService.select(board_id);
+		
+		//4단계 : 저장 
+		model.addAttribute("board", board);
+		
+		return "user/board/detail";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

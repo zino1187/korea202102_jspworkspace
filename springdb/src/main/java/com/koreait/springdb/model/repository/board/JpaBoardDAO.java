@@ -2,9 +2,12 @@ package com.koreait.springdb.model.repository.board;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.koreait.springdb.model.domain.Board;
 
-public class JpaBoardDAO  implements BoardDAO{
+@Repository
+public class JpaBoardDAO implements BoardDAO {
 
 	@Override
 	public List selectAll() {
@@ -15,7 +18,7 @@ public class JpaBoardDAO  implements BoardDAO{
 	@Override
 	public void insert(Board board) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -27,14 +30,13 @@ public class JpaBoardDAO  implements BoardDAO{
 	@Override
 	public void update(Board board) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(int board_id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-

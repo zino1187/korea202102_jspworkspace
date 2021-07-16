@@ -13,9 +13,7 @@ import com.koreait.springdb.model.service.board.BoardService;
 import lombok.Setter;
 
 @Controller  //스프링의 컴포넌트 스캔의 대상이 되기 위해..
-@Setter
 public class BoardController {
-
 	@Autowired
 	private BoardService boardService;
 	

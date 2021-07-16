@@ -2,8 +2,11 @@ package com.koreait.springdb.model.repository.board;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.koreait.springdb.model.domain.Board;
 
+@Repository
 public class HibernateBoardDAO  implements BoardDAO{
 
 	@Override

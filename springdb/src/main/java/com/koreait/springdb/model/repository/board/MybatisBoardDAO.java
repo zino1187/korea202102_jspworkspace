@@ -10,6 +10,7 @@ import com.koreait.springdb.model.domain.Board;
 
 @Repository //컴포넌트 스캔의 대상이 되어 자동 인스턴스 생성됨(without registration bean)
 public class MybatisBoardDAO implements BoardDAO{
+	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	

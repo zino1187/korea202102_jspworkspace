@@ -13,4 +13,12 @@ public class BoardController {
 		return null;
 	}
 	
+	//게시판 목록 요청을 처리 
+	@RequestMapping(value="/board/list", method=RequestMethod.GET)
+	public String getList() {
+		
+		return null;
+	}
+	
+	
 }

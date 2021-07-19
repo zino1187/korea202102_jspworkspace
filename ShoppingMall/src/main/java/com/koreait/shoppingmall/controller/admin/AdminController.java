@@ -33,7 +33,24 @@ public class AdminController {
 	public String loginForm() {
 		return "admin/login/loginform";
 	}
+	
+	//로그인 요청 처리 
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String login(Admin admin) {
+		
+		return "";
+	}
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

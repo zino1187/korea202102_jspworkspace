@@ -40,7 +40,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                상품관리
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -70,7 +70,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                회원관리
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -100,7 +100,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                고객센터
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -130,7 +130,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                회원관리
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

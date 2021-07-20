@@ -53,12 +53,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$("input[type='button']").click(function(){
+	$("button[type='button']").click(function(){
 		loginCheck();
 	});
 });
 
 function loginCheck(){
+	alert();
 	//서버에 로그인 요청 
 	$("form").attr({
 		"action":"/admin/login",

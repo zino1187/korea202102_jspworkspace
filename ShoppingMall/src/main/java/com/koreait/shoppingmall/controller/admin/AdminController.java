@@ -1,7 +1,5 @@
 package com.koreait.shoppingmall.controller.admin;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -10,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.koreait.shoppingmall.domain.Admin;
 
 /**
  * Handles requests for the application home page.
@@ -36,7 +36,9 @@ public class AdminController {
 	
 	//로그인 요청 처리 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login() {
+	public String login(Admin admin) {
+		logger.info("아이디 {} ", admin.getHost_id());
+		
 		
 		return "";
 	}

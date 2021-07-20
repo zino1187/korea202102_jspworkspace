@@ -36,7 +36,7 @@ public class AdminController {
 	
 	//로그인 요청 처리 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Admin admin) {
+	public String login() {
 		
 		return "";
 	}

@@ -59,7 +59,6 @@ $(function(){
 });
 
 function loginCheck(){
-	alert();
 	//서버에 로그인 요청 
 	$("form").attr({
 		"action":"/admin/login",

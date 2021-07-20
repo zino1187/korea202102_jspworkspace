@@ -100,7 +100,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                고객센터
+                주문관리
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -130,7 +130,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                회원관리
+                고객센터
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

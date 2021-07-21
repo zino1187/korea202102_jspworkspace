@@ -39,6 +39,20 @@
   <link rel="stylesheet" href="/resources/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/resources/admin/plugins/summernote/summernote-bs4.min.css">
+  
+ <script type="text/javascript">
+//비동기방식으로 하위 카테고리 목록 가져오자!!
+function getSubList(topcategory_id){
+	$.ajax({
+		url:"/admin/category/topdetail?topcategory_id="+topcategory_id,
+		type:"GET",
+		success:function(result, status, xhr){
+			alert(result);
+		}
+	});
+}
+ </script>
+  
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -108,7 +122,7 @@
                   </thead>
                   <tbody>
                   	<%for(TopCategoryCount obj:topList){%>
-                    <tr>
+                    <tr onClick="getSubList(<%=obj.getTopcategory_id()%>)">
                       <td><%=obj.getTop_name() %></td>
                       <td><%=obj.getCnt() %></td>
                     </tr>

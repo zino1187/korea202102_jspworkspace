@@ -5,10 +5,10 @@
 
 	<!-- 상위 카테고리에 소속된 하위카테고리의 수  -->
 	<select id="getSubCount" resultType="TopCategoryCount">
-		select top_name, count(subcategory_id) as cnt
+		select t.topcategory_id, top_name, count(subcategory_id) as cnt
 		from topcategory t left outer join subcategory s 
 		on t.topcategory_id =s.topcategory_id
-		group by top_name
+		group by t.topcategory_id, top_name
 		order by t.topcategory_id asc
 	</select>
 	 

@@ -80,7 +80,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form name="form1">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">상위 카테고리</label>
@@ -97,13 +97,7 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">하위 카테고리</label>
 					<div class="form-group">
-                        <select class="form-control">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
+                        <select class="form-control" name="subcategory_id"></select>
                      </div>
                     
                   </div>
@@ -121,7 +115,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">상세정보</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <textarea class="form-control" placeholder="상품 상세정보"></textarea>
                   </div>
                   
                   <div class="form-group">
@@ -136,15 +130,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-primary" onClick="regist()">Submit</button>
                 </div>
               </form>
             </div>		
@@ -234,11 +224,30 @@ function getSubList(topcategory_id){
 		url:"/admin/category/topdetail?topcategory_id="+topcategory_id,
 		type:"GET", 
 		success:function(result, status, xhr){
-			alert(result);
+			$("select[name='subcategory_id']").html("");//초기화
+			
+			var tag="";
+			tag+="<option value='0'>하위 카테고리 선택</option>";
+			
+			for(var i=0;i<result.length;i++){
+				var json = result[i];
+				tag+="<option value='"+json.subcategory_id+"'>"+json.sub_name+"</option>";
+			}
+			
+			$("select[name='subcategory_id']").append(tag);	
 		}
 	});
 }
 
+//상품 등록 요청
+function regist(){
+	$("form").attr({
+		action:"/admin/product/regist",
+		method:"post",
+		enctype:"multipart/form-data"
+	});
+	$("form").submit();
+}
 </script>
 <!-- 등록폼 관련 종료 -->
 </body>

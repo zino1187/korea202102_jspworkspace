@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.koreait.shoppingmall.model.service.category.TopCategoryService;
 
@@ -26,4 +27,21 @@ public class ProductController {
 		
 		return "admin/product/regist";//상품 등록 폼 뷰이름
 	}
+	
+	//상품 등록 요청(파일업로드가 포함되어 있슴)
+	@PostMapping("/product/regist")
+	public String regist() {
+		System.out.println("regist() 메서드 호출함");
+		return null;
+	}
+	
 }
+
+
+
+
+
+
+
+
+

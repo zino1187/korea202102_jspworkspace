@@ -107,13 +107,30 @@ function printSubArea(jsonArray){
               <form>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                    <label for="exampleInputEmail1">상위 카테고리</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label for="exampleInputEmail1">하위 카테고리</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">상품명</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">브랜드</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">가격</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">상세정보</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.koreait.shoppingmall.domain.Product;
 import com.koreait.shoppingmall.model.service.category.TopCategoryService;
 
 //상품관련 요청을 처리하는 하위 컨트롤러
@@ -30,8 +32,14 @@ public class ProductController {
 	
 	//상품 등록 요청(파일업로드가 포함되어 있슴)
 	@PostMapping("/product/regist")
-	public String regist() {
-		System.out.println("regist() 메서드 호출함");
+	public String regist(Product product) {
+		
+		
+		//VO에 등록한 MultipartFile 객체에 업로드된 파일이 이미 들어있으므로, 개발자는 이 객체를 이용하여 업로드된 파일을
+		//원하는대로 제어하면 된다..
+		MultipartFile photo=product.getPhoto();
+		System.out.println("자동으로 업로드된 객체로 부터 얻은 파일명은 "+photo.getOriginalFilename());
+		
 		return null;
 	}
 	

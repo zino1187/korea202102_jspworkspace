@@ -52,6 +52,10 @@
 		</property>
 	</bean>
 		
+	<!-- 스프링은 아파치 파일업로드를 사용함 , 업로드를 자동적으로 처리해주는 빈을 등록 -->
+	<bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+			
 </beans>
 
 

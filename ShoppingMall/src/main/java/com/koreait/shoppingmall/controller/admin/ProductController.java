@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.koreait.shoppingmall.domain.Product;
+import com.koreait.shoppingmall.exception.UploadException;
 import com.koreait.shoppingmall.model.common.file.FileManager;
 import com.koreait.shoppingmall.model.service.category.TopCategoryService;
 
@@ -55,6 +57,11 @@ public class ProductController {
 		return null;
 	}
 	
+	@ExceptionHandler(UploadException.class)
+	public String handleException(UploadException e, Model model) {
+		model.addAttribute("e", e);//에러 객체 담기 
+		return "error/result";
+	}
 }
 
 

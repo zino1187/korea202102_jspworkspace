@@ -32,36 +32,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="/resources/admin/plugins/summernote/summernote-bs4.min.css">
   
- <script type="text/javascript">
-//비동기방식으로 하위 카테고리 목록 가져오자!!
-function getSubList(topcategory_id){
-	$.ajax({
-		url:"/admin/category/topdetail?topcategory_id="+topcategory_id,
-		type:"GET",
-		success:function(result, status, xhr){
-			//alert(result.length);
-			printSubArea(result); //json을 매개변수로 전달하자!!
-		}
-	});
-}
 
-function printSubArea(jsonArray){
-	$("#sub_area").html(""); //먼저싹~~지우고
-	
-	var tag="";
-	
-	for(var i=0;i<jsonArray.length;i++){
-		var json=jsonArray[i];
-		tag+="<tr>";	
-		tag+="<td>"+json.subcategory_id+"</td>";
-		tag+="<td>"+json.topcategory_id+"</td>";
-		tag+="<td>"+json.sub_name+"</td>";
-		tag+="</tr>";
-	}
-	
-	$("#sub_area").append(tag);
-}
- </script>
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -114,9 +85,10 @@ function printSubArea(jsonArray){
                   <div class="form-group">
                     <label for="exampleInputEmail1">상위 카테고리</label>
 						<div class="form-group">
-	                        <select class="form-control">
+	                        <select class="form-control" name="topcategory_id">
+	                        	<option value="0">카테고리 선택</option>
 	                          <%for(TopCategoryCount topCategory: topList){ %>
-	                          <option><%=topCategory.getTop_name()%></option>
+	                          <option value="<%=topCategory.getTopcategory_id()%>"><%=topCategory.getTop_name()%></option>
 	                          <%}%>
 	                        </select>
                       </div>
@@ -248,9 +220,40 @@ function printSubArea(jsonArray){
 <!-- Page specific script -->
 <script>
 $(function () {
-  bsCustomFileInput.init();
+	bsCustomFileInput.init();
+	
+	$("select[name='topcategory_id']").change(function(){
+		getSubList($(this).val());		
+	});
 });
+
+function getSubList(topcategory_id){
+	
+	//비동기 방식으로 하위 카테고리를 가져오기 
+	$.ajax({
+		url:"/admin/category/topdetail?topcategory_id="+topcategory_id,
+		type:"GET", 
+		success:function(result, status, xhr){
+			alert(result);
+		}
+	});
+}
+
 </script>
 <!-- 등록폼 관련 종료 -->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

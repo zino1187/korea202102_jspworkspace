@@ -1,4 +1,9 @@
+<%@page import="com.koreait.shoppingmall.domain.TopCategoryCount"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	List<TopCategoryCount> topList = (List)request.getAttribute("topList");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,11 +113,27 @@ function printSubArea(jsonArray){
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">상위 카테고리</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+						<div class="form-group">
+	                        <select class="form-control">
+	                          <%for(TopCategoryCount topCategory: topList){ %>
+	                          <option><%=topCategory.getTop_name()%></option>
+	                          <%}%>
+	                        </select>
+                      </div>
+                    
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">하위 카테고리</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+					<div class="form-group">
+                        <select class="form-control">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                     </div>
+                    
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">상품명</label>

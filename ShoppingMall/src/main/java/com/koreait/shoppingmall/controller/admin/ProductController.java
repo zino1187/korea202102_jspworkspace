@@ -17,6 +17,7 @@ import com.koreait.shoppingmall.domain.Product;
 import com.koreait.shoppingmall.exception.UploadException;
 import com.koreait.shoppingmall.model.common.file.FileManager;
 import com.koreait.shoppingmall.model.service.category.TopCategoryService;
+import com.koreait.shoppingmall.model.service.product.ProductService;
 
 //상품관련 요청을 처리하는 하위 컨트롤러
 @Controller
@@ -26,6 +27,9 @@ public class ProductController {
 	
 	@Autowired
 	private FileManager fileManager;
+	
+	@Autowired
+	private ProductService productService;
 	
 	//상품 등록폼 요청처리 
 	@GetMapping("/product/registform")
@@ -47,13 +51,14 @@ public class ProductController {
 		//원하는대로 제어하면 된다..
 		MultipartFile photo=product.getPhoto();
 		ServletContext context = request.getServletContext();
-		String realPath=context.getRealPath("/resources/data");
 		long time=System.currentTimeMillis();
 		
+		//서비스.regist();
 		//원하는 위치에 파일 저장하기
-		fileManager.saveFile(realPath+"/"+time+"."+fileManager.getExt(photo.getOriginalFilename()) , photo);
+		fileManager.saveFile(context, time+"."+fileManager.getExt(photo.getOriginalFilename()) , photo);
+		productService.regist(product);
 		
-		return null; //상품 목록페이지
+		return "admin/product/list"; //상품 목록페이지
 	}
 	
 	@ExceptionHandler(UploadException.class)

@@ -50,11 +50,10 @@ public class ProductController {
 		String realPath=context.getRealPath("/resources/data");
 		long time=System.currentTimeMillis();
 		
-		
 		//원하는 위치에 파일 저장하기
 		fileManager.saveFile(realPath+"/"+time+"."+fileManager.getExt(photo.getOriginalFilename()) , photo);
 		
-		return null;
+		return null; //상품 목록페이지
 	}
 	
 	@ExceptionHandler(UploadException.class)

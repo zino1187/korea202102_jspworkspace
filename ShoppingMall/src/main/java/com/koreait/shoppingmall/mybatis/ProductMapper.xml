@@ -7,6 +7,10 @@
 		values(#{subcategory_id},#{product_name},#{brand},#{price},#{info},#{product_img})
 	</insert>	
 	
+	<select id="selectAll" resultType="Product">
+		select * from product order by product_id desc
+	</select>	
+	
 </mapper>
 
 

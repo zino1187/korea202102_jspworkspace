@@ -1,4 +1,9 @@
+<%@page import="com.koreait.shoppingmall.domain.Product"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	List<Product> productList=(List)request.getAttribute("productList");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,6 +106,7 @@
                   <thead>
                     <tr>
                       <th>하위카테고리</th>
+                      <th>이미지</th>
                       <th>상품명</th>
                       <th>브랜드</th>
                       <th>가격</th>
@@ -108,14 +114,15 @@
                   </thead>
                   
                   <tbody>
-                  
+                  	<%for(Product product : productList){%>
                     <tr onClick="">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td><%=product.getSubcategory_id() %></td>
+                      <td><img src="/resources/data/<%=product.getProduct_img()%>" width="50px"></td>
+                      <td><%=product.getProduct_name() %></td>
+                      <td><%=product.getBrand() %></td>
+                      <td><%=product.getPrice() %></td>
                     </tr>
-                    
+                    <%}%>
                   </tbody>
                 </table>
               </div>

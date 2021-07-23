@@ -61,7 +61,19 @@ public class ProductController {
 		product.setProduct_img(filename); //insert 직전에 파일명 결정짓기
 		productService.regist(product);
 		
-		return "admin/product/list"; //상품 목록페이지
+		return "redirect:/admin/product/list"; //상품 목록페이지를 재요청
+	}
+	
+	//모든 상품 가져오기 
+	@GetMapping("/product/list")
+	public String getList(Model model) {
+		//3단계: 일시키기
+		List productList = productService.selectAll();
+		
+		//4단계:저장
+		model.addAttribute("productList", productList);
+		
+		return "admin/product/product_list";
 	}
 	
 	@ExceptionHandler(UploadException.class)

@@ -100,13 +100,18 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>상위카테고리명</th>
-                      <th>하위등록 수</th>
+                      <th>하위카테고리</th>
+                      <th>상품명</th>
+                      <th>브랜드</th>
+                      <th>가격</th>
                     </tr>
                   </thead>
+                  
                   <tbody>
-                  	
+                  
                     <tr onClick="">
+                      <td></td>
+                      <td></td>
                       <td></td>
                       <td></td>
                     </tr>

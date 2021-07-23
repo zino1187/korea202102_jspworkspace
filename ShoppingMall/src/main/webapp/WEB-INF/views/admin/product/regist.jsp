@@ -107,11 +107,11 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">브랜드</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="brand">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" name="brand">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">가격</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="price">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" name="price">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">상세정보</label>

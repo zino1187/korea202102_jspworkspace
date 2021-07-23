@@ -29,6 +29,7 @@ create table product(
 	, brand varchar(25)
 	, price int default 0 
 	, info text
+	, product_img varchar(25)
 ) default character set utf8;
 
 --고객센터의 게시판 

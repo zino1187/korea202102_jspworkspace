@@ -55,7 +55,10 @@ public class ProductController {
 		
 		//서비스.regist();
 		//원하는 위치에 파일 저장하기
-		fileManager.saveFile(context, time+"."+fileManager.getExt(photo.getOriginalFilename()) , photo);
+		String filename=time+"."+fileManager.getExt(photo.getOriginalFilename());
+		
+		fileManager.saveFile(context,filename , photo);
+		product.setProduct_img(filename); //insert 직전에 파일명 결정짓기
 		productService.regist(product);
 		
 		return "admin/product/list"; //상품 목록페이지

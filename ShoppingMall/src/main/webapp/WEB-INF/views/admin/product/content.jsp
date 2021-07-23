@@ -83,6 +83,9 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form name="form1">
+              <input type="hidden" name="product_id" 	value="<%=product.getProduct_id()%>">
+              <input type="hidden" name="product_img" 	value="<%=product.getProduct_img()%>">
+              
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">상위 카테고리</label>
@@ -138,7 +141,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="button" class="btn btn-primary" onClick="regist()">Submit</button>
+                  <button type="button" class="btn btn-primary" onClick="getList()">목록</button>
+                  <button type="button" class="btn btn-primary" onClick="update()">수정</button>
+                  <button type="button" class="btn btn-primary" onClick="del()">삭제</button>
                 </div>
               </form>
             </div>		
@@ -243,14 +248,24 @@ function getSubList(topcategory_id){
 	});
 }
 
-//상품 등록 요청
+//상품 수정 요청
 function regist(){
 	$("form").attr({
-		action:"/admin/product/regist",
+		action:"",
 		method:"post",
 		enctype:"multipart/form-data"
 	});
 	$("form").submit();
+}
+
+function del(){
+	if(confirm("삭제하시겠어요?")){
+		$("form").attr({
+			action:"/admin/product/del",
+			method:"post"
+		});
+		$("form").submit();
+	}
 }
 </script>
 <!-- 등록폼 관련 종료 -->

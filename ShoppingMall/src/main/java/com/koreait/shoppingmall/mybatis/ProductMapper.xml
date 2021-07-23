@@ -34,6 +34,9 @@
 		and product_id=#{product_id}		
 	</select>
 	
+	<delete id="delete" parameterType="int">
+		delete from product where product_id=#{product_id}
+	</delete>
 	
 </mapper>
 

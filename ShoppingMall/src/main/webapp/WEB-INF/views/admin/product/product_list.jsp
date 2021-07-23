@@ -115,7 +115,7 @@
                   
                   <tbody>
                   	<%for(Product product : productList){%>
-                    <tr onClick="">
+                    <tr onClick="location.href='/admin/product/detail?product_id=<%=product.getProduct_id()%>';">
                       <td><%=product.getSubcategory_id() %></td>
                       <td><img src="/resources/data/<%=product.getProduct_img()%>" width="50px"></td>
                       <td><%=product.getProduct_name() %></td>

@@ -76,6 +76,21 @@ public class ProductController {
 		return "admin/product/product_list";
 	}
 	
+	//상품 상세보기 요청 
+	@GetMapping("/product/detail")
+	public String getDetail(int product_id, Model model) {
+		//3단계:
+		Product product = productService.select(product_id);
+		List topList=topCategoryService.selectAll();
+		
+		//4단계: 
+		model.addAttribute("product", product);
+		model.addAttribute("topList", topList);
+		
+		return "admin/product/content";
+	}
+	
+	
 	@ExceptionHandler(UploadException.class)
 	public String handleException(UploadException e, Model model) {
 		model.addAttribute("e", e);//에러 객체 담기 

@@ -36,16 +36,20 @@ function regist(){
 	var json={
 		title:$("input[name='title']").val(),
 		writer:$("input[name='writer']").val(),
-		content:$("input[name='content']").val()
+		content:$("textarea[name='content']").val()
 	}
 	
 	$.ajax({
 		url:"/client/cs/board/regist",
 		type:"post", 
 		data:JSON.stringify(json),
+		contentType:"application/json;charset=utf-8",
 		success:function(result, status, xhr){
 			alert(result);
-		}		
+		},
+		error:function(xhr,status,error){
+			alert(error);
+		}
 	});
 }
 </script>

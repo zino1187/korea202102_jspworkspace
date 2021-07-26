@@ -60,27 +60,27 @@ public class StudyController {
 	}
 	
 	//폼양식으로부터 글 등록 요청(post) 처리
-	/*
-	 member_id=5&user_id=zino&pass=000
+	
+	 //member_id=5&user_id=zino&pass=000
 	@PostMapping("/member")
 	public Member regist(Member member) {
 		System.out.println("post요청 처리");
 		return member;
 	}
-	*/
+	
 	
 	/*  {"member_id":24} 형식의 문자열로 전송되어옴
 	 일반적으로 특별한 처리를 하지 않는 한, VO매핑은 query string 만을
 	 매핑시킨다.즉 json문자열과의 매핑은 일어나지 않음 
 	 해결책 : @RequestBody  : 제이슨 문자열을 자바객체와 매핑시켜줌
 	 */
+	/*
 	@PostMapping("/member")
-	@ResponseBody
 	public Member regist(@RequestBody Member member) {
 		System.out.println("이름은 "+member.getName());
 		return member;
 	}
-	
+	*/
 	//글 등록 요청(post) 처리 
 	@PutMapping("/member")
 	public Member update(Member member) {

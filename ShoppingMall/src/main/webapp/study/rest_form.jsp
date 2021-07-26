@@ -73,7 +73,7 @@ function requestByDelete(){
 
 <pre>
 <form id="form1">
-	<input type="hidden" name="_method" value="put"> 
+	<input type="hidden" name="_method" value="delete"> 
 	<input type="text" name="member_id" placeholder="member_id 입력">
 	<input type="text" name="user_id" placeholder="user_id 입력">
 	<input type="text" name="pass" placeholder="pass 입력">

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koreait.shoppingmall.domain.Member;
@@ -62,35 +61,37 @@ public class StudyController {
 	//폼양식으로부터 글 등록 요청(post) 처리
 	
 	 //member_id=5&user_id=zino&pass=000
+	/*
 	@PostMapping("/member")
 	public Member regist(Member member) {
 		System.out.println("post요청 처리");
 		return member;
 	}
-	
+	*/
 	
 	/*  {"member_id":24} 형식의 문자열로 전송되어옴
 	 일반적으로 특별한 처리를 하지 않는 한, VO매핑은 query string 만을
 	 매핑시킨다.즉 json문자열과의 매핑은 일어나지 않음 
 	 해결책 : @RequestBody  : 제이슨 문자열을 자바객체와 매핑시켜줌
 	 */
-	/*
+	
 	@PostMapping("/member")
 	public Member regist(@RequestBody Member member) {
 		System.out.println("이름은 "+member.getName());
 		return member;
 	}
-	*/
-	//글 등록 요청(post) 처리 
+	
+	
+	//글 등록 요청(put) 처리 
 	@PutMapping("/member")
-	public Member update(Member member) {
+	public Member update(@RequestBody Member member) {
 		System.out.println("put 요청 처리함");
 		member.setName("putter");
 		return member;
 	}
 	
 	@DeleteMapping("/member")
-	public Member delete(Member member) {
+	public Member delete(@RequestBody Member member) {
 		System.out.println("delete 요청 처리");
 		return member;
 	}

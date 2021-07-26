@@ -34,10 +34,12 @@ function requestByPost(){
 		name:$("input[name='name']").val()
 	};
 	
+	//전송시 개발자가 아무것도 명시하지 않으면 디폴트는 일반문자열 데이터 전송...
 	$.ajax({
 		url:"/rest/member", 
 		type:"post", 
-		data:JSON.stringify(param), /*json객체를 전송하기위해 문자열화시킴*/
+		data:JSON.stringify(param), /*json객체를 전송하기위해 문자열화시킴  &로 연결된...*/
+		contentType:"application/json;charset=utf-8",
 		success:function(result, status, xhr){
 			console.log(result);			
 		}
@@ -46,12 +48,19 @@ function requestByPost(){
 
 //put은 수정요청시 사용되는 http 요청 메서드이다
 function requestByPut(){
-	var param=$("#form1").serialize(); //폼에 입력된 데이터를 문자열로 직렬화
+	var param={
+			member_id:$("input[name='member_id']").val(), 
+			user_id:$("input[name='user_id']").val(),
+			pass:$("input[name='pass']").val(),
+			name:$("input[name='name']").val()
+		};
+
 	
 	$.ajax({
 		url:"/rest/member", 
-		type:"POST", 
-		data:param,
+		type:"put", 
+		data:JSON.stringify(param),
+		contentType:"application/json;charset=utf-8",
 		success:function(result, status, xhr){
 			console.log(result);			
 		}
@@ -60,12 +69,18 @@ function requestByPut(){
 }
 
 function requestByDelete(){
-	var param=$("#form1").serialize(); //폼에 입력된 데이터를 문자열로 직렬화
+	var param={
+			member_id:$("input[name='member_id']").val(), 
+			user_id:$("input[name='user_id']").val(),
+			pass:$("input[name='pass']").val(),
+			name:$("input[name='name']").val()
+		};
 	
 	$.ajax({
 		url:"/rest/member", 
-		type:"POST", 
-		data:param,
+		type:"delete", 
+		data:JSON.stringify(param),
+		contentType:"application/json;charset=utf-8",
 		success:function(result, status, xhr){
 			console.log(result);			
 		}

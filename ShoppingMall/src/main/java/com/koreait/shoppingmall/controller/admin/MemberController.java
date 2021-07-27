@@ -1,6 +1,6 @@
 package com.koreait.shoppingmall.controller.admin;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ public class MemberController {
 	
 	//회원관리 목록 요청  
 	@GetMapping("/member/list")
-	public String getList(HttpSession session) {
+	public String getList(HttpServletRequest request) {
 		
 		return "admin/member/member_list";//회원목록 페이지 
 	}

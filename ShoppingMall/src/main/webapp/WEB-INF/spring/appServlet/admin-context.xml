@@ -42,6 +42,10 @@
 		</aop:aspect>		
 	</aop:config>						
 	
+	<!-- 공통예외처리 객체 등록-->
+	<beans:bean id="globalExceptionHandler" 
+		class="com.koreait.shoppingmall.aop.admin.GlobalExceptionHandler"/>
+	
 </beans:beans>
 
 

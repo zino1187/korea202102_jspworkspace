@@ -29,7 +29,7 @@
 	
 	<!-- 관리자 세션 체크 AOP설정  -->
 	<beans:bean id="adminSessionCheckAspect" 
-		class="com.koreait.shoppingmall.aop.admin.AdminSessionCheckAspect"/>
+		class="com.koreait.shoppingmall.aop.admin.AdminSessionCheckAspect2"/>
 		
 	<aop:config>
 		<aop:aspect ref="adminSessionCheckAspect">

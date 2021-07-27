@@ -47,10 +47,10 @@ public class BoardController {
 		return "ok";
 	}  
 	
-	//글수정
 	@PutMapping("/board")
 	@ResponseBody
 	public String update(@RequestBody Board board) {
+		System.out.println("수정 요청이 들어왔어요");
 		boardService.update(board);
 		return "ok";
 	}

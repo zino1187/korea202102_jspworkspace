@@ -1,4 +1,9 @@
+<%@page import="com.koreait.shoppingmall.domain.TopCategory"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	List<TopCategory> topList=(List)request.getAttribute("topList");
+%>
 <header class="header_area">
             <!-- Top Header Area Start -->
             <div class="top_header_area">
@@ -83,9 +88,11 @@
                                                     <a class="dropdown-item" href="checkout.html">Checkout</a>
                                                 </div>
                                             </li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Dresses</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#"><span class="karl-level">hot</span> Shoes</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                                            <!-- 쇼핑몰 DB의 상위카테고리 출력  -->
+                                            <%for(TopCategory topCategory : topList){%>
+                                            <li class="nav-item"><a class="nav-link" href="#"><span class="karl-level">hot</span> <%=topCategory.getTop_name() %></a></li>
+                                            <%}%>
+                                            <li class="nav-item"><a class="nav-link" href="#">Customer Center</a></li>
                                         </ul>
                                     </div>
                                 </nav>

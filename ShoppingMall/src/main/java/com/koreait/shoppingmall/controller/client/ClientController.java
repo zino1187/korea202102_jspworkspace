@@ -45,6 +45,18 @@ public class ClientController {
 		
 		return "client/index";
 	}
+	
+	//상품리스트 페이지 요청
+	@GetMapping("/shop/list")
+	public String getList(Model model) {
+		//3단계: 일 시키기 
+		List topList = topCategoryService.selectAll();
+		
+		//4단계: 저장(forwarding)
+		model.addAttribute("topList", topList);
+		
+		return "client/shop/main";
+	}
 }
 
 

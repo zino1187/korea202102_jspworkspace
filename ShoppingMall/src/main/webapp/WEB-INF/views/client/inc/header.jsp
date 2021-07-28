@@ -1,9 +1,4 @@
-<%@page import="com.koreait.shoppingmall.domain.TopCategory"%>
-<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%
-	List<TopCategory> topList=(List)request.getAttribute("topList");
-%>
 <header class="header_area">
             <!-- Top Header Area Start -->
             <div class="top_header_area">

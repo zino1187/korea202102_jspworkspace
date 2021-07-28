@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.koreait.shoppingmall.domain.TopCategory;
 import com.koreait.shoppingmall.model.service.category.TopCategoryService;
 
 /**
@@ -50,8 +51,13 @@ public class ClientController {
 	@GetMapping("/shop/list")
 	public String getList(Model model) {
 		//3단계: 일 시키기 
-		List topList = topCategoryService.selectAll();
+		List<TopCategory> topList = topCategoryService.selectChild();
 		
+		//collection 체크해보기 
+		for(TopCategory topCategory : topList) {
+			System.out.println(topCategory.getTop_name()+"가 보유한 수는 "+topCategory.getSubList());
+		}
+	
 		//4단계: 저장(forwarding)
 		model.addAttribute("topList", topList);
 		

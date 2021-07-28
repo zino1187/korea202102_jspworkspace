@@ -17,7 +17,7 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="/resources/client/css/core-style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/resources/client/style.css">
 
     <!-- Responsive CSS -->
     <link href="/resources/client/css/responsive.css" rel="stylesheet">
@@ -223,7 +223,7 @@
         <section class="welcome_area">
             <div class="welcome_slides owl-carousel">
                 <!-- Single Slide Start -->
-                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(img/bg-img/bg-1.jpg);">
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(/resources/client/img/bg-img/bg-1.jpg);">
                     <div class="container h-100">
                         <div class="row h-100 align-items-center">
                             <div class="col-12">
@@ -238,7 +238,7 @@
                 </div>
 
                 <!-- Single Slide Start -->
-                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(img/bg-img/bg-4.jpg);">
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(/resources/client/img/bg-img/bg-4.jpg);">
                     <div class="container h-100">
                         <div class="row h-100 align-items-center">
                             <div class="col-12">
@@ -253,7 +253,7 @@
                 </div>
 
                 <!-- Single Slide Start -->
-                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(img/bg-img/bg-2.jpg);">
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(/resources/client/img/bg-img/bg-2.jpg);">
                     <div class="container h-100">
                         <div class="row h-100 align-items-center">
                             <div class="col-12">
@@ -273,7 +273,7 @@
         <!-- ****** Top Catagory Area Start ****** -->
         <section class="top_catagory_area d-md-flex clearfix">
             <!-- Single Catagory -->
-            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(/resources/client/img/bg-img/bg-2.jpg);">
                 <div class="catagory-content">
                     <h6>On Accesories</h6>
                     <h2>Sale 30%</h2>
@@ -281,7 +281,7 @@
                 </div>
             </div>
             <!-- Single Catagory -->
-            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(img/bg-img/bg-3.jpg);">
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(/resources/client/img/bg-img/bg-3.jpg);">
                 <div class="catagory-content">
                     <h6>in Bags excepting the new collection</h6>
                     <h2>Designer bags</h2>
@@ -500,7 +500,7 @@
         <!-- ****** New Arrivals Area End ****** -->
 
         <!-- ****** Offer Area Start ****** -->
-        <section class="offer_area height-700 section_padding_100 bg-img" style="background-image: url(img/bg-img/bg-5.jpg);">
+        <section class="offer_area height-700 section_padding_100 bg-img" style="background-image: url(/resources/client/img/bg-img/bg-5.jpg);">
             <div class="container h-100">
                 <div class="row h-100 align-items-end justify-content-end">
                     <div class="col-12 col-md-8 col-lg-6">

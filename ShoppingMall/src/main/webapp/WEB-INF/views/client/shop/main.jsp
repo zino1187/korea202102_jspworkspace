@@ -50,7 +50,8 @@
                     <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-
+					
+					<!-- 상품 상세 모달창 start -->
                     <div class="modal-body">
                         <div class="quickview_body">
                             <div class="container">
@@ -108,6 +109,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 상품 상세 모달창 end-->
                 </div>
             </div>
         </div>
@@ -234,7 +236,7 @@
                                     <div class="product-img">
                                         <img src="/resources/data/<%=product.getProduct_img() %>" alt="">
                                         <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                            <a href="" data-toggle="modal" data-target="#quickview" onClick="getDetail('<%=product.getProduct_name() %>','<%=product.getProduct_img() %>',<%=product.getPrice() %>,'<%=product.getInfo() %>', <%=product.getProduct_id()%>)"><i class="ti-plus"></i></a>
                                         </div>
                                     </div>
                                     <!-- Product Description -->
@@ -280,7 +282,24 @@
     <script src="/resources/client/js/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/client/js/active.js"></script>
-
+	<script>
+	//상품 상세정보 모달창에 출력하기!!!
+	function getDetail(product_name, product_img, price, info , product_id){
+		$(".quickview_pro_des .title").html(product_name); //상품명 
+		$(".quickview_pro_img img").attr("src", product_img);//상품이미지 
+		$(".quickview_pro_des .price").html(price); //상품가격
+		$(".quickview_pro_des p").html(info); //상품설명 
+	}
+	</script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+

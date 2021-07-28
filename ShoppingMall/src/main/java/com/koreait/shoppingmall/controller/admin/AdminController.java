@@ -64,16 +64,7 @@ public class AdminController {
 	public String getMain(HttpServletRequest request) {
 		return "admin/main/index";
 	}
-	
-	
-	
-	//위의 요청을 처리하는 메서드 중에서 , 어느것 하나라도 예외가 발생하면 아래의 메서드가 동작하게 됨
-	@ExceptionHandler(MemberExistException.class)
-	public String handleException(MemberExistException e, Model model) {
-		model.addAttribute("e", e); //에러객체 저장
-		
-		return "error/result";
-	}
+
 	
 	
 }

@@ -14,7 +14,10 @@
 
 	<!-- Product 와 조인해서 가져오기 -->
 	<resultMap type="Cart" id="cartProductMap">
-				
+		<id column="cart_id" property="cart_id"/>
+		<result column="member_id" property="member_id"/>				
+		<result column="ea" property="ea"/>	
+		<association column="product_id" property="product" javaType="Product" select="Product.select"/>			
 	</resultMap>
 	<select id="selectAllJoin" parameterType="int" resultMap="cartProductMap">
 		select * from cart where member_id=#{member_id}
@@ -31,7 +34,7 @@
 	</delete>
 	
 	<!-- 장바구니 비우기-->
-	<delete id="deleteAll" parameterType="int">
+	<delete id="deleteAll" parameterType="Cart">
 		delete from cart where member_id=#{member_id}
 	</delete>
 	

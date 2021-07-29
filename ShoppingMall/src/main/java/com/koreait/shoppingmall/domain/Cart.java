@@ -11,4 +11,5 @@ public class Cart {
 	
 	//조인을 염두해 둔 부모의 VO 보유
 	private Product product;
+	private Member member;
 }

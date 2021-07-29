@@ -76,15 +76,17 @@
                                             <a href="#">View Full Product Details</a>
                                         </div>
                                         <!-- Add to Cart Form -->
-                                        <form class="cart" method="post">
+                                        <form id="cart-form" class="cart" method="post">
+                                        	<input type="hidden" name="product_id" value="">
+                                        	<input type="hidden" name="member_id" value="<%=1%>">
                                             <div class="quantity">
                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="ea" value="1">
 
                                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
-                                            <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
+                                            <button type="button" name="addtocart" value="5" class="cart-submit" onClick="addCart()">Add to cart</button>
                                             <!-- Wishlist -->
                                             <div class="modal_pro_wishlist">
                                                 <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
@@ -289,7 +291,26 @@
 		$(".quickview_pro_img img").attr("src", "/resources/data/"+product_img);//상품이미지 
 		$(".quickview_pro_des .price").html(price); //상품가격
 		$(".quickview_pro_des p").html(info); //상품설명 
-		alert(info);
+		
+		//form 안에 hidden의 product_id값을 대입해놓자!!
+		$("input[name='product_id']").val(product_id);
+	}
+	
+	//장바구니에 담기(비동기)
+	function addCart(){
+		//기존 폼을 전송하겠다..
+		var json={
+			product_id:3,
+			member_id:5, 
+			ea:1
+		};
+		
+		$.ajax({
+			url:"",
+			type:"POST",
+			contentType:"",
+			data:JSON.stringify(json)
+		});		
 	}
 	</script>
 </body>

@@ -18,6 +18,7 @@ ViewGroup 중 배치능력이 있는 뷰그룹을  Layout이라 함
 내부저장소 ( Internal Storage)
 외부저장소 ( External Storage)
 
+[권한]
 
 
 

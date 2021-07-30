@@ -305,7 +305,7 @@
 			ea:$("#cart-form input[name='ea']").val()
 		};
 		//var formData = $("#cart-form").serialize(); //product_id=5&member_id=1&ea=5  querystring 화됨
-		console.log("전송할 데이터는 ",json);
+		//console.log("전송할 데이터는 ",json);
 		
 		$.ajax({
 			url:"/rest/cart",
@@ -313,8 +313,19 @@
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(json),
 			success:function(result, status, xhr){
-				console.log(result);
-			}
+				console.log("서버로 부터 전송된 데이터 ", result);
+				if(result.resultCode==1){
+					if(confirm("장바구니에 상품이 담겼습니다.\n장바구니로 이동하실래요?")){
+						location.href="/client/cart/list";
+					}
+				}else if(result.resultCode==0){
+					alert("장바구니에 상품이 담기지 않았습니다.\n문제가 지속될 경우 관리자에 문의하세요");
+				}
+			},
+			//서버의 에러가 발생했을때 (500, 401,404..즉 요청을 성공할수 없는 심각한 200 초과의 에러들.. )
+			error:function(xhr, status, error){
+				console.log("서버에서 심각한 에러가 발생하여, 요청 자체를 처리할 수 없었다!", status);
+			}			
 		});		
 	}
 	</script>

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreait.shoppingmall.domain.Cart;
-import com.koreait.shoppingmall.exception.DMLException;
+import com.koreait.shoppingmall.exception.CartException;
 import com.koreait.shoppingmall.model.repository.product.CartDAO;
 
 @Service
@@ -15,7 +15,7 @@ public class CartServiceImpl implements CartService{
 	private CartDAO cartDAO;
 	
 	@Override
-	public void insert(Cart cart) throws DMLException{
+	public void insert(Cart cart) throws CartException{
 		cartDAO.insert(cart);
 	}
 
@@ -30,17 +30,17 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public void update(Cart cart)  throws DMLException{
+	public void update(Cart cart)  throws CartException{
 		cartDAO.update(cart);
 	}
 
 	@Override
-	public void delete(int cart_id)  throws DMLException{
+	public void delete(int cart_id)  throws CartException{
 		cartDAO.delete(cart_id);
 	}
 
 	@Override
-	public void deleteAll(int member_id)   throws DMLException{
+	public void deleteAll(int member_id)   throws CartException{
 		cartDAO.deleteAll(member_id);
 	}
 	

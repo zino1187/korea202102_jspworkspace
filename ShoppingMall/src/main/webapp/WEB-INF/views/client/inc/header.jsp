@@ -83,6 +83,7 @@
                                                     <a class="dropdown-item" href="checkout.html">Checkout</a>
                                                 </div>
                                             </li>
+                                            <li class="nav-item"><a class="nav-link" href="/client/shop/list">Shopping</a></li>
                                             <!-- 쇼핑몰 DB의 상위카테고리 출력  -->
                                             <%for(TopCategory topCategory : topList){%>
                                             <li class="nav-item"><a class="nav-link" href="#"><span class="karl-level">hot</span> <%=topCategory.getTop_name() %></a></li>

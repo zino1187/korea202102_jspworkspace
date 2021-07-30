@@ -77,7 +77,7 @@
                                         </div>
                                         <!-- Add to Cart Form -->
                                         <form id="cart-form" class="cart" method="post">
-                                        	<input type="hidden" name="product_id" value="">
+                                        	<input type="hidden" name="product_id">
                                         	<input type="hidden" name="member_id" value="<%=1%>">
                                             <div class="quantity">
                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
@@ -300,16 +300,21 @@
 	function addCart(){
 		//기존 폼을 전송하겠다..
 		var json={
-			product_id:3,
-			member_id:5, 
-			ea:1
+			product_id:$("#cart-form input[name='product_id']").val(),
+			member_id:$("#cart-form input[name='member_id']").val(), 
+			ea:$("#cart-form input[name='ea']").val()
 		};
+		//var formData = $("#cart-form").serialize(); //product_id=5&member_id=1&ea=5  querystring 화됨
+		console.log("전송할 데이터는 ",json);
 		
 		$.ajax({
-			url:"",
+			url:"/rest/cart",
 			type:"POST",
-			contentType:"",
-			data:JSON.stringify(json)
+			contentType:"application/json;charset=utf-8",
+			data:JSON.stringify(json),
+			success:function(result, status, xhr){
+				console.log(result);
+			}
 		});		
 	}
 	</script>

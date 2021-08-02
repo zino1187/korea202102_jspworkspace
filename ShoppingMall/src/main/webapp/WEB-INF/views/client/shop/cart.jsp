@@ -1,6 +1,11 @@
+<%@page import="com.koreait.shoppingmall.domain.TopCategory"%>
+<%@page import="java.util.List"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	List<TopCategory> topList=(List)request.getAttribute("topList");
+%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -15,11 +20,11 @@
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="css/core-style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/resources/client/css/core-style.css">
+    <link rel="stylesheet" href="/resources/client/style.css">
 
     <!-- Responsive CSS -->
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="/resources/client/css/responsive.css" rel="stylesheet">
 
 </head>
 
@@ -53,7 +58,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="cart_product_img d-flex align-items-center">
-                                            <a href="#"><img src="img/product-img/product-9.jpg" alt="Product"></a>
+                                            <a href="#"><img src="/resources/data/" alt="Product"></a>
                                             <h6>Yellow Cocktail Dress</h6>
                                         </td>
                                         <td class="price"><span>$49.88</span></td>
@@ -146,15 +151,15 @@
     <!-- /.wrapper end -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="/resources/client/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="/resources/client/js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/resources/client/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="/resources/client/js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="/resources/client/js/active.js"></script>
 
 </body>
 

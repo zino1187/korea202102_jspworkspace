@@ -40,7 +40,7 @@ public class TopCategoryAspect {
 			result=joinPoint.proceed();
 		}else {
 			//카테고리 목록이 필요한 요청일 경우...
-			List topList = topCategoryService.selectAll();
+			List topList = topCategoryService.selectChild();
 			Object returnObj = joinPoint.proceed(); //ModelAndView의 주소값을 사용할 수있다는 것은
 			//곧, 그 객체에 무언가를 심을 수 있다는 뜻이다...
 			ModelAndView mav=null;

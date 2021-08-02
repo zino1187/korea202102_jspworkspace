@@ -67,6 +67,9 @@ public class ClientController {
 		ModelAndView mav = new ModelAndView("client/shop/main");
 		mav.addObject("productList", productList);
 		
+		System.out.println("productList is "+productList);
+		
+		
 		return mav;
 	}
 }

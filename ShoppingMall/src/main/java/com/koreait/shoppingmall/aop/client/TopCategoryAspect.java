@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.koreait.shoppingmall.model.service.category.TopCategoryService;
@@ -13,6 +14,8 @@ import com.koreait.shoppingmall.model.service.category.TopCategoryService;
   클라이언트의 쇼핑몰 이용시 모든 페이지에 사용될 카테고리를 공통 코드로 처리해본다
  */
 public class TopCategoryAspect {
+
+	@Autowired
 	private TopCategoryService topCategoryService;
 	
 	public Object getList(ProceedingJoinPoint joinPoint) throws Throwable{

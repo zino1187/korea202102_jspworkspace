@@ -49,7 +49,7 @@
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="cart-page-heading">
-                                <h5>Billing Address</h5>
+                                <h5>받으실 분 정보</h5>
                                 <p>Enter your cupone code</p>
                             </div>
 

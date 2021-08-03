@@ -5,7 +5,6 @@
 <%
 	List<TopCategory> topList=(List)request.getAttribute("topList");
 	List<Cart> cartList=(List)request.getAttribute("cartList"); //장바구니와 상품 정보가 조인되어 온 결과	
-	out.print(cartList);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,19 +62,19 @@
                                 	<%Cart cart = cartList.get(i); %>
                                     <tr>
                                         <td class="cart_product_img d-flex align-items-center">
-                                            <a href="#"><img src="/resources/data/<%//=cart.getProduct().getProduct_img() %>" alt="Product"></a>
-                                            <h6><%//=cart.getProduct().getProduct_name() %></h6>
+                                            <a href="#"><img src="/resources/data/<%=cart.getProduct().getProduct_img() %>" alt="Product"></a>
+                                            <h6><%=cart.getProduct().getProduct_name() %></h6>
                                         </td>
-                                        <td class="price"><span><%//=cart.getProduct().getPrice() %></span></td>
+                                        <td class="price"><span><%=cart.getProduct().getPrice() %></span></td>
                                         
                                         <td class="qty">
                                             <div class="quantity">
                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="<%//=cart.getEa()%>">
+                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="<%=cart.getEa()%>">
                                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                         </td>
-                                        <td class="total_price"><span><%//=cart.getProduct().getPrice()*cart.getEa() %></span></td>
+                                        <td class="total_price"><span><%=cart.getProduct().getPrice()*cart.getEa() %></span></td>
                                     </tr>
                                     <%} %>
                                 </tbody>

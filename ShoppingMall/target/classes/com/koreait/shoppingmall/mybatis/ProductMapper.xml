@@ -19,13 +19,13 @@
 	<!-- 상품상세 정보-->
 	<!-- 자동매핑에 의존하지 못할 경우, 개발자가 매핑을 수동으로 조절해야 될 경우가 있다..이때 사용하는 태그가 resultMap -->
 	<resultMap type="Product" id="ProductSubCategory">
-		<id column="product_id" 					property="product_id"/>	
-		<result column="product_name" 		property="product_name"/>	
-		<result column="brand" 					property="brand"/>	
-		<result column="price" 					property="price"/>	
-		<result column="info" 						property="info"/>	
-		<result column="product_img" 			property="product_img"/>	
-		<association column="subcategory_id" property="subCategory" javaType="SubCategory" 
+		<id column="product_id" 						property="product_id"/>	
+		<result column="product_name" 			property="product_name"/>	
+		<result column="brand" 						property="brand"/>	
+		<result column="price" 							property="price"/>	
+		<result column="info" 							property="info"/>	
+		<result column="product_img" 				property="product_img"/>	
+		<association column="subcategory_id" 	property="subCategory" javaType="SubCategory" 
 			select="SubCategory.select"/>
 	</resultMap>
 	

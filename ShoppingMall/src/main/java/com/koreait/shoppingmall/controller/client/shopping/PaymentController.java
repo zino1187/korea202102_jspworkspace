@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.koreait.shoppingmall.domain.OrderSummary;
 import com.koreait.shoppingmall.domain.Receiver;
 import com.koreait.shoppingmall.model.repository.payment.PayMethodService;
+import com.koreait.shoppingmall.model.service.payment.OrderService;
 import com.koreait.shoppingmall.model.service.product.CartService;
 
 @Controller
@@ -23,6 +24,9 @@ public class PaymentController {
 	
 	@Autowired
 	private PayMethodService payMethodService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	
 	//결제 페이지 요청 처리 
@@ -49,6 +53,18 @@ public class PaymentController {
 	public ModelAndView pay(HttpServletRequest request, OrderSummary orderSummary, Receiver receiver) {
 		System.out.println("orderSummary= "+orderSummary);
 		System.out.println("receiver= "+receiver);
+		
+		//HttpSession session=request.getSession();
+		//Member member=(Member)session.getAttribute("member");
+		//cartService.selectAllJoin(member.getMember_id());
+		orderSummary.setMember_id(1); // 테스트 단계에서는 1로 고정함 
+		
+		//주문요약  insert 
+		
+		//주문상세  insert 
+		
+		//배송정보  insert 
+		orderService.regist(orderSummary, receiver);
 		
 		return null;
 	}

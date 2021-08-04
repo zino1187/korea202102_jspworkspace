@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.koreait.shoppingmall.domain.OrderSummary;
+import com.koreait.shoppingmall.domain.Receiver;
 import com.koreait.shoppingmall.model.repository.payment.PayMethodService;
 import com.koreait.shoppingmall.model.service.product.CartService;
 
@@ -40,4 +43,30 @@ public class PaymentController {
 		
 		return mav;
 	}
+	
+	//결제요청 
+	@PostMapping("/checkout/pay")
+	public ModelAndView pay(HttpServletRequest request, OrderSummary orderSummary, Receiver receiver) {
+		System.out.println("orderSummary= "+orderSummary);
+		System.out.println("receiver= "+receiver);
+		
+		return null;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

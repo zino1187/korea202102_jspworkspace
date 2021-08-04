@@ -48,6 +48,7 @@
         <!-- ****** Checkout Area Start ****** -->
         <div class="checkout_area section_padding_100">
             <div class="container">
+                <form id="form1" method="post">
                 <div class="row">
 
                     <div class="col-12 col-md-6">
@@ -58,32 +59,31 @@
                                 <p>Enter your cupone code</p>
                             </div>
 
-                            <form action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input type="text" class="form-control" id="first_name" name="name" value="" placeholder="받는 사람 이름" required >
+                                        <input type="text" class="form-control" id="first_name" name="name" placeholder="받는 사람 이름" required >
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="street_address">Address <span>*</span></label>
-                                        <input type="text" class="form-control mb-3" id="street_address" name="addr1" value="" placeholder="주소">
-                                        <input type="text" class="form-control" id="street_address2" name="addr2" value="" placeholder="나머지 주소">
+                                        <input type="text" class="form-control mb-3" id="street_address" name="addr1"  placeholder="주소">
+                                        <input type="text" class="form-control" id="street_address2" name="addr2"  placeholder="나머지 주소">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="postcode">Postcode <span>*</span></label>
-                                        <input type="text" class="form-control" id="postcode" name="zipcode" value="" placeholder="우편번호">
+                                        <input type="text" class="form-control" id="postcode" name="zipcode" placeholder="우편번호">
                                     </div>
                                     <div class="col-4 mb-3">
-                                        <input type="number" class="form-control" name="phone1" min="0" value="" placeholder="국번">
+                                        <input type="number" class="form-control" name="phone1" min="0" placeholder="국번">
                                     </div>
                                     <div class="col-4 mb-3">
-                                        <input type="number" class="form-control" name="phone2" min="0" value="" placeholder="앞 4자리">
+                                        <input type="number" class="form-control" name="phone2" min="0" placeholder="앞 4자리">
                                     </div>
                                     <div class="col-4 mb-3">
-                                        <input type="number" class="form-control" name="phone3" min="0" value="" placeholder="뒷 4자리">
+                                        <input type="number" class="form-control" name="phone3" min="0"  placeholder="뒷 4자리">
                                     </div>
                                     
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
 
@@ -120,7 +120,7 @@
                                 <div class="card">
                                     <div class="card-header" role="tab" id="headingOne">
                                         <h6 class="mb-0">
-                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i><%=payMethod.getName() %></a>
+                                            <a data-toggle="collapse" onClick="setPayMethod(<%=payMethod.getPaymethod_id() %>)" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i><%=payMethod.getName() %></a>
                                         </h6>
                                     </div>
 
@@ -133,11 +133,15 @@
                                 <%} %>
                             </div>
 
-                            <a href="#" class="btn karl-checkout-btn">Place Order</a>
+                            <a href="javascript:order()" class="btn karl-checkout-btn">Place Order</a>
                         </div>
                     </div>
-
+                    
+                    <input type="hidden" name="total_buy" value="<%=total_buy%>">
+                    <input type="hidden" name="total_pay" value="<%=total_pay%>">
+                    <input type="hidden" name="paymethod_id">
                 </div>
+			</form>
             </div>
         </div>
         <!-- ****** Checkout Area End ****** -->
@@ -228,7 +232,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="/resources/client/js/plugins.js"></script>
     <!-- Active js -->
     <script src="/resources/client/js/active.js"></script>
-
+	<script type="text/javascript">
+		//고객이 선택한 결제방법 
+		function setPayMethod(paymethod_id){
+			//전송하기 위해 히든에 보관하자!!!
+			$("#form1 input[name='paymethod_id']").val(paymethod_id);
+		}
+		
+		//주문 요청!!
+		function order(){
+			if(confirm("입력하신 주문정보로 결제를 진행할까요?")){
+				$("#form1").attr({
+					action:"/client/checkout/pay",
+					method:"POST"
+				});
+				$("#form1").submit();			
+			}
+		}	
+	</script>
 </body>
 
 </html>
+
+
+
+

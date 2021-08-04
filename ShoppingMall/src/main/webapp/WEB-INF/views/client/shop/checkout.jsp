@@ -1,3 +1,4 @@
+<%@page import="com.koreait.shoppingmall.domain.PayMethod"%>
 <%@page import="com.koreait.shoppingmall.domain.Product"%>
 <%@page import="com.koreait.shoppingmall.domain.Cart"%>
 <%@page import="com.koreait.shoppingmall.domain.TopCategory"%>
@@ -6,6 +7,7 @@
 <%
 	List<TopCategory> topList=(List)request.getAttribute("topList");	
 	List<Cart> cartList=(List)request.getAttribute("cartList");	
+	List<PayMethod> payMethodList=(List)request.getAttribute("payMethodList");	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,10 +116,11 @@
 
 
                             <div id="accordion" role="tablist" class="mb-4">
+                                <%for(PayMethod payMethod : payMethodList){ %>
                                 <div class="card">
                                     <div class="card-header" role="tab" id="headingOne">
                                         <h6 class="mb-0">
-                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i><%=payMethod.getName() %></a>
                                         </h6>
                                     </div>
 
@@ -127,42 +130,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingTwo">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingThree">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>credit card</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingFour">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour"><i class="fa fa-circle-o mr-3"></i>direct bank transfer</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cum autem eveniet saepe fugit, impedit magni.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <%} %>
                             </div>
 
                             <a href="#" class="btn karl-checkout-btn">Place Order</a>

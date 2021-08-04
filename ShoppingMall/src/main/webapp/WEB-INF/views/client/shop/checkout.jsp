@@ -1,8 +1,11 @@
+<%@page import="com.koreait.shoppingmall.domain.Product"%>
+<%@page import="com.koreait.shoppingmall.domain.Cart"%>
 <%@page import="com.koreait.shoppingmall.domain.TopCategory"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%
 	List<TopCategory> topList=(List)request.getAttribute("topList");	
+	List<Cart> cartList=(List)request.getAttribute("cartList");	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,10 +95,21 @@
 
                             <ul class="order-details-form mb-4">
                                 <li><span>Product</span> <span>Total</span></li>
-                                <li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
-                                <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span>Total</span> <span>$59.90</span></li>
+                                <%
+                                	int total_buy=0; //총 구매금액 
+									int shipping=5000; //배송비                                        		
+                                	int total_pay=0; //실제 결제할 금액(각종 할인 등을 적용하여 차감한 결과 또는 배송비에 의해 추가될 수도 있슴)
+                                %>
+                                <%for(int i=0;i<cartList.size();i++){ //구매한 상품의 수만큼 반복%>
+                                <%Cart cart=cartList.get(i); %>
+                                <%Product product=cart.getProduct(); %>
+                                <%total_buy+= product.getPrice()*cart.getEa();%>
+                                <li><span><%=product.getProduct_name() %> x <%=cart.getEa()%></span> <span><%=product.getPrice()*cart.getEa() %></span></li>
+                                <%} %>
+                                <li><span>Subtotal(총 구매금액)</span> <span><%=total_buy %></span></li>
+                                <li><span>Shipping</span> <span><%=shipping %></span></li>
+                                <%total_pay=total_buy-shipping; //각종 포인트 등을 추후 계산... %>
+                                <li><span>Total(총 결제금액)</span> <span><%=total_pay %></span></li>
                             </ul>
 
 
